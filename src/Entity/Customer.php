@@ -131,12 +131,12 @@ class Customer
     }
 
     /**
-     * @param null|string $mailAdress
+     * @param null|string $mailAddress
      * @return Customer
      */
-    public function setMailAdress(?string $mailAdress): self
+    public function setMailAddress(?string $mailAddress): self
     {
-        $this->mailAdress = $mailAdress;
+        $this->mailAddress = $mailAddress;
 
         return $this;
     }
