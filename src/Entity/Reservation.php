@@ -33,16 +33,26 @@ class Reservation
      */
     private $customer;
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getComments(): ?string
     {
         return $this->comments;
     }
 
+    /**
+     * @param null|string $comments
+     * @return Reservation
+     */
     public function setComments(?string $comments): self
     {
         $this->comments = $comments;
@@ -50,11 +60,18 @@ class Reservation
         return $this;
     }
 
+    /**
+     * @return Company|null
+     */
     public function getCompany(): ?Company
     {
         return $this->company;
     }
 
+    /**
+     * @param Company|null $company
+     * @return Reservation
+     */
     public function setCompany(?Company $company): self
     {
         $this->company = $company;
@@ -62,11 +79,18 @@ class Reservation
         return $this;
     }
 
+    /**
+     * @return Customer|null
+     */
     public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
 
+    /**
+     * @param Customer|null $customer
+     * @return Reservation
+     */
     public function setCustomer(?Customer $customer): self
     {
         $this->customer = $customer;

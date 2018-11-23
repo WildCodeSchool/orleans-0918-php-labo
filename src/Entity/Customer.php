@@ -36,7 +36,7 @@ class Customer
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $mailAdress;
+    private $mailAddress;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="customer")
@@ -48,22 +48,35 @@ class Customer
      */
     private $companies;
 
+    /**
+     * Customer constructor.
+     */
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->companies = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getLastName(): ?string
     {
         return $this->lastName;
     }
 
+    /**
+     * @param string $lastName
+     * @return Customer
+     */
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
@@ -71,11 +84,18 @@ class Customer
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getFirstName(): ?string
     {
         return $this->firstName;
     }
 
+    /**
+     * @param null|string $firstName
+     * @return Customer
+     */
     public function setFirstName(?string $firstName): self
     {
         $this->firstName = $firstName;
@@ -83,11 +103,18 @@ class Customer
         return $this;
     }
 
+    /**
+     * @return null|string
+     */
     public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
     }
 
+    /**
+     * @param null|string $phoneNumber
+     * @return Customer
+     */
     public function setPhoneNumber(?string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
@@ -95,11 +122,18 @@ class Customer
         return $this;
     }
 
-    public function getMailAdress(): ?string
+    /**
+     * @return null|string
+     */
+    public function getMailAddress(): ?string
     {
-        return $this->mailAdress;
+        return $this->mailAddress;
     }
 
+    /**
+     * @param null|string $mailAdress
+     * @return Customer
+     */
     public function setMailAdress(?string $mailAdress): self
     {
         $this->mailAdress = $mailAdress;
@@ -115,6 +149,10 @@ class Customer
         return $this->reservations;
     }
 
+    /**
+     * @param Reservation $reservation
+     * @return Customer
+     */
     public function addReservation(Reservation $reservation): self
     {
         if (!$this->reservations->contains($reservation)) {
@@ -125,6 +163,10 @@ class Customer
         return $this;
     }
 
+    /**
+     * @param Reservation $reservation
+     * @return Customer
+     */
     public function removeReservation(Reservation $reservation): self
     {
         if ($this->reservations->contains($reservation)) {
@@ -146,6 +188,10 @@ class Customer
         return $this->companies;
     }
 
+    /**
+     * @param Company $company
+     * @return Customer
+     */
     public function addCompany(Company $company): self
     {
         if (!$this->companies->contains($company)) {
@@ -156,6 +202,10 @@ class Customer
         return $this;
     }
 
+    /**
+     * @param Company $company
+     * @return Customer
+     */
     public function removeCompany(Company $company): self
     {
         if ($this->companies->contains($company)) {

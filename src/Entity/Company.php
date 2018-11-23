@@ -33,22 +33,35 @@ class Company
      */
     private $customers;
 
+    /**
+     * Company constructor.
+     */
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
         $this->customers = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return null|string
+     */
     public function getCompanyName(): ?string
     {
         return $this->companyName;
     }
 
+    /**
+     * @param string $companyName
+     * @return Company
+     */
     public function setCompanyName(string $companyName): self
     {
         $this->companyName = $companyName;
@@ -64,6 +77,10 @@ class Company
         return $this->reservations;
     }
 
+    /**
+     * @param Reservation $reservation
+     * @return Company
+     */
     public function addReservation(Reservation $reservation): self
     {
         if (!$this->reservations->contains($reservation)) {
@@ -74,6 +91,10 @@ class Company
         return $this;
     }
 
+    /**
+     * @param Reservation $reservation
+     * @return Company
+     */
     public function removeReservation(Reservation $reservation): self
     {
         if ($this->reservations->contains($reservation)) {
@@ -95,6 +116,10 @@ class Company
         return $this->customers;
     }
 
+    /**
+     * @param Customer $customer
+     * @return Company
+     */
     public function addCustomer(Customer $customer): self
     {
         if (!$this->customers->contains($customer)) {
@@ -104,6 +129,10 @@ class Company
         return $this;
     }
 
+    /**
+     * @param Customer $customer
+     * @return Company
+     */
     public function removeCustomer(Customer $customer): self
     {
         if ($this->customers->contains($customer)) {
