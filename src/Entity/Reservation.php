@@ -19,7 +19,7 @@ class Reservation
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $comments;
+    private $comment;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="reservations")
@@ -44,18 +44,18 @@ class Reservation
     /**
      * @return null|string
      */
-    public function getComments(): ?string
+    public function getComment(): ?string
     {
-        return $this->comments;
+        return $this->comment;
     }
 
     /**
-     * @param null|string $comments
+     * @param null|string $comment
      * @return Reservation
      */
-    public function setComments(?string $comments): self
+    public function setComment(?string $comment): self
     {
-        $this->comments = $comments;
+        $this->comment = $comment;
 
         return $this;
     }
