@@ -3,15 +3,14 @@
 {% block title %}Home {{ controller_name }}!{% endblock %}
 
 {% block body %}
-    <div class="container-fluid card text-center">
-        <div class="container-fluid row card-header">
-            <div class="container text-center card-body">
-                <h1 class="card-title">Réservation des salles et restitution des clés</h1>
+    <main class="container-fluid backgroundhome">
+        <div class="d-flex align-items-center flex-column pt-5">
+            <div class="mt-5">
+                <h1>Réservation des salles et restitution des clés</h1>
             </div>
-            <img class="card-img-bottom" src="{{ asset('build/images/LABO_2016_exter@Jean_PUYO.jpg') }}" alt="Card image cap">
-            <div>
-                <a href="#" class="btn btn-dark width-2">Réservation</a>
+            <div class="reservation">
+                <a href="#" class="btn fancy-button bg-gradient1"><span>Réservation</span></a>
             </div>
         </div>
-    </div>
+    </main>
 {% endblock %}
