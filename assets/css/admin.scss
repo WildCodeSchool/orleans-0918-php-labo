@@ -1,0 +1,42 @@
+.navbar-brand {
+  margin-left: 2%;
+}
+
+.logo {
+  width: 220px;
+  padding-right: 20%;
+}
+
+.logoLabo {
+  width: 50px;
+}
+
+.navbar_bg {
+  background-color: $primary-color;
+}
+
+.navbar {
+  .navbar-collapse {
+    .navbar-nav {
+      .nav-item {
+        a {
+          font-size: 2em;
+          color: white;
+          font-weight: bold;
+          text-shadow: 2px 2px 2px $secondary-color;
+          &:hover {
+            color: black;
+            text-shadow: 1px 1px 1px white;
+          }
+        }
+      padding-right: 3vh;
+      padding-left: 3vh;
+      }
+    }
+  }
+}
+
+.nav_title_admin {
+  font-family: $font-title;
+}
+
