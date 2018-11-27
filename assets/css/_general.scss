@@ -14,58 +14,62 @@ p {
   font-weight: lighter;
 }
 
-/* fancy Button */
-.fancy-button {
-  font-family: $font-text, sans-serif;
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  font-size: calc(0.8vw + 3pt);
-  text-transform: uppercase;
-  line-height: 34px;
-  color: #ffffff;
-  position: relative;
-  &.bg-gradient1 {
-    text-shadow: 0px 0px 1px #e53530;
-  }
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 10px;
-    right: 10px;
-    z-index: -1;
-    border-radius: 2em;
-    filter: blur(14px) brightness(0.9);
-    transform-style: preserve-3d;
-    transition: all 0.3s ease-out;
-  }
-  span {
-    display: inline-block;
-    padding: 16px 20px;
-    border-radius: 50em;
-    position: relative;
-    z-index: 2;
-    will-change: transform, filter;
-    transform-style: preserve-3d;
-    transition: all 0.3s ease-out;
-  }
-  &:hover {
-    color: #ffffff;
+/* style Button */
 
-    span {
-      filter: brightness(.9) contrast(1.2);
-      transform: scale(0.96);
+@mixin style-button($color1,$color2,$color3) {
+  .style-button {
+    font-family: $font-text, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    font-size: calc(0.8vw + 3pt);
+    text-transform: uppercase;
+    line-height: 34px;
+    color: $color1;
+    position: fixed;
+    bottom: 0.5em;
+    &.bg-gradient1 {
+      text-shadow: 0px 0px 1px $color2;
     }
     &:before {
-      bottom: 3px;
-      filter: blur(6px) brightness(0.8);
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 10px;
+      right: 10px;
+      z-index: -1;
+      border-radius: 2em;
+      filter: blur(14px) brightness(0.9);
+      transform-style: preserve-3d;
+      transition: all 0.3s ease-out;
+    }
+    span {
+      display: inline-block;
+      padding: 16px 20px;
+      border-radius: 50em;
+      position: relative;
+      z-index: 2;
+      will-change: transform, filter;
+      transform-style: preserve-3d;
+      transition: all 0.3s ease-out;
+    }
+    &:hover {
+      color: $color1;
+
+      span {
+        filter: brightness(.9) contrast(1.2);
+        transform: scale(0.96);
+      }
+      &:before {
+        bottom: 3px;
+        filter: blur(6px) brightness(0.8);
+      }
+    }
+    &:active span {
+      filter: brightness(.75) contrast(1.7);
     }
   }
-  &:active span {
-    filter: brightness(.75) contrast(1.7);
-  }
-}
-.bg-gradient1 span, .bg-gradient1::before {
-  background: #e53530;
-  background: linear-gradient(180deg, #e53530 10%, #F6682F 60%, #e53530 100%);
+    .bg-gradient1 span, .bg-gradient1::before {
+      background: $color2;
+      background: linear-gradient(180deg, $color2 10%, $color3 60%, $color2 100%);
+    }
 }
