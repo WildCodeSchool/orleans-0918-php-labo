@@ -43,10 +43,6 @@ class Customer
      */
     private $reservations;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Company", mappedBy="customers")
-     */
-    private $companies;
 
     /**
      * Customer constructor.
@@ -54,7 +50,6 @@ class Customer
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
-        $this->companies = new ArrayCollection();
     }
 
     /**
@@ -175,42 +170,6 @@ class Customer
             if ($reservation->getCustomer() === $this) {
                 $reservation->setCustomer(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Company[]
-     */
-    public function getCompanies(): Collection
-    {
-        return $this->companies;
-    }
-
-    /**
-     * @param Company $company
-     * @return Customer
-     */
-    public function addCompany(Company $company): self
-    {
-        if (!$this->companies->contains($company)) {
-            $this->companies[] = $company;
-            $company->addCustomer($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Company $company
-     * @return Customer
-     */
-    public function removeCompany(Company $company): self
-    {
-        if ($this->companies->contains($company)) {
-            $this->companies->removeElement($company);
-            $company->removeCustomer($this);
         }
 
         return $this;

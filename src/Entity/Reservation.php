@@ -22,13 +22,13 @@ class Reservation
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="reservations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $company;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="reservations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $customer;

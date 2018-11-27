@@ -29,17 +29,11 @@ class Company
     private $reservations;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Customer", inversedBy="companies")
-     */
-    private $customers;
-
-    /**
      * Company constructor.
      */
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
-        $this->customers = new ArrayCollection();
     }
 
     /**
@@ -103,40 +97,6 @@ class Company
             if ($reservation->getCompany() === $this) {
                 $reservation->setCompany(null);
             }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Customer[]
-     */
-    public function getCustomers(): Collection
-    {
-        return $this->customers;
-    }
-
-    /**
-     * @param Customer $customer
-     * @return Company
-     */
-    public function addCustomer(Customer $customer): self
-    {
-        if (!$this->customers->contains($customer)) {
-            $this->customers[] = $customer;
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param Customer $customer
-     * @return Company
-     */
-    public function removeCustomer(Customer $customer): self
-    {
-        if ($this->customers->contains($customer)) {
-            $this->customers->removeElement($customer);
         }
 
         return $this;

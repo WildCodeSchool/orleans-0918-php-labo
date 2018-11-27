@@ -2,29 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Reservation;
+use App\Entity\Company;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReservationType extends AbstractType
+class CompanyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add('customer', CustomerType::class)
-            -> add ('comment', TextareaType::class)
-            ->add ('company', CompanyType::class)
+            ->add('companyName', TextType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Reservation::class
+            'data_class' => Company::class,
         ]);
     }
 }
