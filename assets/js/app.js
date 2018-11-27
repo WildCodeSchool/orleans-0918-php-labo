@@ -19,8 +19,4 @@ import "bootstrap";
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
-//
-// $('#myTabs a').click(function (e) {
-//     e.preventDefault()
-//     $(this).tab('show')
-// })
+git

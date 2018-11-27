@@ -1,0 +1,39 @@
+.navbar {
+  background-color: $primary-color;
+  font-family: $font-title;
+  .navbar-collapse {
+    .navbar-nav {
+      .nav-item {
+        a {
+          font-size: 1.1em;
+          color: $Monochrome-Color;
+          text-shadow: 2px 2px 2px $secondary-color;
+          &:hover {
+            color: #c0ae8a;
+            text-shadow: 1px 1px 1px $Monochrome-Color;
+          }
+        }
+      }
+    }
+  }
+}
+
+#btnAdmin {
+  font-size: 1.5em;
+  color: $Monochrome-Color;
+  text-shadow: 2px 2px 2px $secondary-color;
+
+  &:hover {
+    color: #c0ae8a;
+    text-shadow: 1px 1px 1px $Monochrome-Color;
+  }
+}
+
+.logo {
+  width: 150px;
+  padding-right: 20%;
+}
+
+.logoLabo {
+  width: 50px;
+}
