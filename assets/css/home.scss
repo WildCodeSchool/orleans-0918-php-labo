@@ -13,7 +13,7 @@ h1 {
 }
 
 .backgroundHome {
-  background: url("../../public/images/LABO_2016_exter@Jean_PUYO.jpg");
+  background: url("../images/LABO_2016_exter@Jean_PUYO.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -26,7 +26,7 @@ h1 {
     text-shadow: 3px 4px 3px darken($primary-color, 15%);
   }
   .backgroundHome {
-    background-image: url("../../public/images/labo_portrait.jpg");
+    background-image: url("../images/labo_portrait.jpg");
   }
   .style-button {
     position: relative !important;
@@ -36,13 +36,6 @@ h1 {
     padding: 30px 30px;
   }
 }
-
-
-
-
-
-
-
 
 
 
