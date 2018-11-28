@@ -1,0 +1,43 @@
+// General home page
+h1 {
+  color: $monochrome-color;
+  text-shadow: 2px 3px 2px $secondary-color;
+  font-size: calc(3.7vw + 25pt);
+  margin-top: 6%;
+}
+
+.reservation {
+  @include style-button($monochrome-color, $primary-color, $variableBtn-color);
+  margin-top: 25%;
+  font-size: calc(0.8vw + 15pt);
+}
+
+.backgroundHome {
+  background: url("../images/LABO_2016_exter@Jean_PUYO.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+// Landscape Tablet mode
+@media (min-width: 768px) and (max-width: 1000px) {
+  h1{
+    padding-top: 15%;
+    text-shadow: 3px 4px 3px darken($primary-color, 15%);
+  }
+  .backgroundHome {
+    background-image: url("../images/labo_portrait.jpg");
+  }
+  .style-button {
+    position: relative !important;
+  }
+  .reservation .style-button span {
+    font-size: 2em;
+    padding: 30px 30px;
+  }
+}
+
+
+
+
+
