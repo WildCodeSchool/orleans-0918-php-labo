@@ -6,11 +6,11 @@
       .nav-item {
         a {
           font-size: 2em;
-          color: $Monochrome-Color;
+          color: $monochrome-color;
           text-shadow: 2px 2px 2px $secondary-color;
           &:hover {
             color: #c0ae8a;
-            text-shadow: 1px 1px 1px $Monochrome-Color;
+            text-shadow: 1px 1px 1px $monochrome-color;
           }
         }
       }
@@ -20,12 +20,12 @@
 
 #btnAdmin {
   font-size: 1.5em;
-  color: $Monochrome-Color;
+  color: $monochrome-color;
   text-shadow: 2px 2px 2px $secondary-color;
 
   &:hover {
     color: #c0ae8a;
-    text-shadow: 1px 1px 1px $Monochrome-Color;
+    text-shadow: 1px 1px 1px $monochrome-color;
   }
 }
 
