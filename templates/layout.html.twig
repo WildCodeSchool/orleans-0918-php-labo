@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Yanone+Kaffeesatz:300,400,700" rel="stylesheet">
+</head>
+
+<body>
+{% block navbar %}{% endblock %}
+{% block body %}{% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
+</html>
