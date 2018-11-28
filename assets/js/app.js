@@ -13,10 +13,12 @@ require('../css/app.scss');
 
 const $ = require('jquery');
 
-require('bootstrap');
+
 import "bootstrap";
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('[data-toggle="popover"]').popover();
 });
-git
+
+require('@fortawesome/fontawesome-free/css/all.min.css');
+require('@fortawesome/fontawesome-free/js/all.js');
