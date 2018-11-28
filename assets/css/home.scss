@@ -1,13 +1,13 @@
 // General home page
 h1 {
-  color: $textBtn-color;
+  color: $monochrome-color;
   text-shadow: 2px 3px 2px $secondary-color;
   font-size: calc(3.7vw + 25pt);
   margin-top: 6%;
 }
 
 .reservation {
-  @include style-button($textBtn-color, $primary-color, $variableBtn-color);
+  @include style-button($monochrome-color, $primary-color, $variableBtn-color);
   margin-top: 25%;
   font-size: calc(0.8vw + 15pt);
 }
