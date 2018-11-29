@@ -1,6 +1,8 @@
 .navbar {
   background-color: $primary-color;
   font-family: $font-title;
+  position: fixed;
+  width: 100%;
   .navbar-collapse {
     .navbar-nav {
       .nav-item {
@@ -9,7 +11,7 @@
           color: $monochrome-color;
           text-shadow: 2px 2px 2px $secondary-color;
           &:hover {
-            color: #c0ae8a;
+            color: $light-color;
             text-shadow: 1px 1px 1px $monochrome-color;
           }
         }
@@ -24,7 +26,7 @@
   text-shadow: 2px 2px 2px $secondary-color;
 
   &:hover {
-    color: #c0ae8a;
+    color: $light-color;
     text-shadow: 1px 1px 1px $monochrome-color;
   }
 }
