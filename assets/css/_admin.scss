@@ -21,12 +21,12 @@
       .nav-item {
         a {
           font-size: 2em;
-          color: white;
+          color: $monochrome-color;
           font-weight: bold;
           text-shadow: 2px 2px 2px $secondary-color;
           &:hover {
-            color: black;
-            text-shadow: 1px 1px 1px white;
+            color: $secondary-color;
+            text-shadow: 1px 1px 1px $monochrome-color;
           }
         }
       padding-right: 3vh;
