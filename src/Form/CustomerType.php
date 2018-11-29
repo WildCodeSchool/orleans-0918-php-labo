@@ -15,18 +15,21 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lastName',TextType::class, array('label' => 'Nom de Famille : ' , 'error_bubbling' => false))
-            ->add('firstName', TextType::class, array ('label' => 'Prénom : ', 'required' => false, 'error_bubbling' => false,))
-            ->add('phoneNumber', TelType::class, array ('label' => 'N° de Téléphone : ', 'required' => false, 'error_bubbling' => false,) )
-            ->add('mailAddress', EmailType::class, array ('label' =>'Adresse Mail : ', 'required' => false , 'error_bubbling' => false))
+            ->add('lastName', TextType::class, array(
+                'label' => 'Nom de Famille : ' , 'error_bubbling' => false))
+            ->add('firstName', TextType::class, array (
+                'label' => 'Prénom : ', 'required' => false, 'error_bubbling' => false,))
+            ->add('phoneNumber', TelType::class, array (
+                'label' => 'N° de Téléphone : ', 'required' => false, 'error_bubbling' => false,))
+            ->add('mailAddress', EmailType::class, array (
+                'label' =>'Adresse Mail : ', 'required' => false , 'error_bubbling' => false))
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Customer::class,
+            'data_class' => Customer::class
         ]);
     }
-
 }

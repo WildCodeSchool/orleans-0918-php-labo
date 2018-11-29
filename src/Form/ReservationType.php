@@ -15,8 +15,8 @@ class ReservationType extends AbstractType
         $builder
 
             ->add('customer', CustomerType::class)
-            ->add ('company', CompanyType::class)
-            ->add ('comment', TextareaType::class, array('label'=> 'Commentaires : ', 'required' => false))
+            ->add('company', CompanyType::class)
+            ->add('comment', TextareaType::class, array('label'=> 'Commentaires : ', 'required' => false))
         ;
     }
 
