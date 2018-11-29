@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
@@ -20,21 +21,28 @@ class Customer
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Vous devez renseigner un nom pour enregistrer votre réservation")
+     *
+     *
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type("string")
+     *
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=10, nullable=true)
+     * @Assert\Regex(pattern="/^[0-9]*$/", message="Vous ne pouvez mettre que des chiffres")
      */
     private $phoneNumber;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Email(message = "Votre adresse est invalide")
      */
     private $mailAddress;
 

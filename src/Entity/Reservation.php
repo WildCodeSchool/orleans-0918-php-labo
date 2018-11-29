@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
@@ -24,12 +26,14 @@ class Reservation
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="reservations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     *@Assert\Valid()
      */
     private $company;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="reservations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $customer;
 

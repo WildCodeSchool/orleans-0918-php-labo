@@ -15,10 +15,10 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lastName',TextType::class)
-            ->add('firstName', TextType::class)
-            ->add('phoneNumber', TelType::class )
-            ->add('mailAddress', EmailType::class)
+            ->add('lastName',TextType::class, array('label' => 'Nom de Famille : ' , 'error_bubbling' => false))
+            ->add('firstName', TextType::class, array ('label' => 'Prénom : ', 'required' => false, 'error_bubbling' => false,))
+            ->add('phoneNumber', TelType::class, array ('label' => 'N° de Téléphone : ', 'required' => false, 'error_bubbling' => false,) )
+            ->add('mailAddress', EmailType::class, array ('label' =>'Adresse Mail : ', 'required' => false , 'error_bubbling' => false))
         ;
     }
 
