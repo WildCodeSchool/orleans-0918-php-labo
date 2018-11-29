@@ -37,6 +37,12 @@ class Reservation
     private $customer;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Staff", inversedBy="reservation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $staff;
+
+    /**
      * @return int|null
      */
     public function getId(): ?int
@@ -97,6 +103,18 @@ class Reservation
     public function setCustomer(?Customer $customer): self
     {
         $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function getStaff(): ?Staff
+    {
+        return $this->staff;
+    }
+
+    public function setStaff(?Staff $staff): self
+    {
+        $this->staff = $staff;
 
         return $this;
     }
