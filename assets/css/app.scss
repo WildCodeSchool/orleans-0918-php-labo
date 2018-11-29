@@ -3,5 +3,32 @@
 body {
     background-color: white;
 }
+h2 {
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-top: 6%;
+    font-family:'Yanone Kaffeesatz', sans-serif;
+    font-weight: bold;
+}
+.table {
+    padding-bottom: 5%;
+    padding-left: 5%;
+    padding-top:5%;
+    padding-right:5%;
+    border: 2px solid #ed1c40;
+    border-radius: .25rem;
+    border-spacing: 0;
+    text-align: left;
+}
+tbody tr:hover {
+    background-color: #f2f2f2;
+    cursor: default;
+}
+thead tr:first-child {
+    background: #e53530;
+    color: #fff;
+    border: none;
+}
 
 

@@ -3,8 +3,9 @@
 {% block title %}Reservation index{% endblock %}
 
 {% block body %}
-    <h1>Reservations en cours</h1>
-    <table class="table ml-1 mr-1">
+    <h2>Reservations en cours</h2>
+    <div class="container-fluid">
+        <table class="table ml-1 mr-1">
         <thead>
         <tr>
             <th scope="col">N° de reservation</th>
@@ -17,7 +18,7 @@
         <tbody>
         {% for reservation in reservations %}
         <tr>
-            <th scope="row">{{ reservation.id }}</th>
+            <th class="text-center" scope="row">{{ reservation.id }}</th>
             <td>{{ reservation.company.companyName }}</td>
             <td>{{ reservation.customer.lastName }}</td>
             <td>{{ reservation.customer.firstName }}</td>
@@ -25,5 +26,6 @@
         </tr>
         {% endfor %}
         </tbody>
-    </table>
+        </table>
+    </div>
 {% endblock %}
