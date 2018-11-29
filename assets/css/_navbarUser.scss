@@ -11,7 +11,7 @@
           color: $monochrome-color;
           text-shadow: 2px 2px 2px $secondary-color;
           &:hover {
-            color: $light-color;
+            color: $secondary-color;
             text-shadow: 1px 1px 1px $monochrome-color;
           }
         }
@@ -26,7 +26,7 @@
   text-shadow: 2px 2px 2px $secondary-color;
 
   &:hover {
-    color: $light-color;
+    color: $secondary-color;
     text-shadow: 1px 1px 1px $monochrome-color;
   }
 }
