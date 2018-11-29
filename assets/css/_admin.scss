@@ -40,3 +40,18 @@
   font-family: $font-title;
 }
 
+h2 {
+  color: $secondary-color;
+  font-size: calc(2vw + 17pt);
+  margin-top: 6%;
+}
+
+th {
+  font-family: $font-title;
+  font-size: calc(0.8vw + 10pt);
+}
+
+td {
+  font-family: $font-text;
+  font-size: calc(0.5vw + 8pt);
+}
