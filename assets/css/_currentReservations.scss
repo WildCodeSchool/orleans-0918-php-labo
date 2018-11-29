@@ -1,0 +1,32 @@
+body {
+  background-color: $monochrome-color;
+}
+h2 {
+  text-align: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  margin-top: 6%;
+  font-family: $font-title;
+  font-weight: bold;
+}
+.table {
+  padding-bottom: 5%;
+  padding-left: 5%;
+  padding-top:5%;
+  padding-right:5%;
+  border: 2px solid $primary-color;
+  border-radius: .25rem;
+  border-spacing: 0;
+  text-align: left;
+}
+tbody tr:hover {
+  background-color: $highlight-color;
+  cursor: default;
+}
+thead tr:first-child {
+  background: $primary-color;
+  color: $monochrome-color;
+  border: none;
+}
+
+
