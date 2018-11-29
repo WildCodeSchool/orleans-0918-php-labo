@@ -12,3 +12,6 @@ require('../css/app.scss');
 // var $ = require('jquery');
 
 import "bootstrap";
+
+require('@fortawesome/fontawesome-free/css/all.min.css');
+require('@fortawesome/fontawesome-free/js/all.js');
