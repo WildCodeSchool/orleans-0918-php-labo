@@ -40,6 +40,7 @@ class ReservationController extends AbstractController
     public function new(Request $request): Response
     {
         $reservation = new Reservation();
+
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
@@ -48,7 +49,7 @@ class ReservationController extends AbstractController
             $em->persist($reservation);
             $em->flush();
 
-            return $this->redirectToRoute('reservation_index');
+            return $this->redirectToRoute('reservation_new');
         }
 
         return $this->render('reservation/new.html.twig', [
