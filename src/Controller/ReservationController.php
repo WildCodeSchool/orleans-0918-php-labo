@@ -30,11 +30,8 @@ class ReservationController extends AbstractController
      */
     public function currentReservationIndex(ReservationRepository $reservationRepository): Response
     {
-        $reservation = new Reservation;
         return $this->render('reservation/currentReservations.html.twig', [
-            'reservations'=> $reservationRepository->findBy([], ['id'=>'DESC'], 10),
-            'customer'=> $reservation->getCustomer(),
-            'company'=> $reservation->getCompany(),
+            'reservations'=> $reservationRepository->findBy([], ['id'=>'DESC'], 20),
             ]);
     }
     /**
