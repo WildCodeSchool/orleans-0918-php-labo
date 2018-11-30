@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav text-center mx-auto mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Réservations</a>
+                <a class="nav-link" href="{{ path('reservation_new') }}">Réservations</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Réservations en Attente</a>
@@ -19,6 +19,6 @@
                 <a class="nav-link" href="#">Réservations Archivées</a>
             </li>
         </ul>
-        <a href="#"> <i class="btn fas fa-cogs fa-2x" id="btnAdmin"></i></a>
+        <a href="{{ path('staff_index') }}"> <i class="btn fas fa-cogs fa-2x" id="btnAdmin"></i></a>
     </div>
 </nav>
