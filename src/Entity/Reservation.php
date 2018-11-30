@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
@@ -22,16 +23,24 @@ class Reservation
     private $comment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company", inversedBy="reservations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     *@Assert\Valid()
      */
     private $company;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="reservations")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="reservations", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $customer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Staff", inversedBy="reservation")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $staff;
 
     /**
      * @return int|null
@@ -94,6 +103,18 @@ class Reservation
     public function setCustomer(?Customer $customer): self
     {
         $this->customer = $customer;
+
+        return $this;
+    }
+
+    public function getStaff(): ?Staff
+    {
+        return $this->staff;
+    }
+
+    public function setStaff(?Staff $staff): self
+    {
+        $this->staff = $staff;
 
         return $this;
     }
