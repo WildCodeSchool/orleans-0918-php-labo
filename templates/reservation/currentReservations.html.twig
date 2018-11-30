@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block body %}
+    <h2>Reservations en cours</h2>
+    <div class="container-fluid">
+        <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">N° de reservation</th>
+            <th scope="col">Entreprise</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Commentaire</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <th class="text-center" scope="row">{{ reservation.id }}</th>
+            <td>{{ reservation.company.companyName }}</td>
+            <td>{{ reservation.customer.lastName }}</td>
+            <td>{{ reservation.customer.firstName }}</td>
+            <td>{{ reservation.comment }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}

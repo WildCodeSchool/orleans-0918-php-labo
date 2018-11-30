@@ -24,6 +24,17 @@ class ReservationController extends AbstractController
     }
 
     /**
+     * @Route("/current", name="current_reservation_index", methods="GET")
+     * @param ReservationRepository $reservationRepository
+     * @return Response
+     */
+    public function currentReservationIndex(ReservationRepository $reservationRepository): Response
+    {
+        return $this->render('reservation/currentReservations.html.twig', [
+            'reservations'=> $reservationRepository->findBy([], ['id'=>'DESC']),
+            ]);
+    }
+    /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
      */
     public function new(Request $request): Response
