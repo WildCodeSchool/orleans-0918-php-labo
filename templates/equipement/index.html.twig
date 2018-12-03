@@ -1,6 +1,6 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Gestion des Equipements{% endblock %}
+{% block title %}Gestion du matériel{% endblock %}
 {% block body %}
     <main>
         <div class="container mt-5">
@@ -21,7 +21,6 @@
                                 <td>{{ equipement.name }}</td>
                                 <td><a href="{{ path('equipement_show', {'id': equipement.id}) }}" class="badge badge-light"><i class="fas fa-pen"></i></a></td>
                                 <td><a href="{{ path('equipement_edit', {'id': equipement.id}) }}" class="badge badge-light"><i class="fas fa-trash-alt"></i></a></td>
-                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
