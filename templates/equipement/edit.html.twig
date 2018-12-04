@@ -2,11 +2,9 @@
 
 {% block title %}Modification du matériel{% endblock %}
 {% block body %}
-    <div class="container-fluid mt-5">
-        <a class="backlink" href="{{ path('equipement_index') }}">< Retour</a>
+        <a class="backlink" href="{{ path('equipement_index') }}">&lt; Retour</a>
         <div class="container mt-5 pt-5">
             <h2 class="text-center mt-5 mb-5">Modification du matériel</h2>
             {{ include('equipement/_form.html.twig') }}
         </div>
-    </div>
 {% endblock %}
