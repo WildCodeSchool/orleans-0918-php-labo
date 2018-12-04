@@ -1,4 +1,4 @@
-<form method="post" action="{{ path('staff_delete', {'id': staff.id}) }}" onsubmit="return confirm('Etes-vous sûre de vouloir supprimer cette personne?');">
+<form method="post" action="{{ path('staff_delete', {'id': staff.id}) }}" onsubmit="return confirm('Etes-vous sûr(e) de vouloir supprimer cette personne?');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ staff.id) }}">
     <button class="badge badge-light btnAdminDelete" Name="supprimer" VALUE="supprimer"><i class="fas fa-trash-alt"></i></button>
