@@ -62,3 +62,16 @@ td {
   position: absolute;
   top: 150px;
 }
+.addButton{
+  @include style-button($monochrome-color, $primary-color, $primary-color);
+  margin-top: 5%;
+  .style-button{
+    font-size : 1em;
+    position: relative !important;
+  }
+}
+
+.btnAdminDelete{
+  border: none;
+}
+
