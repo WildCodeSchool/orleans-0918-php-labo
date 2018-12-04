@@ -1,13 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Modification du Personnel{% endblock %}
 
 {% block body %}
     <div class="container-fluid mt-5">
-        <a class="backlink" href="{{ path('staff_index') }}">back to list</a>
+        <a class="backlink" href="{{ path('staff_index') }}">< Retour</a>
         <div class="container mt-5 pt-5">
             <h2 class="text-center mt-5 mb-5">Modification du Personnel</h2>
-            {{ include('staff/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('staff/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
         </div>
     </div>
 {% endblock %}
