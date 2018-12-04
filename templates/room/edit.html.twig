@@ -1,13 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Edit Room{% endblock %}
+{% block title %}Editer une Salle{% endblock %}
 
 {% block body %}
-    <h1>Edit Room</h1>
+    <span class="backlink"><a href="{{ path('room_index') }}">< Retour</a></span>
 
-    {{ include('room/_form.html.twig', {'button_label': 'Update'}) }}
+    <h2>Editer une salle</h2>
 
-    <a href="{{ path('room_index') }}">back to list</a>
+    {{ include('room/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    {{ include('room/_delete_form.html.twig') }}
 {% endblock %}
