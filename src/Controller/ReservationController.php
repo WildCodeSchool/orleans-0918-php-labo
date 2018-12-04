@@ -5,10 +5,13 @@ namespace App\Controller;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+
 
 /**
  * @Route("/reservation")
@@ -28,10 +31,21 @@ class ReservationController extends AbstractController
      * @param ReservationRepository $reservationRepository
      * @return Response
      */
-    public function currentReservationIndex(ReservationRepository $reservationRepository): Response
+    public function currentReservationIndex(Request $request, PaginatorInterface $paginator)
     {
+        $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
+        $reservations = $em->findBy([], ['id'=>'DESC']);
+
+        $result = $paginator->paginate(
+            $reservations,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit',3)
+        );
+
+
+
         return $this->render('reservation/currentReservations.html.twig', [
-            'reservations'=> $reservationRepository->findBy([], ['id'=>'DESC']),
+            'reservations'=> $result,
             ]);
     }
     /**
