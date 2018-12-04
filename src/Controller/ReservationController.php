@@ -22,7 +22,17 @@ class ReservationController extends AbstractController
     {
         return $this->render('reservation/index.html.twig', ['reservations' => $reservationRepository->findAll()]);
     }
-
+    /**
+     * @Route("/current", name="current_reservation_index", methods="GET")
+     * @param ReservationRepository $reservationRepository
+     * @return Response
+     */
+    public function currentReservationIndex(ReservationRepository $reservationRepository): Response
+    {
+        return $this->render('reservation/currentReservations.html.twig', [
+            'reservations'=> $reservationRepository->findBy([], ['id'=>'DESC']),
+        ]);
+    }
     /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
      */
