@@ -1,0 +1,5 @@
+<form method="post" action="{{ path('equipement_delete', {'id': equipement.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer cet équipement?');">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ equipement.id) }}">
+    <button class="badge badge-light btnAdminDelete" NAME="supprimer" VALUE="supprimer"><i class="fas fa-trash-alt"></i></button>
+</form>
