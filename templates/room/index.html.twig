@@ -21,7 +21,7 @@
                                     <td class="text-left">{{ room.name }}</td>
                                     <td>{{ room.door }}</td>
                                     <td><a href="{{ path('room_show', {'id': room.id}) }}" class="badge badge-light"><i class="fas fa-pen"></i></a></td>
-                                    <td><a href="{{ path('room_edit', {'id': room.id}) }}" class="badge badge-light"><i class="fas fa-trash-alt"></i></a></td>
+                                    <td>{{ include('room/_delete_form.html.twig') }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
