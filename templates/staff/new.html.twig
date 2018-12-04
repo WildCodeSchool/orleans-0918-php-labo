@@ -3,9 +3,11 @@
 {% block title %}New Staff{% endblock %}
 
 {% block body %}
-    <h1>Create new Staff</h1>
-
-    {{ include('staff/_form.html.twig') }}
-
-    <a href="{{ path('staff_index') }}">back to list</a>
+    <main>
+        <a href="{{ path('staff_index') }}">&lt Retour</a>
+        <div class="container new_staff">
+            <h2>Création du Personnel</h2>
+            {{ include('staff/_form.html.twig') }}
+        </div>
+    </main>
 {% endblock %}
