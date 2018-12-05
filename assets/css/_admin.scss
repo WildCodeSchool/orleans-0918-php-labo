@@ -55,7 +55,25 @@ td {
   font-family: $font-text;
   font-size: calc(0.5vw + 8pt);
 }
-
+.validbutton{
+  @include style-button($monochrome-color, $primary-color, $primary-color);
+  .style-button{
+    font-size : 1em;
+  }
+  button{
+    background-color: $monochrome-color;
+  }
+}
+.tools {
+  input {
+    margin-top: 5%
+  }
+  label {
+    padding-top: 12.5%;
+    font-size: 1.2em;
+    font-family: $font-text;
+    font-weight: bold;
+  }
 .backlink{
   font-family: $font-text;
   color: $secondary-color;
@@ -63,7 +81,6 @@ td {
   position: absolute;
   top: 150px;
 }
-
 .addButton{
   @include style-button($monochrome-color, $primary-color, $primary-color);
   margin-top: 5%;
@@ -74,7 +91,6 @@ td {
     background: transparent;
   }
 }
-
 .btnAdminDelete{
   border: none;
 }

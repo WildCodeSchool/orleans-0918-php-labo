@@ -1,4 +1,21 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<main>
+    <div class="container justify-content-center mt-5 tools">
+        {{ form_start(form) }}
+        <div class="row justify-content-start align-items-center">
+            <div class="col-3"><label for="{{ form.lastname.vars.id }}"> Nom : </label></div>
+            <div class="col-7">{{ form_widget(form.lastname) }}</div>
+            <div class="col-3"> {{ form_errors(form.lastname) }}</div>
+        </div>
+        <div class="row justify-content-start align-items-center">
+            <div class="col-3"><label for="{{ form.firstname.vars.id }}"> Prénom :</label></div>
+            <div class="col-7">{{ form_widget(form.firstname) }}</div>
+            <div class="row justify-content-center">{{ form_errors(form.firstname) }}</div>
+        </div>
+    </div>
+    <div class="row justify-content-center validbutton">
+        <button class="btn text-center style-button bg-gradient1 mx-auto">
+            <span>{{ button_label|default('Valider') }}</span>"
+        </button>
+    </div>
+    {{ form_end(form) }}
+</main>
