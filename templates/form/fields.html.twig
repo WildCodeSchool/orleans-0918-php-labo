@@ -1,0 +1,7 @@
+{%- block choice_widget_expanded -%}
+        {%- for child in form %}
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                {{- form_widget(child) -}}
+            </div>
+        {% endfor -%}
+{%- endblock choice_widget_expanded -%}
