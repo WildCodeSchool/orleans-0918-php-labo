@@ -1,4 +1,19 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="container room">
+
+   {{ form_start(form) }}
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-2"><label for="{{ form.name.vars.id }}"> Nom de la Salle :</label></div>
+        <div class="col-7">{{ form_widget(form.name) }}</div>
+        <div class="row justify-content-center">{{ form_errors(form.name) }}</div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-2"><label for="{{ form.name.vars.id }}"> Nombre de portes :</label></div>
+        <div class="col-7">{{ form_widget(form.door) }}</div>
+        <div class="row justify-content-center">{{ form_errors(form.door) }}</div>
+    </div>
+    <div class="row justify-content-center validbutton">
+        <button class="btn text-center style-button bg-gradient1 mx-auto"><span>Valider la Réservation</span></button>
+    </div>
 {{ form_end(form) }}
+</div>
