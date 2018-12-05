@@ -1,4 +1,23 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<main>
+    <div class="container mt-5">
+        {{ form_start(form) }}
+        <div class="row justify-content-start">
+            <div class="col-3">
+                <label for="{{ form.staff.lastName.vars.id }}"> Nom : </label>
+                {{ form_widget(form.staff.lastName) }}
+                {{ form_errors(form.staff.lastName) }}
+            </div>
+            <div class="col-3">
+                <label for="{{ form.staff.firstName.vars.id }}"> Prénom :</label>
+                {{ form_widget(form.staff.firstName) }}
+                {{ form_errors(form.staff.firstName) }}
+            </div>
+        </div>
+        <div class="row justify-content-center validbutton">
+            <button class="btn text-center style-button bg-gradient1 mx-auto">
+            <span>{{ button_label|default('Save') }}</span>"
+            </button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</main>
