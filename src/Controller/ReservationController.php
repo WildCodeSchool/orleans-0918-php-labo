@@ -23,7 +23,6 @@ class ReservationController extends AbstractController
     {
         return $this->render('reservation/index.html.twig', ['reservations' => $reservationRepository->findAll()]);
     }
-
     /**
      * @Route("/current", name="current_reservation_index", methods="GET")
      * @param ReservationRepository $reservationRepository

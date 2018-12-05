@@ -23,7 +23,7 @@
                             <td>{{ staff.lastname }}</td>
                             <td>{{ staff.firstname }}</td>
                             <td><a href="{{ path('staff_edit', {'id': staff.id}) }}" class="badge badge-light"><i class="fas fa-pen"></i></a></td>
-                            <td><a href="{{ path('staff_delete', {'id': staff.id}) }}" class="badge badge-light"><i class="fas fa-trash-alt"></i></a></td>
+                            <td>{{ include('staff/_delete_form.html.twig') }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
