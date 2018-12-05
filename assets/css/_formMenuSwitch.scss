@@ -1,0 +1,66 @@
+.menuswitch {
+  margin-top: 10%;
+  ul {
+    border-bottom: none;
+  }
+  .nav-tabs {
+    background-color: transparent;
+
+    &--vertical {
+      border-bottom: none;
+      border-right: 1px solid $input-color;
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    &--left {
+      margin: 0 15px;
+
+      .nav-item + .nav-item {
+        margin-top: .25rem;
+      }
+
+      .nav-link {
+        transition: border-color .125s ease-in;
+        white-space: nowrap;
+
+
+        &:hover {
+          background-color: $input-color;
+          border-color: transparent;
+        }
+      }
+
+      .nav-link.active {
+        border-bottom-color: $input-color;
+        border-right-color: $monochrome-color;
+        border-bottom-left-radius: .25rem;
+        border-top-right-radius: 0;
+        margin-right: -1px;
+
+        &:hover {
+          background-color: $input-color;
+          border-color: $input-color $monochrome-color $input-color $input-color;
+        }
+      }
+
+      a {
+        color: $secondary-color;
+        &:hover {
+          background-color: $input-color;
+        }
+      }
+
+      .tab-content {
+        border: 2px solid darken($input-color, 10%);
+        border-left: none;
+        .active {
+          margin-left: 10%;
+        }
+      }
+    }
+  }
+  .form-check {
+    margin: 2%;
+  }
+}
