@@ -1,11 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}New Room{% endblock %}
+{% block title %}Nouvelle Salle{% endblock %}
 
 {% block body %}
-    <h1>Create new Room</h1>
+
+    <span class="backlink"><a href="{{ path('room_index') }}">&lt; Retour</a></span>
+
+    <h2>Ajouter une nouvelle Salle</h2>
+
 
     {{ include('room/_form.html.twig') }}
 
-    <a href="{{ path('room_index') }}">back to list</a>
+
 {% endblock %}
