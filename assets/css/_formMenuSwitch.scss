@@ -1,0 +1,68 @@
+$border-radius: .25rem;
+$padding-base: 15px;
+$color-body: #fff;
+$color-border: #ddd;
+$border-radius: .25rem;
+
+.menuswitch {
+  margin-top: 5%;
+
+  ul {
+    border-bottom: none;
+  }
+
+  .nav-tabs {
+    background-color: transparent;
+
+    &--vertical {
+      border-bottom: none;
+      border-right: 1px solid $color-border;
+      display: flex;
+      flex-flow: column nowrap;
+    }
+
+    &--left {
+      margin: 0 $padding-base;
+
+      .nav-item + .nav-item {
+        margin-top: .25rem;
+      }
+
+      .nav-link {
+        transition: border-color .125s ease-in;
+        white-space: nowrap;
+
+
+        &:hover {
+          background-color: lighten($color-border, 10%);
+          border-color: transparent;
+        }
+      }
+
+      .nav-link.active {
+        border-bottom-color: $color-border;
+        border-right-color: $color-body;
+        border-bottom-left-radius: $border-radius;
+        border-top-right-radius: 0;
+        margin-right: -1px;
+
+        &:hover {
+          background-color: $color-body;
+          border-color: $input-color $color-body $input-color $input-color;
+        }
+      }
+
+      a {
+        color: $secondary-color;
+      }
+
+      .tab-content {
+        border: 2px solid darken($input-color, 10%);
+        border-left: none;
+      }
+    }
+  }
+  .form-check {
+    margin: 2%;
+  }
+}
