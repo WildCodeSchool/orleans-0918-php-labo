@@ -39,7 +39,7 @@ class ReservationController extends AbstractController
         $result = $paginator->paginate(
             $reservations,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit',3)
+            $request->query->getInt('limit',8)
         );
 
 
