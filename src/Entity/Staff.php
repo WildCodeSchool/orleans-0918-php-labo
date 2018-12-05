@@ -21,13 +21,17 @@ class Staff
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z]+$/", message="Vous ne pouvez pas mettre de chiffres")
+     * @Assert\NotBlank(message = "Le champ Nom ne doit pas être vide!")
+     * @Assert\Length(max = 255,
+     *      maxMessage = "Votre Nom doit être au maximum de 255 caractères")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z]+$/", message="Vous ne pouvez pas mettre de chiffres")
+     * @Assert\NotBlank(message = "Le champ Prénom ne doit pas être vide!")
+     * @Assert\Length(max = 255,
+     *      maxMessage = "Votre Prénom doit être au maximum de 255 caractères")
      */
     private $firstname;
 
