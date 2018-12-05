@@ -55,7 +55,13 @@ td {
   font-family: $font-text;
   font-size: calc(0.5vw + 8pt);
 }
-
+.backlink{
+  font-family: $font-text;
+  color: $secondary-color;
+  font-size: 1.4em;
+  position: absolute;
+  top: 150px;
+}
 .addButton{
   @include style-button($monochrome-color, $primary-color, $primary-color);
   margin-top: 5%;
@@ -68,3 +74,4 @@ td {
 .btnAdminDelete{
   border: none;
 }
+
