@@ -64,3 +64,14 @@ td {
     background-color: $monochrome-color;
   }
 }
+.tools {
+  input {
+    margin-top: 5%
+  }
+  label {
+    padding-top: 12.5%;
+    font-size: 1.2em;
+    font-family: $font-text;
+    font-weight: bold;
+  }
+}
