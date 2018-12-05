@@ -38,7 +38,7 @@ class Room
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Reservation", mappedBy="rooms")
      */
-    private $reservation;
+    private $reservations;
 
     public function getId(): ?int
     {
@@ -69,14 +69,14 @@ class Room
         return $this;
     }
 
-    public function getReservation(): ?Reservation
+    public function getReservations(): ?Reservation
     {
-        return $this->reservation;
+        return $this->reservations;
     }
 
-    public function setReservation(?Reservation $reservation): self
+    public function setReservations(?Reservation $reservations): self
     {
-        $this->reservation = $reservation;
+        $this->reservations = $reservations;
 
         return $this;
     }
