@@ -1,0 +1,31 @@
+.validbutton {
+  @include style-button($monochrome-color, $primary-color, $primary-color);
+  margin-top: 5%;
+  .style-button {
+    font-size: calc(0.7vw + 2pt);
+    position: relative !important;
+  }
+}
+.room{
+  input{
+    margin-top : 5%  }
+  label{
+    padding-top : 25%;
+    font-size : 1.2em;
+    font-family : $font-text;
+    font-weight : bold;
+  }
+  h2{
+    text-align : center;
+  }
+}
+
+.backlink{
+  position : absolute;
+  top : 120px;
+  font-size : 1.4em;
+  a{
+    color : $secondary-color;
+    font-family : $font-text;
+  }
+}

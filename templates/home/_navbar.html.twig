@@ -7,13 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav text-center mx-auto mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('reservation_new') }}">Réservations</a>
+                <a class="nav-link" href="{{ path('reservation_new') }}">Nouvelle Réservation</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Réservations en Attente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Réservations en Cours</a>
+                <a class="nav-link" href="{{ path('current_reservation_index') }}">Réservations en Cours</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Réservations Archivées</a>
