@@ -1,4 +1,13 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+ <div class="container tools">
+     {{ form_start(form) }}
+     <div class="row justify-content-center align-items-center">
+         <div class="col-3"><label for="{{ form.name.vars.id }}"> Nom de la référence :</label></div>
+         <div class="col-7">{{ form_widget(form.name) }}</div>
+         <div class="row justify-content-center">{{ form_errors(form.name) }}</div>
+     </div>
+         <div class="row justify-content-center addButton">
+             <button class="btn text-center style-button bg-gradient1 mx-auto" href="{{ path('equipement_index') }}"><span>Modifier</span></button>
+         </div>
+
+     {{ form_end(form) }}
+ </div>
