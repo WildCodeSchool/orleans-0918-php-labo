@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
@@ -18,11 +19,19 @@ class Room
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Type("string")
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Type(type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 2,
+     *      minMessage = "La salle doit contenir au moins {{ limit }} porte",
+     *      maxMessage = "La salle ne peut contenir que {{ limit }} portes maximum"
+     * )
      */
     private $door;
 
