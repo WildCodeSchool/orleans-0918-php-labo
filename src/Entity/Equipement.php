@@ -19,7 +19,8 @@ class Equipement
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^[a-zA-Z0-9]+$/")
+     * @Assert\NotBlank(message = "Vous devez renseigner un nom pour enregistrer votre équipement")
+     * @Assert\Length(max = 255)
      */
     private $name;
 
