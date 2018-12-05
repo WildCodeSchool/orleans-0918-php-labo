@@ -28,5 +28,16 @@ thead tr:first-child {
   color: $monochrome-color;
   border: none;
 }
+.navigation {
+  .page-item , .page-link {
+    color: $secondary-color;
+    border: none;
+  }
+  .page-item.active .page-link{
+    color: $secondary-color;
+    background-color: $primary-color;
+    border-color: $primary-color;
+  }
+}
 
 
