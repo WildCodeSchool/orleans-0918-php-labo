@@ -45,15 +45,6 @@ class RoomController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    /**
-     * @Route("/{id}", name="room_show", methods="GET")
-     */
-    public function show(Room $room): Response
-    {
-        return $this->render('room/show.html.twig', ['room' => $room]);
-    }
-
     /**
      * @Route("/{id}/edit", name="room_edit", methods="GET|POST")
      */
