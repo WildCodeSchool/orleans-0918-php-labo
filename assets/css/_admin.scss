@@ -55,3 +55,47 @@ td {
   font-family: $font-text;
   font-size: calc(0.5vw + 8pt);
 }
+.validbutton{
+  @include style-button($monochrome-color, $primary-color, $primary-color);
+  .style-button{
+    font-size : 1em;
+  }
+  button{
+    background-color: $monochrome-color;
+  }
+}
+.backlink {
+  a{
+    margin-left : 100px;
+  }
+  font-family: $font-text;
+  color: $secondary-color;
+  font-size: 1.4em;
+  position: absolute;
+  top: 150px;
+}
+.tools {
+  input {
+    margin-top: 5%
+  }
+  label {
+    padding-top: 12.5%;
+    font-size: 1.2em;
+    font-family: $font-text;
+    font-weight: bold;
+  }
+  .addButton {
+    @include style-button($monochrome-color, $primary-color, $primary-color);
+    margin-top: 5%;
+
+    .style-button {
+      font-size: 1em;
+      position: relative !important;
+      background: transparent;
+    }
+  }
+}
+.btnAdminDelete {
+  border: none;
+}
+
