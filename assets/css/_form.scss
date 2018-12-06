@@ -4,7 +4,6 @@ main{
 .form-control{
   background-color : $input-color;
 }
-.new_resa{
   h2{
     font-family : $font-title;
     font-size : 2.5em;
@@ -14,16 +13,12 @@ main{
     padding-top : 1%;
     color: $secondary-color;
   }
-}
-
 label{
   font-family: $font-title;
   font-size: 1.2em;
   padding-left : 10%;
   white-space : nowrap;
   color : $secondary-color;
-
-
 }
 input{
   font-family : $font-text;
