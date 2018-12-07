@@ -1,10 +1,11 @@
 {% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Ajout du matériel{% endblock %}
+
 {% block body %}
-    <a class="backlink" href="{{ path('equipement_index') }}">&lt; Retour</a>
-    <div class="container mt-5 pt-5">
-        <h2 class="text-center mt-5 mb-5">Ajout du matériel</h2>
+
+    <span class="backlink"><a href="{{ path('equipement_index') }}">&lt; Retour</a></span>
+        <h2 class="text-center">Ajout du matériel</h2>
         {{ include('equipement/_form.html.twig') }}
-    </div>
+
 {% endblock %}
