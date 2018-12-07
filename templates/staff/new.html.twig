@@ -1,10 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
-{% block title %}New Staff{% endblock %}
+{% block title %}Ajouter du Personnel{% endblock %}
 
 {% block body %}
     <main>
-        <a href="{{ path('staff_index') }}">&lt; Retour</a>
+        <span class="backlink"><a href="{{ path('equipement_index') }}">&lt; Retour</a></span>
         <div class="container">
             <h2>Création du Personnel</h2>
             {{ include('staff/_form.html.twig') }}

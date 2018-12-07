@@ -1,8 +1,16 @@
 {% form_theme form 'form/fields.html.twig' %}
+
 <div class="container-fluid">
     <!-- Ici commence le bloc information sur le client et l'entreprise -->
 
     {{ form_start(form) }}
+    <div class="row">
+        <div class="offset-9 col-2 offset-1 select_staff">
+            <label for="{{ form.staff.vars.id }}"> Personnel :</label>
+            {{ form_widget(form.staff) }}
+            {{ form_errors(form.staff) }}
+        </div>
+    </div>
     <div class="row no-gutters allform">
         <div class="col-9">
             <div class="row justify-content-start">
@@ -13,13 +21,13 @@
 
                 </div>
                 <div class="col-3">
-                    <label for="{{ form.customer.lastName.vars.id }}">  Nom de Famille : </label>
+                    <label for="{{ form.customer.lastName.vars.id }}">  Nom de famille : </label>
                     {{ form_widget(form.customer.lastName) }}
                     {{ form_errors(form.customer.lastName) }}
 
                 </div>
                 <div class="col-3">
-                    <label for="{{ form.company.companyName.vars.id }}">  Nom de l'Entreprise :</label>
+                    <label for="{{ form.company.companyName.vars.id }}">  Nom de l'entreprise :</label>
                     {{ form_widget(form.company.companyName) }}
                     {{ form_errors(form.company.companyName) }}
 
@@ -27,7 +35,7 @@
             </div>
             <div class="row justify-content-start formline">
                 <div class="col-3">
-                    <label for="{{ form.customer.mailAddress.vars.id }}"> Adresse Mail :</label>
+                    <label for="{{ form.customer.mailAddress.vars.id }}"> Adresse mail :</label>
                     {{ form_widget(form.customer.mailAddress) }}
                     {{ form_errors(form.customer.mailAddress) }}
 
@@ -44,8 +52,8 @@
                 {{ form_widget(form.comment) }}
             {{ form_errors(form.comment) }}
         </div>
-
     </div>
+
     <!-- Ici doit commencer le bloc équipement et salles du formulaire -->
     <div class="container-fluid menuswitch">
     <div class="d-flex flex-row">
