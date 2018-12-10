@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -24,6 +26,16 @@ class Equipement
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ReservationEquipement", mappedBy="equipement")
+     */
+    private $reservationEquipements;
+
+    public function __construct()
+    {
+        $this->reservationEquipements = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -37,6 +49,37 @@ class Equipement
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReservationEquipement[]
+     */
+    public function getReservationEquipements(): Collection
+    {
+        return $this->reservationEquipements;
+    }
+
+    public function addReservationEquipement(ReservationEquipement $reservationEquipement): self
+    {
+        if (!$this->reservationEquipements->contains($reservationEquipement)) {
+            $this->reservationEquipements[] = $reservationEquipement;
+            $reservationEquipement->setEquipement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationEquipement(ReservationEquipement $reservationEquipement): self
+    {
+        if ($this->reservationEquipements->contains($reservationEquipement)) {
+            $this->reservationEquipements->removeElement($reservationEquipement);
+            // set the owning side to null (unless already changed)
+            if ($reservationEquipement->getEquipement() === $this) {
+                $reservationEquipement->setEquipement(null);
+            }
+        }
 
         return $this;
     }

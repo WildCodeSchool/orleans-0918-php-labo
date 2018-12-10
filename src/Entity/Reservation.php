@@ -49,9 +49,15 @@ class Reservation
      */
     private $rooms;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ReservationEquipement", mappedBy="reservation")
+     */
+    private $reservationEquipements;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
+        $this->reservationEquipements = new ArrayCollection();
     }
 
     /**
@@ -156,6 +162,37 @@ class Reservation
             // set the owning side to null (unless already changed)
             if ($room->getReservation() === $this) {
                 $room->setReservation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ReservationEquipement[]
+     */
+    public function getReservationEquipements(): Collection
+    {
+        return $this->reservationEquipements;
+    }
+
+    public function addReservationEquipement(ReservationEquipement $reservationEquipement): self
+    {
+        if (!$this->reservationEquipements->contains($reservationEquipement)) {
+            $this->reservationEquipements[] = $reservationEquipement;
+            $reservationEquipement->setReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationEquipement(ReservationEquipement $reservationEquipement): self
+    {
+        if ($this->reservationEquipements->contains($reservationEquipement)) {
+            $this->reservationEquipements->removeElement($reservationEquipement);
+            // set the owning side to null (unless already changed)
+            if ($reservationEquipement->getReservation() === $this) {
+                $reservationEquipement->setReservation(null);
             }
         }
 
