@@ -13,6 +13,8 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Commentaire</th>
+                <th scope="col">Salle</th>
+
             </tr>
             </thead>
             <tbody>
@@ -23,6 +25,11 @@
                     <td>{{ reservation.customer.lastName }}</td>
                     <td>{{ reservation.customer.firstName }}</td>
                     <td>{{ reservation.comment }}</td>
+                    <td>
+                        {% for room in reservation.rooms %}
+                            <a>{{ room.name }}</a>
+                        {% endfor %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -33,5 +40,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
