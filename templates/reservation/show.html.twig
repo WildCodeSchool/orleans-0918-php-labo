@@ -1,26 +1,114 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Reservation{% endblock %}
-
 {% block body %}
-    <h1>Reservation</h1>
+    <main class="container pt-lg-5 mb-5">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ reservation.id }}</td>
-            </tr>
-            <tr>
-                <th>Comment</th>
-                <td>{{ reservation.comment }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('reservation_index') }}">back to list</a>
 
-    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                <div class="title pt-5">
+                    <h2 class="text-center mt-3"><label>Détail de la Réservation n°{{ reservation.id }}</label></h2>
+                </div>
 
-    {{ include('reservation/_delete_form.html.twig') }}
+<div class="row detailResa">
+
+                <div class="col-4 pt-5 justify-content-center">
+
+                            <div class="row">
+
+                                <h5 class="">Entreprise : <label>{{ reservation.company.companyName }}</label></h5>
+                            </div>
+                            <div class="row">
+
+
+                                <p class="">Numéro de téléphone : <label>{{ reservation.customer.phoneNumber }}</label> </p>
+                            </div>
+                            <div class="row">
+                                <p class="timeReservation">Date de remise des cles : <label>12/12/2018</label></p>
+                            </div>
+                </div>
+
+                    <div class="col-4 pt-5 justify-content-center">
+
+                            <div class="row">
+                                <h5 class="">Prénom : <label>{{ reservation.customer.firstName }}</label></h5>
+
+                            </div>
+                            <div class="row">
+                                <p class="">Email : <label>{{ reservation.customer.mailAddress }}</label></p>
+                            </div>
+
+
+                    </div>
+
+
+
+                <div class="col-4 pt-5 justify-content-center">
+                    <div class="row">
+
+                        <h5 class="">Nom : <label>{{ reservation.customer.lastName }}</label></h5>
+                    </div>
+
+                    <div class="row ">
+                        <p class=" comments">Commentaire : <label>{{ reservation.comment }}</label></p>
+
+                    </div>
+                </div>
+</div>
+
+
+
+
+
+        <div class="row align-items-center">
+            <div class="col-4">
+            <img src="https://via.placeholder.com/280x120" alt="Generic placeholder image">
+        </div>
+
+        <div class="col-2 offset-4">
+
+            <p class="accueilSelect">Responsable de l'accueil : <label>{{ reservation.staff.firstName }}</label></p>
+
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+                <div class="row d-flex flex-row">
+                <div class="col-6 detailblock">
+                <div class="card detail">
+                    <h5 class="card-header text-center">Salle(s) Réservée(s)</h5>
+                    <div class="card-body">
+                        <label>{% for room in reservation.rooms %}
+                                <li>{{ room.name }}</li>
+                            {% endfor %}
+                        </label>
+                    </div>
+                </div>
+                </div>
+                <div class="col-6 detailblock">
+                <div class="card detail">
+                    <h5 class="card-header text-center">Equipement(s) Réservé(s)</h5>
+                    <div class="card-body">
+                        <li>test test test test </li>
+                        <li>test test test test </li>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+
+
+                    <div class="row justify-content-center validbutton ">
+                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}"
+                           class="btn text-center style-button bg-gradient1 mx-auto"><span>Modifier</span></a>
+                    </div>
+
+
+    </main>
 {% endblock %}
