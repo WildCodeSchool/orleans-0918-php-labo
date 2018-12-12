@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Equipement;
 use App\Entity\Reservation;
+use App\Entity\ReservationEquipement;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -48,7 +50,20 @@ class ReservationController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $equipements = $em->getRepository(Equipement::class)->findAll();
         $reservation = new Reservation();
+
+        foreach ($equipements as $equipement) {
+            $reservationEquipements = new ReservationEquipement();
+
+            $reservationEquipements->setEquipement($equipement);
+            $reservationEquipements->setQuantity(0);
+            $reservationEquipements->setReservation($reservation);
+
+            $reservation->addReservationEquipement($reservationEquipements);
+        }
+
 
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
@@ -63,6 +78,7 @@ class ReservationController extends AbstractController
 
         return $this->render('reservation/new.html.twig', [
             'reservation' => $reservation,
+            'reservationEquipements' =>$reservationEquipements,
             'form' => $form->createView(),
         ]);
     }
