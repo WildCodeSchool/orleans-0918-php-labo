@@ -50,7 +50,7 @@ class Reservation
     private $rooms;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ReservationEquipement", mappedBy="reservation")
+     * @ORM\OneToMany(targetEntity="App\Entity\ReservationEquipement", mappedBy="reservation", cascade={"persist"})
      */
     private $reservationEquipements;
 
