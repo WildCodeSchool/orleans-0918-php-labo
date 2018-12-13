@@ -34,4 +34,21 @@ thead tr:first-child {
     border-color: $primary-color;
   }
 }
+.celluleSelector {
+  a{
+    color:$secondary-color;
+    position: relative;
+    display:block;
+    height: 100%;
+    min-height: 40px;
+  }
+  .btn-secondary{
+    color:$secondary-color;
+    background-color:$highlight-color;
+  }
+  .dropdown-item.active, .dropdown-item:active{
+    background-color: $primary-color;
+  }
+}
+
 
