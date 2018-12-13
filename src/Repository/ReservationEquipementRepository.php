@@ -19,4 +19,3 @@ class ReservationEquipementRepository extends ServiceEntityRepository
         parent::__construct($registry, ReservationEquipement::class);
     }
 }
-
