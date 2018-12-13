@@ -19,7 +19,7 @@
             <tbody>
             {% for reservation in reservations %}
                 <tr>
-                        <th class="text-center" scope="row" >
+                        <th class="text-center" scope="row">
                             <a href="{{ path('reservation_show',
                                 {'id': reservation.id}) }}">{{ reservation.id }}</a></th>
                         <td> <a href="{{ path('reservation_show',
