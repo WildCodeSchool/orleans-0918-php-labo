@@ -21,15 +21,15 @@
                 <tr>
                         <th class="text-center" scope="row" >
                             <a href="{{ path('reservation_show',
-                                {'id': reservation.id}) }}">{{ reservation.id }}</th>
+                                {'id': reservation.id}) }}">{{ reservation.id }}</a></th>
                         <td> <a href="{{ path('reservation_show',
-                                {'id': reservation.id}) }}">{{ reservation.company.companyName }}</td>
+                                {'id': reservation.id}) }}">{{ reservation.company.companyName }}</a></td>
                         <td> <a href="{{ path('reservation_show',
-                                {'id': reservation.id}) }}">{{ reservation.customer.lastName }}</td>
+                                {'id': reservation.id}) }}">{{ reservation.customer.lastName }}</a></td>
                         <td> <a href="{{ path('reservation_show',
-                                {'id': reservation.id}) }}">{{ reservation.customer.firstName }}</td>
+                                {'id': reservation.id}) }}">{{ reservation.customer.firstName }}</a></td>
                         <td> <a href="{{ path('reservation_show',
-                                {'id': reservation.id}) }}">{{ reservation.comment }}</td>
+                                {'id': reservation.id}) }}">{{ reservation.comment }}</a></td>
                         <td>
                             {%  if  reservation.rooms  | length > 1 %}
                             <div class="dropdown">
