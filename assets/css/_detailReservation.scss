@@ -50,3 +50,13 @@ img
 {
   padding-top: 10%;
 }
+/* style BTN retour */
+
+.backlink {
+  a{
+    color: $primary-color;
+    font-size: 1.4em;
+    position: absolute;
+    top: 30px;
+  }
+}
