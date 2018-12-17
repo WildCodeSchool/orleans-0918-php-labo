@@ -4,11 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationEquipementRepository")
- *
+ * @ORM\Table(name="Reservation_Equipement",uniqueConstraints={@UniqueConstraint(name="equipementreservation_unique", columns={"reservation_id", "equipement_id"})})
  */
 class ReservationEquipement
 {
