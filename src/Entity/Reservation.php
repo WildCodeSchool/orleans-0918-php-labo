@@ -45,12 +45,13 @@ class Reservation
     private $staff;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="reservation", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="reservations", cascade={"persist"})
      */
     private $rooms;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\ReservationEquipement", mappedBy="reservation", cascade={"persist"})
+     * @Assert\Valid()
      */
     private $reservationEquipements;
 

@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationEquipementRepository")
+ *
  */
 class ReservationEquipement
 {
@@ -19,18 +21,22 @@ class ReservationEquipement
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\GreaterThanOrEqual(0)
+     * @Assert\GreaterThanOrEqual(
+     *     value = 0
+     * )
      * @Assert\Type("integer")
      */
     private $quantity;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Reservation", inversedBy="reservationEquipements")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $reservation;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Equipement", inversedBy="reservationEquipements")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $equipement;
 

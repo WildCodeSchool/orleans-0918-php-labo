@@ -56,29 +56,30 @@ class ReservationController extends AbstractController
 
         foreach ($equipements as $equipement) {
             $reservationEquipements = new ReservationEquipement();
-
             $reservationEquipements->setEquipement($equipement);
             $reservationEquipements->setQuantity(0);
             $reservationEquipements->setReservation($reservation);
-
             $reservation->addReservationEquipement($reservationEquipements);
         }
-
 
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($reservation->getReservationEquipements() as $reservationEquipements) {
+                if ($reservationEquipements->getQuantity() == 0) {
+                    $reservation->removeReservationEquipement($reservationEquipements);
+                }
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
             $em->flush();
 
-            return $this->redirectToRoute('reservation_new');
+            return $this->redirectToRoute('current_reservation_index');
         }
 
         return $this->render('reservation/new.html.twig', [
             'reservation' => $reservation,
-            'reservationEquipements' =>$reservationEquipements,
             'form' => $form->createView(),
         ]);
     }
