@@ -31,23 +31,10 @@
                         <td> <a href="{{ path('reservation_show',
                                 {'id': reservation.id}) }}">{{ reservation.comment }}</a></td>
                         <td>
-                            {%  if  reservation.rooms  | length > 1 %}
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Salles reservées
-                                </button>
-                                <div class="dropdown-menu">
-                                    {% for room in reservation.rooms %}
-                                    <span class="dropdown-item">{{ room.name }}</span>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                            {% else %}
-                                {% for room in reservation.rooms %}
-                            <span>{{ room.name }}</span>
-                                {% endfor %}
-                            {% endif %}
+                            {% for room in reservation.rooms %}
+                                    <a href="{{ path('reservation_show',
+                                        {'id': reservation.id}) }}">{{ room.name }} </a>
+                            {% endfor %}
                         </td>
                 </tr>
             {% endfor %}

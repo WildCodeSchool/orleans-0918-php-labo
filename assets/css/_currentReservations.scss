@@ -43,20 +43,12 @@ thead tr:first-child {
   }
 }
 .celluleSelector {
-  a{
-    color:$secondary-color;
+  a {
+    color: $secondary-color;
     position: relative;
-    display:block;
+    display: block;
     height: 100%;
     min-height: 40px;
   }
-  .btn-secondary{
-    color:$secondary-color;
-    background-color:$highlight-color;
-  }
-  .dropdown-item.active, .dropdown-item:active{
-    background-color: $primary-color;
-  }
 }
-
 
