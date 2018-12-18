@@ -125,4 +125,17 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('reservation_index');
     }
+
+
+    /**
+     * @Route("archive/{id}", name="set_archive", methods="POST")
+     */
+    public function setArchive(Reservation $reservation): Response
+    {
+        $reservation->setIsArchived(true);
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('current_reservation_index');
+    }
 }
+
