@@ -72,6 +72,7 @@ class ReservationController extends AbstractController
                 }
             }
             $em = $this->getDoctrine()->getManager();
+            $reservation -> setStartDate(new \DateTime());
             $em->persist($reservation);
             $em->flush();
 

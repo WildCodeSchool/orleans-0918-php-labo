@@ -9,6 +9,7 @@
             <thead>
             <tr>
                 <th scope="col">N° de reservation</th>
+                <th scope="col">Date de réservation</th>
                 <th scope="col">Entreprise</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
@@ -22,6 +23,8 @@
                         <th class="text-center" scope="row">
                             <a href="{{ path('reservation_show',
                                 {'id': reservation.id}) }}">{{ reservation.id }}</a></th>
+                        <td><a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}">{{ reservation.startDate|date('d/m/Y') }}</a></td>
                         <td> <a href="{{ path('reservation_show',
                                 {'id': reservation.id}) }}">{{ reservation.company.companyName }}</a></td>
                         <td> <a href="{{ path('reservation_show',
