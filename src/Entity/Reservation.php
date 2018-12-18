@@ -193,12 +193,12 @@ class Reservation
         return $this->reservationEquipements;
     }
 
-    public
-        /**
-         * @param ReservationEquipement $reservationEquipement
-         * @return mixed
-         */
-        function addReservationEquipement(ReservationEquipement $reservationEquipement): self
+
+    /**
+     * @param ReservationEquipement $reservationEquipement
+     * @return mixed
+     */
+    public function addReservationEquipement(ReservationEquipement $reservationEquipement): self
     {
         if (!$this->reservationEquipements->contains($reservationEquipement)) {
             $this->reservationEquipements[] = $reservationEquipement;
