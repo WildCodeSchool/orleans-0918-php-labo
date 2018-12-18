@@ -3,7 +3,7 @@
 {% block title %}Reservation index{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
+    <div class="container-fluid celluleSelector">
         <h2>Reservations en cours</h2>
         <table class="table">
             <thead>
@@ -14,17 +14,31 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Commentaire</th>
+                <th scope="col">Salle</th>
             </tr>
             </thead>
             <tbody>
             {% for reservation in reservations %}
                 <tr>
-                    <th class="text-center" scope="row">{{ reservation.id }}</th>
-                    <td>{{ reservation.startDate|date('d/m/Y') }}</td>
-                    <td>{{ reservation.company.companyName }}</td>
-                    <td>{{ reservation.customer.lastName }}</td>
-                    <td>{{ reservation.customer.firstName }}</td>
-                    <td>{{ reservation.comment }}</td>
+                        <th class="text-center" scope="row">
+                            <a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}">{{ reservation.id }}</a></th>
+                        <td><a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}">{{ reservation.startDate|date('d/m/Y') }}</a></td>
+                        <td> <a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}">{{ reservation.company.companyName }}</a></td>
+                        <td> <a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}">{{ reservation.customer.lastName }}</a></td>
+                        <td> <a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}">{{ reservation.customer.firstName }}</a></td>
+                        <td> <a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}">{{ reservation.comment }}</a></td>
+                        <td>
+                            {% for room in reservation.rooms %}
+                                    <a href="{{ path('reservation_show',
+                                        {'id': reservation.id}) }}">{{ room.name }} </a>
+                            {% endfor %}
+                        </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -35,5 +49,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

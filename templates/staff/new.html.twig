@@ -4,7 +4,7 @@
 
 {% block body %}
     <main>
-        <span class="backlink"><a href="{{ path('equipement_index') }}">&lt; Retour</a></span>
+        <div class="backlink"><a href="{{ path('staff_index') }}"><i class="fas fa-chevron-circle-left"></i></a></div>
         <div class="container">
             <h2>Création du Personnel</h2>
             {{ include('staff/_form.html.twig') }}

@@ -1,0 +1,52 @@
+.detailblock
+{
+  padding-left: 0;
+  padding-top: 2%;
+}
+.detail
+{
+  min-height: 100%;
+  max-height: 250%;
+
+}
+.reservationDetail
+{
+  label
+  {
+    padding-left: 0;
+    font-weight: lighter;
+    font-size: 0.8em;
+  }
+
+  .keyDateStart{
+    padding-top: 19%;
+  }
+  .comments {
+    label {
+      vertical-align: text-top;
+      margin-top : 1%;
+      max-width: 300px;
+      max-height:100px;
+      white-space: pre-wrap;
+      overflow:auto;
+    }
+  }
+}
+.staffSelection
+{
+  margin-top: 17%;
+  label{
+    font-size: 0.8em;
+  }
+}
+
+span
+{
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+img
+{
+  padding-top: 10%;
+}
