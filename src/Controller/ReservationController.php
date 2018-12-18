@@ -54,6 +54,7 @@ class ReservationController extends AbstractController
         $equipements = $em->getRepository(Equipement::class)->findAll();
         $reservation = new Reservation();
 
+
         foreach ($equipements as $equipement) {
             $reservationEquipements = new ReservationEquipement();
             $reservationEquipements->setEquipement($equipement);
@@ -71,8 +72,7 @@ class ReservationController extends AbstractController
                     $reservation->removeReservationEquipement($reservationEquipements);
                 }
             }
-            $em = $this->getDoctrine()->getManager();
-            $reservation -> setStartDate(new \DateTime());
+            $reservation->setStartDate(new \DateTime());
             $em->persist($reservation);
             $em->flush();
 

@@ -183,6 +183,7 @@ class Reservation
     public function setStartDate(\DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
+        return $this;
     }
 
     /**
