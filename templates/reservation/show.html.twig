@@ -3,6 +3,7 @@
 {% block title %}Détail de la Réservation{% endblock %}
 
 {% block body %}
+    <div class="backlink"><a href="{{ path('current_reservation_index') }}"><i class="fas fa-chevron-circle-left"></i></a></div>
     <main class="container pt-lg-5 mb-5">
         <div class="pt-5">
             <h2 class="text-center mt-3">Détail de la Réservation n°{{ reservation.id }}</h2>
