@@ -1,6 +1,6 @@
 {% form_theme form 'form/fields.html.twig' %}
 
-<div class="container-fluid">
+<div class="container-fluid container_form">
     <!-- Ici commence le bloc information sur le client et l'entreprise -->
 
     {{ form_start(form) }}
@@ -64,6 +64,9 @@
             <li class="nav-item">
                 <a href="#equipment" class="nav-link second" data-toggle="tab" role="tab" aria-controls="equipment"><i class="fas fa-toolbox fa-2x"></i></a>
             </li>
+            <li class="nav-item">
+                <a href="#signature" class="nav-link third" data-toggle="tab" role="tab" aria-controls="signature"><i class="fas fa-file-signature fa-2x"></i></a>
+            </li>
         </ul>
 
         <div class="tab-content">
@@ -79,13 +82,23 @@
             <div class="tab-pane fade" id="equipment">
             </div>
             <!-- -->
+            <!-- Ici doit commencer le bloc signature -->
+            <div class="tab-pane fade bloc_signature" id="signature">
+                <div class="row">
+                    <div class="col-9">
+                        <div id="canvas"></div>
+                    </div>
+                    <div class="col-3">
+                        <p class="text_signature">Merci de signer dans l'encart</p>
+                    </div>
+                </div>
+            </div>
+            <!-- -->
         </div>
     </div>
     </div>
-
-    <!-- -->
     <div class="row justify-content-center validbutton">
-        <button class="  btn text-center style-button bg-gradient1 mx-auto"><span>Valider la Réservation</span></button>
+        <button class="btn text-center style-button bg-gradient1 mx-auto"><span>Valider la réservation</span></button>
     </div>
         {{ form_end(form) }}
 </div>
