@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationEquipementRepository")
- * @ORM\Table(name="Reservation_Equipement",uniqueConstraints={@UniqueConstraint(name="equipementreservation_unique", columns={"reservation_id", "equipement_id"})})
+ * @ORM\Table(name="reservation_equipement",uniqueConstraints={@UniqueConstraint(name="equipementreservation_unique", columns={"reservation_id", "equipement_id"})})
  */
 class ReservationEquipement
 {
