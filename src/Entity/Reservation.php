@@ -45,7 +45,7 @@ class Reservation
     private $staff;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="reservation", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="reservations", cascade={"persist"})
      */
     private $rooms;
 
@@ -54,9 +54,17 @@ class Reservation
      */
     private $startDate;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ReservationEquipement", mappedBy="reservation", cascade={"persist"})
+     * @Assert\Valid()
+     */
+    private $reservationEquipements;
+
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
+        $this->reservationEquipements = new ArrayCollection();
     }
 
     /**
@@ -175,6 +183,40 @@ class Reservation
     public function setStartDate(\DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
+    }
+
+    /**
+     * @return Collection|ReservationEquipement[]
+     */
+    public function getReservationEquipements(): Collection
+    {
+        return $this->reservationEquipements;
+    }
+
+    public
+        /**
+         * @param ReservationEquipement $reservationEquipement
+         * @return mixed
+         */
+        function addReservationEquipement(ReservationEquipement $reservationEquipement): self
+    {
+        if (!$this->reservationEquipements->contains($reservationEquipement)) {
+            $this->reservationEquipements[] = $reservationEquipement;
+            $reservationEquipement->setReservation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationEquipement(ReservationEquipement $reservationEquipement): self
+    {
+        if ($this->reservationEquipements->contains($reservationEquipement)) {
+            $this->reservationEquipements->removeElement($reservationEquipement);
+            // set the owning side to null (unless already changed)
+            if ($reservationEquipement->getReservation() === $this) {
+                $reservationEquipement->setReservation(null);
+            }
+        }
 
         return $this;
     }
