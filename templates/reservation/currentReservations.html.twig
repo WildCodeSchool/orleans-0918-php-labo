@@ -14,6 +14,7 @@
                 <th scope="col">Prénom</th>
                 <th scope="col">Commentaire</th>
                 <th scope="col">Salle</th>
+                <th scope="col">Archiver</th>
             </tr>
             </thead>
             <tbody>
@@ -35,6 +36,12 @@
                                     <a href="{{ path('reservation_show',
                                         {'id': reservation.id}) }}">{{ room.name }} </a>
                             {% endfor %}
+                        </td>
+                        <td>
+                            <form method="post" action="{{ path('set_archive', {'id': reservation.id}) }}"
+                              onsubmit="return confirm('Voulez-vous vraiment archiver cette reservation ?');">
+                            <button class="btn btn-link"><i class="fas fa-archive"></i>Archiver</button>
+                            </form>
                         </td>
                 </tr>
             {% endfor %}
