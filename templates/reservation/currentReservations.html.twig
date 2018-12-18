@@ -9,6 +9,7 @@
             <thead>
             <tr>
                 <th scope="col">N° de reservation</th>
+                <th scope="col">Date de réservation</th>
                 <th scope="col">Entreprise</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
@@ -19,6 +20,7 @@
             {% for reservation in reservations %}
                 <tr>
                     <th class="text-center" scope="row">{{ reservation.id }}</th>
+                    <td>{{ reservation.startDate|date('d-m-Y') }}</td>
                     <td>{{ reservation.company.companyName }}</td>
                     <td>{{ reservation.customer.lastName }}</td>
                     <td>{{ reservation.customer.firstName }}</td>
