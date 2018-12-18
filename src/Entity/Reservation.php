@@ -49,6 +49,11 @@ class Reservation
      */
     private $rooms;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $signature;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
@@ -158,6 +163,18 @@ class Reservation
                 $room->setReservation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSignature(): ?string
+    {
+        return $this->signature;
+    }
+
+    public function setSignature(string $signature): self
+    {
+        $this->signature = $signature;
 
         return $this;
     }
