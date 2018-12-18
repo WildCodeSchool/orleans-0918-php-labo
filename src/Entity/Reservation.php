@@ -55,6 +55,11 @@ class Reservation
      */
     private $reservationEquipements;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $startDate;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
@@ -196,6 +201,17 @@ class Reservation
                 $reservationEquipement->setReservation(null);
             }
         }
+
+        return $this;
+    }
+    public function getStartDate(): ?\DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(\DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
 
         return $this;
     }
