@@ -20,7 +20,7 @@
             {% for reservation in reservations %}
                 <tr>
                     <th class="text-center" scope="row">{{ reservation.id }}</th>
-                    <td>{{ reservation.startDate|date('d-m-Y') }}</td>
+                    <td>{{ reservation.startDate|date('d/m/Y') }}</td>
                     <td>{{ reservation.company.companyName }}</td>
                     <td>{{ reservation.customer.lastName }}</td>
                     <td>{{ reservation.customer.firstName }}</td>
