@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,19 +47,23 @@ class ReservationController extends AbstractController
     /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, SignatureService $signatureService): Response
     {
         $reservation = new Reservation();
-
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $reservation->getSignature();
+            $reservation->setSignature($signatureService->add(
+                $reservation->getSignature()
+            ));
             $em->persist($reservation);
             $em->flush();
 
-            return $this->redirectToRoute('reservation_new');
+            return $this->redirectToRoute('current_reservation_index');
         }
 
         return $this->render('reservation/new.html.twig', [
