@@ -17,8 +17,7 @@
                     <h3><span>Numéro de téléphone : </span><label>{{ reservation.customer.phoneNumber }}</label></h3>
                 </div>
                 <div class="row keyDateStart">
-                    <h3><span>Date de remise des cles : </span><label>
-                            <!-- Ici commence le bloc de la date de validation de la reservation --></label></h3>
+                    <h3><span>Date de remise des cles : </span><label>{{ reservation.startDate|date('d-m-Y') }}</label></h3>
                 </div>
             </div>
             <div class="col-4 pt-5 justify-content-center">
