@@ -50,6 +50,11 @@ class Reservation
     private $rooms;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    private $signature;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $startDate;
@@ -59,7 +64,6 @@ class Reservation
      * @Assert\Valid()
      */
     private $reservationEquipements;
-
 
     public function __construct()
     {
@@ -175,6 +179,18 @@ class Reservation
         return $this;
     }
 
+
+    public function getSignature(): ?string
+    {
+        return $this->signature;
+    }
+
+    public function setSignature(string $signature): self
+    {
+        $this->signature = $signature;
+        return $this;
+    }
+
     public function getStartDate(): ?\DateTimeInterface
     {
         return $this->startDate;
@@ -218,7 +234,7 @@ class Reservation
                 $reservationEquipement->setReservation(null);
             }
         }
-
+      
         return $this;
     }
 }

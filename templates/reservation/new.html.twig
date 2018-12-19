@@ -10,3 +10,8 @@
     {{ include('reservation/_form.html.twig') }}
 </main>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('app-signature') }}
+{% endblock %}
