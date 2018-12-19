@@ -34,6 +34,9 @@ class ReservationType extends AbstractType
                 'class' => Staff::class,
                 'choice_label' => 'firstname'
             ))
+            ->add('reservationEquipements', CollectionType::class, array(
+                'entry_type'=> ReservationEquipementType::class,
+            ))
             ->add(
                 'signature',
                 HiddenType::class,
@@ -44,9 +47,6 @@ class ReservationType extends AbstractType
                     ]
                 ]
             );
-            ->add('reservationEquipements', CollectionType::class, array(
-                'entry_type'=> ReservationEquipementType::class,
-            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

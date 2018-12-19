@@ -54,6 +54,7 @@ class Reservation
      */
     private $signature;
 
+    /**
      * @ORM\Column(type="datetime")
      */
     private $startDate;
@@ -187,6 +188,8 @@ class Reservation
     public function setSignature(string $signature): self
     {
         $this->signature = $signature;
+        return $this;
+    }
 
     public function getStartDate(): ?\DateTimeInterface
     {
