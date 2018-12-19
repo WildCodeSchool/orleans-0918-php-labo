@@ -4,8 +4,9 @@
 
 {% block body %}
 
-    <span class="backlink"><a href="{{ path('equipement_index') }}">&lt; Retour</a></span>
-        <h2 class="text-center">Ajout du matériel</h2>
+    <div class="backlink"><a href="{{ path('equipement_index') }}"><i class="fas fa-chevron-circle-left"></i></a></div>
+
+    <h2 class="text-center">Ajout du matériel</h2>
         {{ include('equipement/_form.html.twig') }}
 
 {% endblock %}

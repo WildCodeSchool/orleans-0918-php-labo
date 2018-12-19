@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
+use App\Entity\ReservationEquipement;
 use App\Entity\Room;
 use App\Entity\Staff;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -42,6 +44,9 @@ class ReservationType extends AbstractType
                     ]
                 ]
             );
+            ->add('reservationEquipements', CollectionType::class, array(
+                'entry_type'=> ReservationEquipementType::class,
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

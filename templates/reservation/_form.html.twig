@@ -62,7 +62,7 @@
                 <a href="#room" class="nav-link active" data-toggle="tab" role="tab" aria-controls="room"><i class="fas fa-door-open fa-2x"></i></a>
             </li>
             <li class="nav-item">
-                <a href="#equipment" class="nav-link second" data-toggle="tab" role="tab" aria-controls="equipment"><i class="fas fa-toolbox fa-2x"></i></a>
+                <a href="#equipement" class="nav-link second" data-toggle="tab" role="tab" aria-controls="equipement"><i class="fas fa-toolbox fa-2x"></i></a>
             </li>
             <li class="nav-item">
                 <a href="#signature" class="nav-link third" data-toggle="tab" role="tab" aria-controls="signature"><i class="fas fa-file-signature fa-2x"></i></a>
@@ -79,7 +79,22 @@
                 </div>
             </div>
             <!-- Ici doit commencer le bloc équipement du formulaire -->
-            <div class="tab-pane fade" id="equipment">
+            <div class="tab-pane fade show" id="equipement">
+                <div class="row ">
+                {% for reservationEquipement in form.reservationEquipements %}
+                    <div class="col-3 align-self-center">
+                        <label for="{{ form.reservationEquipements.vars.id }}">
+                            {{ reservationEquipement.vars.value.equipement.name }}
+                        </label>
+                            <div class="row ">
+                                <div class="col">
+                                    {{ form_widget(reservationEquipement) }}
+                                    {{ form_errors(reservationEquipement) }}
+                                </div>
+                            </div>
+                    </div>
+                {% endfor %}
+                </div>
             </div>
             <!-- -->
             <!-- Ici doit commencer le bloc signature -->
