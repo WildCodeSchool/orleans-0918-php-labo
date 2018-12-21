@@ -50,6 +50,16 @@ class Reservation
     private $rooms;
 
     /**
+     * @ORM\Column(type="text")
+     */
+    private $signature;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $startDate;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ReservationEquipement", mappedBy="reservation", cascade={"persist"})
      * @Assert\Valid()
      */
@@ -169,6 +179,29 @@ class Reservation
         return $this;
     }
 
+
+    public function getSignature(): ?string
+    {
+        return $this->signature;
+    }
+
+    public function setSignature(string $signature): self
+    {
+        $this->signature = $signature;
+        return $this;
+    }
+
+    public function getStartDate(): ?\DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(\DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
+        return $this;
+    }
+
     /**
      * @return Collection|ReservationEquipement[]
      */
@@ -177,6 +210,11 @@ class Reservation
         return $this->reservationEquipements;
     }
 
+
+    /**
+     * @param ReservationEquipement $reservationEquipement
+     * @return mixed
+     */
     public function addReservationEquipement(ReservationEquipement $reservationEquipement): self
     {
         if (!$this->reservationEquipements->contains($reservationEquipement)) {
@@ -196,7 +234,7 @@ class Reservation
                 $reservationEquipement->setReservation(null);
             }
         }
-
+      
         return $this;
     }
 }

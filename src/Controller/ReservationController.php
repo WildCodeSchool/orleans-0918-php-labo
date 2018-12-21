@@ -7,6 +7,7 @@ use App\Entity\Reservation;
 use App\Entity\ReservationEquipement;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,12 +49,12 @@ class ReservationController extends AbstractController
     /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
      */
-    public function new(Request $request): Response
+    public function new(Request $request, SignatureService $signatureService): Response
     {
         $em = $this->getDoctrine()->getManager();
         $equipements = $em->getRepository(Equipement::class)->findAll();
         $reservation = new Reservation();
-
+      
         foreach ($equipements as $equipement) {
             $reservationEquipements = new ReservationEquipement();
             $reservationEquipements->setEquipement($equipement);
@@ -61,17 +62,25 @@ class ReservationController extends AbstractController
             $reservationEquipements->setReservation($reservation);
             $reservation->addReservationEquipement($reservationEquipements);
         }
-
+      
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $reservation->getSignature();
+            $reservation->setSignature($signatureService->add(
+                $reservation->getSignature()
+            ));
+
             foreach ($reservation->getReservationEquipements() as $reservationEquipements) {
                 if ($reservationEquipements->getQuantity() == 0) {
                     $reservation->removeReservationEquipement($reservationEquipements);
                 }
             }
-            $em = $this->getDoctrine()->getManager();
+            $reservation->setStartDate(new \DateTime());
+
             $em->persist($reservation);
             $em->flush();
 
