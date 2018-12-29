@@ -51,4 +51,10 @@ thead tr:first-child {
     min-height: 40px;
   }
 }
+.btn-link:hover {
+  color: $secondary-color;
+}
+.btn-link {
+  color: $primary-color;
+}
 
