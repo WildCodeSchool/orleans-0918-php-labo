@@ -54,7 +54,7 @@ class ReservationController extends AbstractController
     public function archiveReservationIndex(Request $request, PaginatorInterface $paginator)
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
-        $reservations = $em->findBy(['isArchived' => 'true'], ['id'=>'DESC']);
+        $reservations = $em->findBy(['isArchived' => 'true'], ['startDate'=>'DESC']);
 
 //        $result = $paginator->paginate(
 //            $reservations,
