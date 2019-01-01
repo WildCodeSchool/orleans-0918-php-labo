@@ -47,6 +47,26 @@ class ReservationController extends AbstractController
             ]);
     }
     /**
+     * @Route("/archive", name="archive_reservation_index", methods="GET")
+     * @param ReservationRepository $reservationRepository
+     * @return Response
+     */
+    public function archiveReservationIndex(Request $request, PaginatorInterface $paginator)
+    {
+        $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
+        $reservations = $em->findBy(['isArchived' => 'true'], ['id'=>'DESC']);
+
+//        $result = $paginator->paginate(
+//            $reservations,
+//            $request->query->getInt('page', 1),
+//            $request->query->getInt('limit', 7)
+//        );
+
+        return $this->render('reservation/archiveReservations.html.twig', [
+            'reservations'=> $reservations,
+        ]);
+    }
+    /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
      */
     public function new(Request $request, SignatureService $signatureService): Response
