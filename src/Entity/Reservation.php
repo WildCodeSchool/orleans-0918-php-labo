@@ -65,6 +65,11 @@ class Reservation
      */
     private $reservationEquipements;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isArchived;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
@@ -235,6 +240,18 @@ class Reservation
             }
         }
       
+        return $this;
+    }
+
+    public function getIsArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    public function setIsArchived(bool $isArchived): self
+    {
+        $this->isArchived = $isArchived;
+
         return $this;
     }
 }
