@@ -34,7 +34,7 @@ class ReservationController extends AbstractController
     public function currentReservationIndex(Request $request, PaginatorInterface $paginator)
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
-        $reservations = $em->findBy([], ['id'=>'DESC']);
+        $reservations = $em->findBy(['isArchived' => '0'], ['id'=>'DESC']);
 
         $result = $paginator->paginate(
             $reservations,
@@ -45,6 +45,25 @@ class ReservationController extends AbstractController
         return $this->render('reservation/currentReservations.html.twig', [
             'reservations'=> $result,
             ]);
+    }
+    /**
+     * @Route("/archive", name="archive_reservation_index", methods="GET")
+     * @param ReservationRepository $reservationRepository
+     * @return Response
+     */
+    public function archiveReservationIndex(Request $request, PaginatorInterface $paginator)
+    {
+        $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
+        $reservations = $em->findBy(['isArchived' => 'true'], ['startDate'=>'DESC']);
+
+        $result = $paginator->paginate(
+            $reservations,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 7)
+        );
+        return $this->render('reservation/archiveReservations.html.twig', [
+            'reservations'=> $result,
+        ]);
     }
     /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
@@ -84,6 +103,11 @@ class ReservationController extends AbstractController
             $em->persist($reservation);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Reservation bien enregistrée !'
+            );
+
             return $this->redirectToRoute('current_reservation_index');
         }
 
@@ -112,6 +136,11 @@ class ReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                'Modification effectuée avec succès !'
+            );
+
             return $this->redirectToRoute('reservation_index', ['id' => $reservation->getId()]);
         }
 
@@ -130,6 +159,11 @@ class ReservationController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($reservation);
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Reservation bien supprimée !'
+            );
         }
 
         return $this->redirectToRoute('reservation_index');

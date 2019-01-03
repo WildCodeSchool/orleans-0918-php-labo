@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top nav-tabs navbar-expand-lg navbar-dark">
+<nav class="navbar nav-tabs navbar-expand-lg navbar-dark">
     <a class="navbar-brand" href="{{ path('home') }}"><img class='logoLabo' src="{{ asset('build/images/Logo_LABO_V3_NoirRVB.png') }}" alt="logo Labo"><img class='logo' src="{{ asset('build/images/logo_op1.png') }}" alt="Logo Orleans Pepinieres"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,7 +13,7 @@
                 <a class="nav-link" href="{{ path('current_reservation_index') }}">Réservations en cours</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Réservations archivées</a>
+                <a class="nav-link" href="{{ path('archive_reservation_index') }}">Réservations archivées</a>
             </li>
         </ul>
         <a href="{{ path('staff_index') }}"> <i class="btn fas fa-cogs fa-2x" id="btnAdmin"></i></a>
