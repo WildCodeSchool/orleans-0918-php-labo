@@ -66,7 +66,7 @@ class Reservation
     private $reservationEquipements;
 
     /**
-     * @ORM\Column(type="boolean")
+    * @ORM\Column(type="boolean")
      */
     private $isArchived = '0';
 

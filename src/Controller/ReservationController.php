@@ -98,8 +98,7 @@ class ReservationController extends AbstractController
                     $reservation->removeReservationEquipement($reservationEquipements);
                 }
             }
-            $reservation->setStartDate(new \DateTime());
-
+            $reservation->setStartDate(new\DateTime());
             $em->persist($reservation);
             $em->flush();
 
