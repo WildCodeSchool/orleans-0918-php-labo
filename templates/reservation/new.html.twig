@@ -2,9 +2,9 @@
 
 
 {% block title %}Nouvelle réservation{% endblock %}
+{% block header %}<main> {% include 'home/_navbar.html.twig' %}{% endblock %}
 
 {% block body %}
-<main>
     <div class="new_resa"><h2>Nouvelle Réservation </h2></div>
 
     {{ include('reservation/_form.html.twig') }}
