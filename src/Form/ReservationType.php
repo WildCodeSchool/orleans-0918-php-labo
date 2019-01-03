@@ -8,10 +8,12 @@ use App\Entity\Room;
 use App\Entity\Staff;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ReservationType extends AbstractType
 {
@@ -34,7 +36,17 @@ class ReservationType extends AbstractType
             ))
             ->add('reservationEquipements', CollectionType::class, array(
                 'entry_type'=> ReservationEquipementType::class,
-            ));
+            ))
+            ->add(
+                'signature',
+                HiddenType::class,
+                [
+                    'constraints' => [new NotBlank()],
+                    'attr' => [
+                        'class' => 'signature'
+                    ]
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
