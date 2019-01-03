@@ -37,6 +37,11 @@ class RoomController extends AbstractController
             $em->persist($room);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Salle crée !'
+            );
+
             return $this->redirectToRoute('room_index');
         }
 
@@ -55,6 +60,11 @@ class RoomController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'success',
+                'Modification effectuée avec succès !'
+            );
 
             return $this->redirectToRoute('room_index', ['id' => $room->getId()]);
         }

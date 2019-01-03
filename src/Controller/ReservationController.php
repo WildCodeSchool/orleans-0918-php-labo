@@ -103,6 +103,11 @@ class ReservationController extends AbstractController
             $em->persist($reservation);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Reservation bien enregistrée !'
+            );
+
             return $this->redirectToRoute('current_reservation_index');
         }
 
@@ -131,6 +136,11 @@ class ReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                'Modification effectuée avec succès !'
+            );
+
             return $this->redirectToRoute('reservation_index', ['id' => $reservation->getId()]);
         }
 
@@ -149,6 +159,11 @@ class ReservationController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->remove($reservation);
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Reservation bien supprimée !'
+            );
         }
 
         return $this->redirectToRoute('reservation_index');
