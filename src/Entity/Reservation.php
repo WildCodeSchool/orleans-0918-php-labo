@@ -66,16 +66,10 @@ class Reservation
     private $reservationEquipements;
 
     /**
-
-     * @ORM\Column(type="datetime")
-     */
-    private $startDate;
-
-     * @ORM\Column(type="boolean")
+    * @ORM\Column(type="boolean")
      */
     private $isArchived = '0';
 
-  
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
@@ -257,17 +251,6 @@ class Reservation
     public function setIsArchived(bool $isArchived): self
     {
         $this->isArchived = $isArchived;
-
-        return $this;
-    }
-    public function getStartDate(): ?\DateTimeInterface
-    {
-        return $this->startDate;
-    }
-
-    public function setStartDate(\DateTimeInterface $startDate): self
-    {
-        $this->startDate = $startDate;
 
         return $this;
     }
