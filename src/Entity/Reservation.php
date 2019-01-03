@@ -68,7 +68,7 @@ class Reservation
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isArchived;
+    private $isArchived = '0';
 
     public function __construct()
     {
