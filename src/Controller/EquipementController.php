@@ -37,6 +37,11 @@ class EquipementController extends AbstractController
             $em->persist($equipement);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Equipement bien créé !'
+            );
+
             return $this->redirectToRoute('equipement_index');
         }
 
@@ -64,6 +69,11 @@ class EquipementController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'success',
+                'Modification bien effectuée !'
+            );
 
             return $this->redirectToRoute('equipement_index', ['id' => $equipement->getId()]);
         }

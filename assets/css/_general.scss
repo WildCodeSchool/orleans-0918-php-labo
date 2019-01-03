@@ -85,3 +85,8 @@ p {
     font-family : $font-text;
   }
 }
+
+/* limitation de la taille des messages flash */
+.messagesflash{
+  height : 50px;
+}

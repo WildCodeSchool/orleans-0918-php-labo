@@ -3,7 +3,20 @@
 {% block title %}Reservation index{% endblock %}
 
 {% block body %}
+
     <div class="container-fluid celluleSelector">
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="row mt-3 messagesflash align-items-center">
+                    <div class="col-lg-6 mx-auto alert alert-dismissible alert-{{ label }} flash-{{ label }} fade show">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <h2>Reservations en cours</h2>
         <table class="table">
             <thead>
