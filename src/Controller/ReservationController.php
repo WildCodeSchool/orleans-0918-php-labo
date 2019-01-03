@@ -71,7 +71,6 @@ class ReservationController extends AbstractController
                     $reservation->removeReservationEquipement($reservationEquipements);
                 }
             }
-            $em = $this->getDoctrine()->getManager();
             $reservation->setStartDate(new\DateTime());
             $em->persist($reservation);
             $em->flush();
