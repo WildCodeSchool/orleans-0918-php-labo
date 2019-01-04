@@ -28,13 +28,13 @@ class EquipementController extends AbstractController
         $em = $this->getDoctrine()->getmanager()->getRepository(Equipement::class);
         $equipements = $em->findAll(['id'=>'DESC']);
 
-        $result = $paginator->paginate(
+        $results = $paginator->paginate(
             $equipements,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 5)
         );
         return $this->render('equipement/index.html.twig', [
-            'equipements' => $result,
+            'equipements' => $results,
         ]);
     }
     /**
