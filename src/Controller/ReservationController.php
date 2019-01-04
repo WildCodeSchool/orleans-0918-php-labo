@@ -112,7 +112,7 @@ class ReservationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('reservation_index', ['id' => $reservation->getId()]);
+            return $this->redirectToRoute('current_reservation_index');
         }
 
         return $this->render('reservation/edit.html.twig', [
