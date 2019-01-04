@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Room;
 use App\Form\RoomType;
 use App\Repository\RoomRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,12 +18,25 @@ class RoomController extends AbstractController
 {
     /**
      * @Route("/", name="room_index", methods="GET")
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @return Response
      */
-    public function index(RoomRepository $roomRepository): Response
-    {
-        return $this->render('room/index.html.twig', ['rooms' => $roomRepository->findAll()]);
-    }
 
+    public function index(Request $request, PaginatorInterface $paginator): Response
+    {
+        $em = $this->getDoctrine()->getmanager()->getRepository(Room::class);
+        $room = $em->findAll(['id'=>'DESC']);
+
+        $result = $paginator->paginate(
+            $room,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 5)
+        );
+        return $this->render('room/index.html.twig', [
+            'rooms' => $result,
+        ]);
+    }
     /**
      * @Route("/new", name="room_new", methods="GET|POST")
      */

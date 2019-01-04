@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Staff;
 use App\Form\StaffType;
 use App\Repository\StaffRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,10 +18,23 @@ class StaffController extends AbstractController
 {
     /**
      * @Route("/", name="staff_index", methods="GET")
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @return Response
      */
-    public function index(StaffRepository $staffRepository): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
-        return $this->render('staff/index.html.twig', ['staff' => $staffRepository->findAll()]);
+        $em = $this->getDoctrine()->getmanager()->getRepository(Staff::class);
+        $staff = $em->findAll(['id'=>'DESC']);
+
+        $result = $paginator->paginate(
+            $staff,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 5)
+        );
+        return $this->render('staff/index.html.twig', [
+            'staff' => $result,
+        ]);
     }
 
     /**
