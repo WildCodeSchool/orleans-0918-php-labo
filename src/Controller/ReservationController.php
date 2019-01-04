@@ -141,7 +141,6 @@ class ReservationController extends AbstractController
             );
 
             return $this->redirectToRoute('current_reservation_index');
-
         }
 
         return $this->render('reservation/edit.html.twig', [
