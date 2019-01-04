@@ -140,7 +140,7 @@ class ReservationController extends AbstractController
                 'Modification effectuée avec succès !'
             );
 
-            return $this->redirectToRoute('reservation_index', ['id' => $reservation->getId()]);
+            return $this->redirectToRoute('current_reservation_index');
         }
 
         return $this->render('reservation/edit.html.twig', [
