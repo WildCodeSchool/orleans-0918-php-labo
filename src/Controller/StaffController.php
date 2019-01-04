@@ -25,15 +25,15 @@ class StaffController extends AbstractController
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Staff::class);
-        $staff = $em->findAll(['id'=>'DESC']);
+        $staffs = $em->findAll(['id'=>'DESC']);
 
-        $result = $paginator->paginate(
-            $staff,
+        $results = $paginator->paginate(
+            $staffs,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 5)
         );
         return $this->render('staff/index.html.twig', [
-            'staff' => $result,
+            'staffs' => $results,
         ]);
     }
 

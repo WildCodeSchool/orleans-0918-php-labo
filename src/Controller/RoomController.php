@@ -26,15 +26,15 @@ class RoomController extends AbstractController
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Room::class);
-        $room = $em->findAll(['id'=>'DESC']);
+        $rooms = $em->findAll(['id'=>'DESC']);
 
-        $result = $paginator->paginate(
-            $room,
+        $results = $paginator->paginate(
+            $rooms,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 5)
         );
         return $this->render('room/index.html.twig', [
-            'rooms' => $result,
+            'rooms' => $results,
         ]);
     }
     /**

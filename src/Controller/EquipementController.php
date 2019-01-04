@@ -26,10 +26,10 @@ class EquipementController extends AbstractController
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Equipement::class);
-        $equipement = $em->findAll(['id'=>'DESC']);
+        $equipements = $em->findAll(['id'=>'DESC']);
 
         $result = $paginator->paginate(
-            $equipement,
+            $equipements,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 5)
         );
