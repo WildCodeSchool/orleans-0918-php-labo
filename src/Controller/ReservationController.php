@@ -36,14 +36,14 @@ class ReservationController extends AbstractController
         $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
         $reservations = $em->findBy(['isArchived' => '0'], ['id'=>'DESC']);
 
-        $result = $paginator->paginate(
+        $results = $paginator->paginate(
             $reservations,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 7)
         );
 
         return $this->render('reservation/currentReservations.html.twig', [
-            'reservations'=> $result,
+            'reservations'=> $results,
             ]);
     }
     /**
