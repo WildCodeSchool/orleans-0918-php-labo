@@ -54,7 +54,7 @@
     </div>
 
     <!-- Ici doit commencer le bloc équipement et salles du formulaire -->
-    <div class="container-fluid menuswitch formEdit">
+    <div class="container-fluid menuswitch ">
         <div class="d-flex flex-row">
             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left">
                 <li class="nav-item">
@@ -65,7 +65,7 @@
                 </li>
             </ul>
 
-            <div class="tab-content">
+            <div class="tab-content formEdit">
                 <div class="tab-pane fade show active" id="room">
                     <div class="row room_reservation">
                         {% for room in form.rooms %}
@@ -76,6 +76,21 @@
                 </div>
                 <!-- Ici doit commencer le bloc équipement du formulaire -->
                 <div class="tab-pane fade" id="equipment">
+                    <div class="row ">
+                        {% for reservationEquipement in form.reservationEquipements %}
+                            <div class="col-3 align-self-center">
+                                <label for="{{ form.reservationEquipements.vars.id }}">
+                                    {{ reservationEquipement.vars.value.equipement.name }}
+                                </label>
+                                <div class="row ">
+                                    <div class="col">
+                                        {{ form_widget(reservationEquipement) }}
+                                        {{ form_errors(reservationEquipement) }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <!-- -->
             </div>
@@ -84,6 +99,7 @@
 
     <!-- -->
     <div class="row justify-content-center validbutton">
+        <a href="{{ path('current_reservation_index', {'id': reservation.id}) }}"
         <button class="  btn text-center style-button bg-gradient1 mx-auto"><span>Modifier la Réservation</span></button>
     </div>
     {{ form_end(form) }}
