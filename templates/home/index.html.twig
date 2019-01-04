@@ -2,8 +2,9 @@
 
 {% block title %}Home{% endblock %}
 
+{% block header %}<main class="backgroundHome"> {% include 'home/_navbar.html.twig' %}{% endblock %}
 {% block body %}
-    <main class="container-fluid backgroundHome">
+    <div class="container-fluid">
         <div class="d-flex align-items-center flex-column pt-5">
             <div class="mt-5">
                 <h1>Réservation des salles et restitution des clés</h1>
@@ -12,5 +13,7 @@
                 <a href="{{ path('reservation_new') }}" class="btn text-center style-button bg-gradient1 mx-auto"><span>Réserver</span></a>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 {% endblock %}
+

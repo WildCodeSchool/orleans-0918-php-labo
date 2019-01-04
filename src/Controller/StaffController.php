@@ -37,6 +37,11 @@ class StaffController extends AbstractController
             $em->persist($staff);
             $em->flush();
 
+            $this->addFlash(
+                'success',
+                'Personnel bien créé !'
+            );
+
             return $this->redirectToRoute('staff_index');
         }
 
@@ -65,6 +70,11 @@ class StaffController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'success',
+                'Modification bien effectuée !'
+            );
+
             return $this->redirectToRoute('staff_index', ['id' => $staff->getId()]);
         }
 
@@ -84,6 +94,10 @@ class StaffController extends AbstractController
             $em->remove($staff);
             $em->flush();
         }
+        $this->addFlash(
+            'success',
+            'Suppression bien effectuée !'
+        );
 
         return $this->redirectToRoute('staff_index');
     }
