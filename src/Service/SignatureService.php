@@ -8,8 +8,15 @@
 
 namespace App\Service;
 
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 class SignatureService
 {
+    const NO_IMAGE_DATA = <<<EOT
+data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArwAAADICAYAAAAKljK9AAACNklEQVR4nO3BMQEAAADCoPVPbQlPoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgLcBjMAAASbpGwwAAAAASUVORK5CYII=
+EOT;
+
     /**
      * @var string
      */
@@ -35,6 +42,21 @@ class SignatureService
             if (file_exists($path)) {
                 unlink($path);
             }
+        }
+    }
+
+    public static function validate($object, ExecutionContextInterface $context, $payload)
+    {
+        if (empty($object)) {
+            $context->buildViolation("Vous n'avez pas signé.")
+                    ->atPath('signature')
+                    ->addViolation();
+        }
+
+        if (self::NO_IMAGE_DATA === $object) {
+            $context->buildViolation("Vous n'avez pas signé.")
+                    ->atPath('signature')
+                    ->addViolation();
         }
     }
 }

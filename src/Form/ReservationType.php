@@ -6,6 +6,7 @@ use App\Entity\Reservation;
 use App\Entity\ReservationEquipement;
 use App\Entity\Room;
 use App\Entity\Staff;
+use App\Service\SignatureService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -13,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Callback;
 
 class ReservationType extends AbstractType
 {
@@ -41,7 +42,6 @@ class ReservationType extends AbstractType
                 'signature',
                 HiddenType::class,
                 [
-                    'constraints' => [new NotBlank()],
                     'attr' => [
                         'class' => 'signature'
                     ]
