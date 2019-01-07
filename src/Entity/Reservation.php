@@ -51,7 +51,6 @@ class Reservation
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Callback({"App\Service\SignatureService", "validate"})
      */
     private $signature;
 
