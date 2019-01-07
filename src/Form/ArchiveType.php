@@ -17,8 +17,7 @@ class ArchiveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add('Archiver', SubmitType::class );
+            ->add('Archiver', SubmitType::class, ['attr' => ['class' => 'btnArchive btn-outline-danger']]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

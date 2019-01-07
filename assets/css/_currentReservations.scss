@@ -49,13 +49,10 @@ thead tr:first-child {
     min-height: 40px;
   }
 }
-#archive_Archiver {
-  display: none;
-}
-.btn-link:hover {
+.btnArchive:hover {
   color: $secondary-color;
 }
-.btn-link {
+.btnArchive {
   color: $primary-color;
 }
 
