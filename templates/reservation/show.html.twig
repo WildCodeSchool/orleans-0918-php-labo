@@ -68,7 +68,7 @@
                     <h3 class="card-header text-center"><span>Equipement(s) Réservé(s)</span></h3>
                     <div class="card-body">
                         <label>{% for reservationEquipement in reservation.reservationEquipements %}
-                                <li>{{ reservationEquipement.equipement.name }}</li>
+                                <li>{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</li>
                             {% endfor %}
                         </label>
                     </div>
