@@ -36,14 +36,14 @@ class ReservationController extends AbstractController
         $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
         $reservations = $em->findBy(['isArchived' => '0'], ['id'=>'DESC']);
 
-        $result = $paginator->paginate(
+        $results = $paginator->paginate(
             $reservations,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 7)
+            $this->getParameter('limitPaginator')
         );
 
         return $this->render('reservation/currentReservations.html.twig', [
-            'reservations'=> $result,
+            'reservations'=> $results,
             ]);
     }
     /**
@@ -59,7 +59,7 @@ class ReservationController extends AbstractController
         $result = $paginator->paginate(
             $reservations,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 7)
+            $this->getParameter('limitPaginator')
         );
         return $this->render('reservation/archiveReservations.html.twig', [
             'reservations'=> $result,
@@ -98,8 +98,7 @@ class ReservationController extends AbstractController
                     $reservation->removeReservationEquipement($reservationEquipements);
                 }
             }
-            $reservation->setStartDate(new \DateTime());
-
+            $reservation->setStartDate(new\DateTime());
             $em->persist($reservation);
             $em->flush();
 
@@ -141,7 +140,7 @@ class ReservationController extends AbstractController
                 'Modification effectuée avec succès !'
             );
 
-            return $this->redirectToRoute('reservation_index', ['id' => $reservation->getId()]);
+            return $this->redirectToRoute('current_reservation_index');
         }
 
         return $this->render('reservation/edit.html.twig', [
