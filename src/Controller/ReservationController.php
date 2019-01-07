@@ -5,14 +5,19 @@ namespace App\Controller;
 use App\Entity\Equipement;
 use App\Entity\Reservation;
 use App\Entity\ReservationEquipement;
+use App\Form\ArchiveType;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 /**
  * @Route("/reservation")
@@ -26,24 +31,54 @@ class ReservationController extends AbstractController
     {
         return $this->render('reservation/index.html.twig', ['reservations' => $reservationRepository->findAll()]);
     }
+
     /**
-     * @Route("/current", name="current_reservation_index", methods="GET")
-     * @param ReservationRepository $reservationRepository
+     * @Route("/current/{id}", defaults={"id"=null}, name="current_reservation_index", methods="GET|POST")
+     * @ParamConverter("id", options={"id" = "id"})
+     * @param Request $request
+     * @param PaginatorInterface $paginator
+     * @param Reservation $reservation
      * @return Response
      */
-    public function currentReservationIndex(Request $request, PaginatorInterface $paginator)
+    public function currentReservationIndex(Request $request, PaginatorInterface $paginator, Reservation $reservationArchive = null)
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
         $reservations = $em->findBy(['isArchived' => '0'], ['id'=>'DESC']);
 
-        $result = $paginator->paginate(
-            $reservations,
-            $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 7)
-        );
+        $formArchive = [];
+
+        foreach ($reservations as $reservation) {
+            $form = $this->createForm(ArchiveType::class, $reservation);
+            $form->handleRequest($request);
+            $formArchive[$reservation->getId()]=$form->createView();
+
+        }
+
+        if (!is_null($reservationArchive) && $form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $reservationArchive->setIsArchived(1);
+
+            $this->addFlash(
+                'success',
+                'Réservation archivée !'
+            );
+            $em->persist($reservationArchive);
+            $em->flush();
+
+            return $this->redirectToRoute('current_reservation_index');
+        }
+
+            $result = $paginator->paginate(
+                $reservations,
+                $request->query->getInt('page', 1),
+                $request->query->getInt('limit', 7)
+
+
+            );
 
         return $this->render('reservation/currentReservations.html.twig', [
             'reservations'=> $result,
+            'formArchive' => $formArchive,
             ]);
     }
     /**
@@ -88,6 +123,8 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $reservation->getIsArchived();
+            $reservation->setIsArchived(0);
             $reservation->getSignature();
             $reservation->setSignature($signatureService->add(
                 $reservation->getSignature()
@@ -168,4 +205,33 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('reservation_index');
     }
+//    /**
+//     * @Route("archive/{id}", name="set_archive", methods="POST")
+//     */
+//    public function setArchive(Request $request, Reservation $reservation): Response
+//    {
+
+//
+//
+//        $form = $this->createForm(ArchiveType::class, $reservation);
+//        $form->handleRequest($request);
+//
+//            if ($form->isSubmitted() && $form->isValid()) {
+//
+//            $em = $this->getDoctrine()->getManager();
+//            $reservation->getIsArchived();
+//            $reservation->setIsArchived(1);
+//
+//            $this->addFlash(
+//                'success',
+//                'Réservation archivée !'
+//            );
+//                $em->persist($reservation);
+//                $em->flush();
+//
+//        }
+//        return $this->redirectToRoute('current_reservation_index');
+//
+//    }
 }
+
