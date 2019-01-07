@@ -39,7 +39,7 @@ class ReservationController extends AbstractController
         $results = $paginator->paginate(
             $reservations,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 5)
+            $this->getParameter('limitPaginator')
         );
 
         return $this->render('reservation/currentReservations.html.twig', [
@@ -59,7 +59,7 @@ class ReservationController extends AbstractController
         $result = $paginator->paginate(
             $reservations,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 5)
+            $this->getParameter('limitPaginator')
         );
         return $this->render('reservation/archiveReservations.html.twig', [
             'reservations'=> $result,
