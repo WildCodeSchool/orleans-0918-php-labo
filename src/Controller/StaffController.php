@@ -89,7 +89,7 @@ class StaffController extends AbstractController
      */
     public function delete(Request $request, Staff $staff): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$staff->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $staff->getId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($staff);
             $em->flush();
