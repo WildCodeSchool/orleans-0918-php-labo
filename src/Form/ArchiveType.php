@@ -3,51 +3,22 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
-use App\Entity\ReservationEquipement;
-use App\Entity\Room;
-use App\Entity\Staff;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
-class ReservationType extends AbstractType
+class ArchiveType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
 
-            ->add('customer', CustomerType::class)
-            ->add('company', CompanyType::class)
-            ->add('comment', TextareaType::class, array('label'=> 'Commentaires : ', 'required' => false))
-            ->add('rooms', EntityType::class, array(
-                'class' => Room::class,
-                'multiple' => true,
-                'expanded' => true,
-                'choice_label' => 'name'
-            ))
-            ->add('staff', EntityType::class, array(
-                'class' => Staff::class,
-                'choice_label' => 'firstname'
-            ))
-            ->add('reservationEquipements', CollectionType::class, array(
-                'entry_type'=> ReservationEquipementType::class,
-            ))
-            ->add(
-                'signature',
-                HiddenType::class,
-                [
-                    'constraints' => [new NotBlank()],
-                    'attr' => [
-                        'class' => 'signature'
-                    ]
-                ]
-            )
-            ->add('isArchived', HiddenType::class);
+            ->add('Archiver', SubmitType::class );
     }
 
     public function configureOptions(OptionsResolver $resolver)
