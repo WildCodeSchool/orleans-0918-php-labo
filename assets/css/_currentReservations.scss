@@ -52,4 +52,10 @@ thead tr:first-child {
 #archive_Archiver {
   display: none;
 }
+.btn-link:hover {
+  color: $secondary-color;
+}
+.btn-link {
+  color: $primary-color;
+}
 
