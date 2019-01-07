@@ -23,14 +23,14 @@
                 <div class="col-3">
                     <label for="{{ form.customer.lastName.vars.id }}">  Nom de famille : </label>
                     {{ form_widget(form.customer.lastName) }}
-                    <span>* Champ Obligatoire</span>
+                    <span class="requirefield">* Champ Obligatoire</span>
                     {{ form_errors(form.customer.lastName) }}
 
                 </div>
                 <div class="col-3">
                     <label for="{{ form.company.companyName.vars.id }}">  Nom de l'entreprise : </label>
                     {{ form_widget(form.company.companyName) }}
-                    <span>* Champ Obligatoire</span>
+                    <span class="requirefield">* Champ Obligatoire</span>
                     {{ form_errors(form.company.companyName) }}
 
                 </div>
@@ -107,7 +107,7 @@
                     </div>
                     <div class="col-3">
                         <p class="text_signature">Merci de signer dans l'encart</p>
-                        <span>* Champ Obligatoire</span>
+                        <span class="requirefield">* Champ Obligatoire</span>
                     </div>
                 </div>
             </div>
