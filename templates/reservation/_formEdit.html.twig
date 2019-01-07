@@ -5,7 +5,7 @@
     {{ form_start(form) }}
     <div class="row formEdit">
         <div class="offset-9 col-2 offset-1 select_staff">
-            <label for="{{ form.staff.vars.id }}"> Personnel :</label>
+            <label for="{{ form.staff.vars.id }}"> Personnel : <span class="change_comments">(champs modifiable)</span></label>
             {{ form_widget(form.staff) }}
             {{ form_errors(form.staff) }}
         </div>
@@ -13,41 +13,41 @@
     <div class="row no-gutters allform">
         <div class="col-9">
             <div class="row justify-content-start formEdit">
-                <div class="col-3">
+                <div class="col-3"><i class="fas fa-lock"></i>
                     <label for="{{ form.customer.firstName.vars.id }}"> Prénom :</label>
-                    {{ form_widget(form.customer.firstName) }}
+                    {{ form_widget(form.customer.firstName, {'disabled': 'disabled'}) }}
                     {{ form_errors(form.customer.firstName) }}
 
                 </div>
-                <div class="col-3">
+                <div class="col-3"><i class="fas fa-lock"></i>
                     <label for="{{ form.customer.lastName.vars.id }}">  Nom de famille : </label>
-                    {{ form_widget(form.customer.lastName) }}
+                    {{ form_widget(form.customer.lastName, {'attr': {'readonly':'read_only'}}) }}
                     {{ form_errors(form.customer.lastName) }}
 
                 </div>
-                <div class="col-3">
+                <div class="col-3"><i class="fas fa-lock"></i>
                     <label for="{{ form.company.companyName.vars.id }}">  Nom de l'entreprise :</label>
-                    {{ form_widget(form.company.companyName) }}
+                    {{ form_widget(form.company.companyName, {'attr': {'readonly':'read_only'}}) }}
                     {{ form_errors(form.company.companyName) }}
 
                 </div>
             </div>
             <div class="row justify-content-start formEdit">
-                <div class="col-3 formEdit">
+                <div class="col-3 formEdit"><i class="fas fa-lock"></i>
                     <label for="{{ form.customer.mailAddress.vars.id }}"> Adresse mail :</label>
-                    {{ form_widget(form.customer.mailAddress) }}
+                    {{ form_widget(form.customer.mailAddress, {'disabled': 'disabled'}) }}
                     {{ form_errors(form.customer.mailAddress) }}
 
                 </div>
-                <div class="col-3">
+                <div class="col-3"><i class="fas fa-lock"></i>
                     <label for="{{ form.customer.phoneNumber.vars.id }}"> Téléphone :</label>
-                    {{ form_widget(form.customer.phoneNumber) }}
+                    {{ form_widget(form.customer.phoneNumber, {'disabled': 'disabled'}) }}
                     {{ form_errors(form.customer.phoneNumber) }}
                 </div>
             </div>
         </div>
         <div class="col-3 vertical-align-center">
-            <label for="{{ form.comment.vars.id }}"> Commentaire :</label>
+            <label for="{{ form.comment.vars.id }}"> Commentaire : <span class="change_comments">(champs modifiable)</span></label>
             {{ form_widget(form.comment) }}
             {{ form_errors(form.comment) }}
         </div>
@@ -55,7 +55,7 @@
 
     <!-- Ici doit commencer le bloc équipement et salles du formulaire -->
     <div class="container-fluid menuswitch ">
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row"><i class="fas fa-lock"></i>
             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left">
                 <li class="nav-item">
                     <a href="#room" class="nav-link active" data-toggle="tab" role="tab" aria-controls="room"><i class="fas fa-door-open fa-2x"></i></a>
@@ -69,7 +69,7 @@
                 <div class="tab-pane fade show active" id="room">
                     <div class="row room_reservation">
                         {% for room in form.rooms %}
-                            {{ form_widget(form.rooms) }}
+                            {{ form_widget(form.rooms, {'disabled': 'disabled'}) }}
                             {{ form_errors(form.rooms) }}
                         {% endfor %}
                     </div>
@@ -84,7 +84,7 @@
                                 </label>
                                 <div class="row ">
                                     <div class="col">
-                                        {{ form_widget(reservationEquipement) }}
+                                        {{ form_widget(reservationEquipement, {'disabled': 'disabled'}) }}
                                         {{ form_errors(reservationEquipement) }}
                                     </div>
                                 </div>
