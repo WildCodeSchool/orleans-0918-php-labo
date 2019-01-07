@@ -31,7 +31,7 @@
                 </div>
                 <div class="row">
                     <!-- Ici commence le bloc img de signature -->
-                    <img src="https://via.placeholder.com/180x120" alt="Generic placeholder image">
+                    <img src="/build/images/signatures{{ asset(reservation.signature) }}" alt="signature" class="img-responsive">
                 </div>
             </div>
             <div class="col-4 pt-5 justify-content-center">
@@ -67,7 +67,10 @@
                 <div class="card">
                     <h3 class="card-header text-center"><span>Equipement(s) Réservé(s)</span></h3>
                     <div class="card-body">
-                        <!-- Ici commence le bloc sur recuperation des equipements selectionnés -->
+                        <label>{% for reservationEquipement in reservation.reservationEquipements %}
+                                <li>{{ reservationEquipement.equipement.name }}</li>
+                            {% endfor %}
+                        </label>
                     </div>
                 </div>
             </div>

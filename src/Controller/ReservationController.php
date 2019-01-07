@@ -122,7 +122,10 @@ class ReservationController extends AbstractController
      */
     public function show(Reservation $reservation): Response
     {
-        return $this->render('reservation/show.html.twig', ['reservation' => $reservation]);
+
+        return $this->render('reservation/show.html.twig', [
+            'reservation' => $reservation,
+        ]);
     }
 
     /**
