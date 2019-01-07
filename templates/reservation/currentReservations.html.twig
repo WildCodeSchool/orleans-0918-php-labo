@@ -54,23 +54,7 @@
                             {% endfor %}
                         </td>
                         <td>
-                            {{ form_start(formArchive[reservation.id], {'action': path('current_reservation_index', {'id' : reservation.id} )} ) }}
-                            {{ form_widget(formArchive[reservation.id]) }}
-                            {#<button class="btn btn-link"><i class="fas fa-archive"></i></button>#}
-
-                            {{ form_end(formArchive[reservation.id]) }}
-                            {#{{ include('reservation/_archiveForm.html.twig') }}#}
-
-                            {#<form method="post" action="{{ path('set_archive', {'id': reservation.id}) }}"#}
-                                  {#onsubmit="return confirm('Voulez-vous vraiment archiver cette reservation ?');">#}
-                                {#<button class="btn btn-link"><i class="fas fa-archive"></i></button></form>#}
-                            {#{{ form_start(form) }}#}
-                            {#{{ form_widget(form) }}#}
-
-                            {#<input type="submit" class="btn" value="Create" />#}
-                            {#<button class="btn btn-link"><i class="fas fa-archive"></i></button>#}
-                            {#{{ form_end(form) }}#}
-
+                            {{ include('reservation/_archiveForm.html.twig') }}
                         </td>
                 </tr>
             {% endfor %}
