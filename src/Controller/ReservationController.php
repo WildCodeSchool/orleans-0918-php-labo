@@ -136,11 +136,15 @@ class ReservationController extends AbstractController
      */
     public function edit(Request $request, Reservation $reservation): Response
     {
+
         $form = $this->createForm(
             ReservationType::class,
             $reservation,
             ['base64_noimage' => $this->getParameter('base64_noimage')]
         );
+        if (0 == $reservation->getReservationEquipements()->count()) {
+            $form->remove('reservationEquipements');
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
