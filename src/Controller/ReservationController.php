@@ -20,13 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/", name="reservation_index", methods="GET")
-     */
-    public function index(ReservationRepository $reservationRepository): Response
-    {
-        return $this->render('reservation/index.html.twig', ['reservations' => $reservationRepository->findAll()]);
-    }
-    /**
      * @Route("/current", name="current_reservation_index", methods="GET")
      * @param ReservationRepository $reservationRepository
      * @return Response
@@ -150,24 +143,5 @@ class ReservationController extends AbstractController
             'reservation' => $reservation,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="reservation_delete", methods="DELETE")
-     */
-    public function delete(Request $request, Reservation $reservation): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($reservation);
-            $em->flush();
-
-            $this->addFlash(
-                'success',
-                'Reservation bien supprimée !'
-            );
-        }
-
-        return $this->redirectToRoute('reservation_index');
     }
 }
