@@ -34,6 +34,7 @@ class StaffController extends AbstractController
         );
         return $this->render('staff/index.html.twig', [
             'staffs' => $results,
+            'isActive' => true,
         ]);
     }
 
@@ -47,6 +48,7 @@ class StaffController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $staff->setIsActive(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($staff);
             $em->flush();

@@ -15,8 +15,9 @@ class StaffType extends AbstractType
         $builder
             ->add('lastname', TextType::class, array('label' => 'Nom:', 'error_bubbling' => false))
             ->add('firstname', TextType::class, array(
-                'label' => 'Prénom:', 'required' => false, 'error_bubbling' => false
-            ));
+                'label' => 'Prénom:', 'required' => false, 'error_bubbling' => false))
+            ->add('isActive', TextType::class, array('label' => 'active', 'attr' =>['class' => 'btn-group-toggle']))
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
