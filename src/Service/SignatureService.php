@@ -8,6 +8,10 @@
 
 namespace App\Service;
 
+/**
+ * Class SignatureService
+ * @package App\Service
+ */
 class SignatureService
 {
     /**
@@ -15,20 +19,35 @@ class SignatureService
      */
     private $projectDir;
 
+    /**
+     * SignatureService constructor.
+     * @param string $projectDir
+     */
     public function __construct(string $projectDir)
     {
         $this->projectDir = $projectDir;
     }
 
+    /**
+     * @param string $signature
+     * @return string
+     * @throws \Exception
+     */
     public function add(string $signature) : string
     {
-        if (!empty($signature)) {
-            $path = $this->projectDir . '/assets/images/signatures/' . uniqid('sign_') . ".png";
-            file_put_contents($path, file_get_contents($signature));
-            return $path;
+        if (empty($signature)) {
+            throw new \Exception('Empty signature');
         }
+
+        $fileName=uniqid('sign_') . ".png";
+        $path = $this->projectDir . '/public/build/images/signatures/'. $fileName ;
+        file_put_contents($path, file_get_contents($signature));
+        return $fileName;
     }
 
+    /**
+     * @param $path
+     */
     public function delete($path)
     {
         if (!empty($path)) {

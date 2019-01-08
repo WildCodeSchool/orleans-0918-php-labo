@@ -5,7 +5,7 @@
 {% block body %}
     <main>
         <div class="container mt-5">
-            <h2 class="text-center mt-5 mb-5">Liste du Personnel</h2>
+            <h2 class="text-center mt-5 mb-5">Liste du personnel</h2>
             <div class="row">
                 <div class="col-md-12">
                     <table id="datatable" class="table table-striped table-bordered">
@@ -18,7 +18,7 @@
                     </tr>
                     </thead>
                     <tbody class="text-center">
-                    {% for staff in staff %}
+                    {% for staff in staffs %}
                         <tr>
                             <td>{{ staff.lastname }}</td>
                             <td>{{ staff.firstname }}</td>
@@ -31,6 +31,11 @@
                     <div class="row justify-content-center validbutton">
                         <a href="{{ path('staff_new') }}" class="btn text-center style-button bg-gradient1 mx-auto"><span>Ajouter du Personnel</span></a>
                     </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="navigation">
+                    {{ knp_pagination_render(staffs) }}
                 </div>
             </div>
         </div>
