@@ -1,17 +1,9 @@
 h2 {
   text-align: center;
-  padding-bottom: 0;
   font-family: $font-title;
   font-weight: bold;
 }
-//landscape Tablet mode
 
-@media (min-width: 720px) and (max-width: 1280px) {
-  h2{
-    padding-top: 5%;
-    margin-top: 7%;
-  }
-}
 .table {
   padding-bottom: 5%;
   padding-left: 5%;
