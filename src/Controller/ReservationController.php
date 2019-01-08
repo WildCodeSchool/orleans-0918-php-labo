@@ -122,7 +122,6 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $reservation->setIsArchived(0);
             $reservation->getSignature();
             $reservation->setSignature($signatureService->add(
                 $reservation->getSignature()
