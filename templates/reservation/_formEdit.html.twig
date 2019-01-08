@@ -5,49 +5,49 @@
     {{ form_start(form) }}
     <div class="row formEdit">
         <div class="offset-9 col-2 offset-1 select_staff">
-            <label for="{{ form.staff.vars.id }}"> Personnel : <span class="change_comments">(champs modifiable)</span></label>
+            <label for="{{ form.staff.vars.id }}"> Personnel : </label>
             {{ form_widget(form.staff) }}
             {{ form_errors(form.staff) }}
         </div>
     </div>
-    <div class="row no-gutters allform">
+    <div class="row no-gutters allform form_edit">
         <div class="col-9">
             <div class="row justify-content-start formEdit">
-                <div class="col-3"><i class="fas fa-lock"></i>
+                <div class="col-3">
                     <label for="{{ form.customer.firstName.vars.id }}"> Prénom :</label>
-                    {{ form_widget(form.customer.firstName, {'disabled': 'disabled'}) }}
-                    {{ form_errors(form.customer.firstName) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.firstName, {'disabled': 'disabled'}) }}
+                        {{ form_errors(form.customer.firstName) }}<i class="fas fa-lock"></i></div>
 
                 </div>
-                <div class="col-3"><i class="fas fa-lock"></i>
+                <div class="col-3">
                     <label for="{{ form.customer.lastName.vars.id }}">  Nom de famille : </label>
-                    {{ form_widget(form.customer.lastName, {'attr': {'readonly':'read_only'}}) }}
-                    {{ form_errors(form.customer.lastName) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.lastName, {'attr': {'readonly':'read_only'}}) }}
+                    {{ form_errors(form.customer.lastName) }}<i class="fas fa-lock"></i></div>
 
                 </div>
-                <div class="col-3"><i class="fas fa-lock"></i>
+                <div class="col-3">
                     <label for="{{ form.company.companyName.vars.id }}">  Nom de l'entreprise :</label>
-                    {{ form_widget(form.company.companyName, {'attr': {'readonly':'read_only'}}) }}
-                    {{ form_errors(form.company.companyName) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.company.companyName, {'attr': {'readonly':'read_only'}}) }}
+                    {{ form_errors(form.company.companyName) }}<i class="fas fa-lock"></i></div>
 
                 </div>
             </div>
             <div class="row justify-content-start formEdit">
-                <div class="col-3 formEdit"><i class="fas fa-lock"></i>
+                <div class="col-3 formEdit">
                     <label for="{{ form.customer.mailAddress.vars.id }}"> Adresse mail :</label>
-                    {{ form_widget(form.customer.mailAddress, {'disabled': 'disabled'}) }}
-                    {{ form_errors(form.customer.mailAddress) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.mailAddress, {'disabled': 'disabled'}) }}
+                    {{ form_errors(form.customer.mailAddress) }}<i class="fas fa-lock"></i></div>
 
                 </div>
-                <div class="col-3"><i class="fas fa-lock"></i>
+                <div class="col-3">
                     <label for="{{ form.customer.phoneNumber.vars.id }}"> Téléphone :</label>
-                    {{ form_widget(form.customer.phoneNumber, {'disabled': 'disabled'}) }}
-                    {{ form_errors(form.customer.phoneNumber) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.phoneNumber, {'disabled': 'disabled'}) }}
+                    {{ form_errors(form.customer.phoneNumber) }}<i class="fas fa-lock"></i></div>
                 </div>
             </div>
         </div>
-        <div class="col-3 vertical-align-center">
-            <label for="{{ form.comment.vars.id }}"> Commentaire : <span class="change_comments">(champs modifiable)</span></label>
+        <div class="col-3 vertical-align-center comment_edit">
+            <label for="{{ form.comment.vars.id }}"> Commentaire : </label>
             {{ form_widget(form.comment) }}
             {{ form_errors(form.comment) }}
         </div>
