@@ -116,7 +116,11 @@ class ReservationController extends AbstractController
             $reservation->addReservationEquipement($reservationEquipements);
         }
       
-        $form = $this->createForm(ReservationType::class, $reservation);
+        $form = $this->createForm(
+            ReservationType::class,
+            $reservation,
+            ['base64_noimage' => $this->getParameter('base64_noimage')]
+        );
         $form->handleRequest($request);
 
 
@@ -166,7 +170,12 @@ class ReservationController extends AbstractController
      */
     public function edit(Request $request, Reservation $reservation): Response
     {
-        $form = $this->createForm(ReservationType::class, $reservation);
+
+        $form = $this->createForm(
+            ReservationType::class,
+            $reservation,
+            ['base64_noimage' => $this->getParameter('base64_noimage')]
+        );
         if (0 == $reservation->getReservationEquipements()->count()) {
             $form->remove('reservationEquipements');
         }

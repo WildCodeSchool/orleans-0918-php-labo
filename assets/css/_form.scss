@@ -113,3 +113,11 @@ input{
  color : $primary-color;
   font-style: italic;
 }
+.container_form {
+  .d-block {
+    max-width : 320px;
+    .form-error-message {
+      font-size: 1.6em;
+    }
+  }
+}
