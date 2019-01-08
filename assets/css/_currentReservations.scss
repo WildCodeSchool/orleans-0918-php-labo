@@ -48,5 +48,21 @@ thead tr:first-child {
     height: 100%;
     min-height: 40px;
   }
+  li{
+    list-style: none;
+  }
+}
+
+table {
+  tbody {
+    tr {
+      .comments_table {
+        max-width: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 }
 

@@ -31,7 +31,7 @@ class EquipementController extends AbstractController
         $results = $paginator->paginate(
             $equipements,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 5)
+            $this->getParameter('limitPaginator')
         );
         return $this->render('equipement/index.html.twig', [
             'equipements' => $results,

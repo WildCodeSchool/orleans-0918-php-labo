@@ -76,6 +76,7 @@ input{
   color : $primary-color;
   font-size: 1em;
 }
+<<<<<<< HEAD
 .container-fluid {
   .select_staff {
     #reservation_staff {
@@ -96,18 +97,26 @@ input{
 }
 .label_border {
   #reservation_customer_firstName {
-    border:none;
+    border: none;
   }
+
   #reservation_customer_lastName {
     border: none;
   }
+
   #reservation_company_companyName {
     border: none;
   }
+
   #reservation_customer_mailAddress {
     border: none;
   }
+
   #reservation_customer_phoneNumber {
     border: none;
   }
+}
+.requirefield{
+ color : $primary-color;
+  font-style: italic;
 }
