@@ -21,22 +21,18 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">N° de reservation</th>
                 <th scope="col">Date de réservation</th>
                 <th scope="col">Entreprise</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Commentaire</th>
                 <th scope="col">Salle</th>
-                <th scope="col">Archiver</th>
+                <th scope="col"><i class="fas fa-archive"></i></th>
             </tr>
             </thead>
             <tbody>
             {% for reservation in reservations %}
                 <tr>
-                        <th class="text-center" scope="row">
-                            <a href="{{ path('reservation_show',
-                                {'id': reservation.id}) }}">{{ reservation.id }}</a></th>
                         <td><a href="{{ path('reservation_show',
                                 {'id': reservation.id}) }}">{{ reservation.startDate|date('d/m/Y') }}</a></td>
                         <td> <a href="{{ path('reservation_show',
