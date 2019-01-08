@@ -70,6 +70,45 @@ input{
   pointer-events: none;
   margin-bottom: 1.5em;
 }
+.change_comments {
+  color : $primary-color;
+  font-size: 1em;
+}
+.container-fluid {
+  .select_staff {
+    #reservation_staff {
+      background-color: white;
+      font-weight: bold;
+    }
+  }
+}
+.container-fluid {
+  .form_edit{
+    .comment_edit {
+      #reservation_comment {
+        background-color: white;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.label_border {
+  #reservation_customer_firstName {
+    border: none;
+  }
+  #reservation_customer_lastName {
+    border: none;
+  }
+  #reservation_company_companyName {
+    border: none;
+  }
+  #reservation_customer_mailAddress {
+    border: none;
+  }
+  #reservation_customer_phoneNumber {
+    border: none;
+  }
+}
 .requirefield{
  color : $primary-color;
   font-style: italic;
