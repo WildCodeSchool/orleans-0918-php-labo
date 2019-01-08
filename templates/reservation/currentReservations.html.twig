@@ -26,6 +26,7 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Salle</th>
+                <th scope="col">Equipement</th>
                 <th scope="col">Commentaires</th>
             </tr>
             </thead>
@@ -44,6 +45,12 @@
                             {% for room in reservation.rooms %}
                                     <a href="{{ path('reservation_show',
                                         {'id': reservation.id}) }}">{{ room.name }} </a>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for reservationEquipement in reservation.reservationEquipements %}
+                            <a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}"><li>{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</li></a>
                             {% endfor %}
                         </td>
                         <td class="comments_table"> <a href="{{ path('reservation_show',
