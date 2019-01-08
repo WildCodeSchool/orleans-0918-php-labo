@@ -132,6 +132,10 @@ class ReservationController extends AbstractController
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
+        if (0 == $reservation->getReservationEquipements()->count()) {
+            $form->remove('reservationEquipements');
+        }
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 

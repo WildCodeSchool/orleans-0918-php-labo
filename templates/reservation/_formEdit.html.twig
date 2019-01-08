@@ -60,9 +60,11 @@
                 <li class="nav-item">
                     <a href="#room" class="nav-link active" data-toggle="tab" role="tab" aria-controls="room"><i class="fas fa-door-open fa-2x"></i></a>
                 </li>
+                {% if form.reservationEquipements is defined %}
                 <li class="nav-item">
                     <a href="#equipment" class="nav-link second" data-toggle="tab" role="tab" aria-controls="equipment"><i class="fas fa-toolbox fa-2x"></i></a>
                 </li>
+                {% endif %}
             </ul>
 
             <div class="tab-content formEdit">
@@ -74,6 +76,8 @@
                         {% endfor %}
                     </div>
                 </div>
+
+                {% if form.reservationEquipements is defined %}
                 <!-- Ici doit commencer le bloc équipement du formulaire -->
                 <div class="tab-pane fade" id="equipment">
                     <div class="row ">
@@ -92,6 +96,7 @@
                         {% endfor %}
                     </div>
                 </div>
+                {% endif %}
                 <!-- -->
             </div>
         </div>
