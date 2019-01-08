@@ -30,7 +30,7 @@ class StaffController extends AbstractController
         $results = $paginator->paginate(
             $staffs,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 5)
+            $this->getParameter('limitPaginator')
         );
         return $this->render('staff/index.html.twig', [
             'staffs' => $results,

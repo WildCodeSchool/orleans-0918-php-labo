@@ -8,21 +8,18 @@
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">N° de reservation</th>
                 <th scope="col">Date de réservation</th>
                 <th scope="col">Entreprise</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
-                <th scope="col">Commentaire</th>
                 <th scope="col">Salle</th>
+                <th scope="col">Equipement</th>
+                <th scope="col">Commentaires</th>
             </tr>
             </thead>
             <tbody>
             {% for reservation in reservations %}
                 <tr>
-                    <th class="text-center" scope="row">
-                        <a href="{{ path('reservation_show',
-                            {'id': reservation.id}) }}">{{ reservation.id }}</a></th>
                     <td><a href="{{ path('reservation_show',
                             {'id': reservation.id}) }}">{{ reservation.startDate|date('d/m/Y') }}</a></td>
                     <td> <a href="{{ path('reservation_show',
@@ -31,14 +28,20 @@
                             {'id': reservation.id}) }}">{{ reservation.customer.lastName }}</a></td>
                     <td> <a href="{{ path('reservation_show',
                             {'id': reservation.id}) }}">{{ reservation.customer.firstName }}</a></td>
-                    <td> <a href="{{ path('reservation_show',
-                            {'id': reservation.id}) }}">{{ reservation.comment }}</a></td>
                     <td>
                         {% for room in reservation.rooms %}
                             <a href="{{ path('reservation_show',
                                 {'id': reservation.id}) }}">{{ room.name }} </a>
                         {% endfor %}
                     </td>
+                    <td>
+                        {% for reservationEquipement in reservation.reservationEquipements %}
+                            <a href="{{ path('reservation_show',
+                                {'id': reservation.id}) }}"><li>{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</li></a>
+                        {% endfor %}
+                    </td>
+                    <td class="comments_table"> <a href="{{ path('reservation_show',
+                            {'id': reservation.id}) }}">{{ reservation.comment }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
