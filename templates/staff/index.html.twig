@@ -18,7 +18,7 @@
                     </tr>
                     </thead>
                     <tbody class="text-center">
-                    {% for staff in staff %}
+                    {% for staff in staffs %}
                         <tr>
                             <td>{{ staff.lastname }}</td>
                             <td>{{ staff.firstname }}</td>
@@ -31,6 +31,11 @@
                     <div class="row justify-content-center validbutton">
                         <a href="{{ path('staff_new') }}" class="btn text-center style-button bg-gradient1 mx-auto"><span>Ajouter du personnel</span></a>
                     </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="navigation">
+                    {{ knp_pagination_render(staffs) }}
                 </div>
             </div>
         </div>
