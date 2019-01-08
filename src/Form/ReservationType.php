@@ -6,6 +6,7 @@ use App\Entity\Reservation;
 use App\Entity\ReservationEquipement;
 use App\Entity\Room;
 use App\Entity\Staff;
+use App\Service\SignatureService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -13,7 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class ReservationType extends AbstractType
 {
@@ -41,7 +43,12 @@ class ReservationType extends AbstractType
                 'signature',
                 HiddenType::class,
                 [
-                    'constraints' => [new NotBlank()],
+                    'constraints' => [
+                        new Callback([
+                            'callback' => [$this, 'validate'],
+                            'payload' => $options['base64_noimage']
+                        ])
+                    ],
                     'attr' => [
                         'class' => 'signature'
                     ]
@@ -51,8 +58,25 @@ class ReservationType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
+        $resolver->setRequired('base64_noimage');
+
         $resolver->setDefaults([
             'data_class' => Reservation::class,
         ]);
+    }
+
+    public function validate($object, ExecutionContextInterface $context, $payload)
+    {
+        if (empty($object)) {
+            $context->buildViolation("Vous n'avez pas signé.")
+                ->atPath('signature')
+                ->addViolation();
+        }
+
+        if ($payload === $object) {
+            $context->buildViolation("Vous n'avez pas signé.")
+                ->atPath('signature')
+                ->addViolation();
+        }
     }
 }
