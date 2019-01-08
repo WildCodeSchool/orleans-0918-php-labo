@@ -11,7 +11,6 @@ use App\Repository\ReservationRepository;
 use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,7 +34,7 @@ class ReservationController extends AbstractController
      * @Route("/current/{id}", defaults={"id"=null}, name="current_reservation_index", methods="GET|POST")
      * @param Request $request
      * @param PaginatorInterface $paginator
-     * @param Reservation $reservation
+     * @param Reservation $reservationArchive
      * @return Response
      */
     public function currentReservationIndex(
@@ -124,7 +123,6 @@ class ReservationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $reservation->getIsArchived();
             $reservation->setIsArchived(0);
             $reservation->getSignature();
             $reservation->setSignature($signatureService->add(
