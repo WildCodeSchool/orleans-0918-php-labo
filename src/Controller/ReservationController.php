@@ -49,7 +49,6 @@ class ReservationController extends AbstractController
 
         $formArchive = [];
 
-        /* @var $reservation Reservation */
         foreach ($reservations as $reservation) {
             $form = $this->createForm(ArchiveType::class, $reservation);
             $form->handleRequest($request);
