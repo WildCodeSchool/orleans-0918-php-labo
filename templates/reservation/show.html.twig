@@ -28,14 +28,13 @@
                 <div class="row">
                     <h3><span>Email : </span><label>{{ reservation.customer.mailAddress }}</label></h3>
                 </div>
-                <div class="row">
-                    <!-- Ici commence le bloc img de signature -->
-                    <img src="https://via.placeholder.com/180x120" alt="Generic placeholder image">
+                <div class="signature-recap">
+                   <div class="pl-4"> <h3><span> Signature : </span></h3></div>
+                    <div><img src="{{ asset('build/images/signatures/'~reservation.signature) }}" alt="signature" class="img-responsive"></div>
                 </div>
             </div>
             <div class="col-4 pt-5 justify-content-center">
                 <div class="row">
-
                     <h3><span>Nom : </span><label>{{ reservation.customer.lastName }}</label></h3>
                 </div>
 
@@ -66,7 +65,10 @@
                 <div class="card">
                     <h3 class="card-header text-center"><span>Equipement(s) Réservé(s)</span></h3>
                     <div class="card-body">
-                        <!-- Ici commence le bloc sur recuperation des equipements selectionnés -->
+                        <label>{% for reservationEquipement in reservation.reservationEquipements %}
+                                <li>{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</li>
+                            {% endfor %}
+                        </label>
                     </div>
                 </div>
             </div>
