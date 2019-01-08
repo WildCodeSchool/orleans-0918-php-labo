@@ -68,7 +68,7 @@ class Reservation
     /**
     * @ORM\Column(type="boolean")
      */
-    private $isArchived;
+    private $isArchived = false;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
