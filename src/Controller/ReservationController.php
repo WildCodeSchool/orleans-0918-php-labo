@@ -188,4 +188,15 @@ class ReservationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/archive/{id}", name="archive_show", methods="GET")
+     */
+    public function archiveShow(Reservation $reservation): Response
+    {
+
+        return $this->render('reservation/archiveshow.html.twig', [
+            'reservation' => $reservation,
+        ]);
+    }
 }
