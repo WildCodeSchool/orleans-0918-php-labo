@@ -8,6 +8,7 @@ use App\Entity\ReservationEquipement;
 use App\Form\ArchiveType;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use App\Service\CleaningService;
 use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -187,5 +188,11 @@ class ReservationController extends AbstractController
             'reservation' => $reservation,
             'form' => $form->createView(),
         ]);
+    }
+
+    public function clearArchive()
+    {
+
+        return ;
     }
 }
