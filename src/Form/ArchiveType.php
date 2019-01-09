@@ -8,6 +8,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class ArchiveType
+ * @package App\Form
+ */
 class ArchiveType extends AbstractType
 {
     /**
@@ -20,6 +24,9 @@ class ArchiveType extends AbstractType
             ->add('Archiver', SubmitType::class, ['attr' => ['class' => 'btnArchive btn-outline-danger']]);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

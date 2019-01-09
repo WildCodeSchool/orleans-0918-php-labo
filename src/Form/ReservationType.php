@@ -3,10 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Reservation;
-use App\Entity\ReservationEquipement;
 use App\Entity\Room;
 use App\Entity\Staff;
-use App\Service\SignatureService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -17,8 +15,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
+/**
+ * Class ReservationType
+ * @package App\Form
+ */
 class ReservationType extends AbstractType
 {
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -56,6 +62,9 @@ class ReservationType extends AbstractType
             );
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setRequired('base64_noimage');
@@ -65,6 +74,11 @@ class ReservationType extends AbstractType
         ]);
     }
 
+    /**
+     * @param $object
+     * @param ExecutionContextInterface $context
+     * @param $payload
+     */
     public function validate($object, ExecutionContextInterface $context, $payload)
     {
         if (empty($object)) {

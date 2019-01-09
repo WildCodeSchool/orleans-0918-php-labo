@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Staff;
 use App\Form\StaffType;
-use App\Repository\StaffRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * Class StaffController
+ * @package App\Controller
  * @Route("/staff")
  */
 class StaffController extends AbstractController
@@ -39,6 +40,8 @@ class StaffController extends AbstractController
 
     /**
      * @Route("/new", name="staff_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -67,6 +70,9 @@ class StaffController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="staff_edit", methods="GET|POST")
+     * @param Request $request
+     * @param Staff $staff
+     * @return Response
      */
     public function edit(Request $request, Staff $staff): Response
     {
