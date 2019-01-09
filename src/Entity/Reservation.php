@@ -68,7 +68,12 @@ class Reservation
     /**
     * @ORM\Column(type="boolean")
      */
-    private $isArchived = '0';
+    private $isArchived = false;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $endDate;
 
     public function __construct()
     {
@@ -251,6 +256,18 @@ class Reservation
     public function setIsArchived(bool $isArchived): self
     {
         $this->isArchived = $isArchived;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(?\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
 
         return $this;
     }

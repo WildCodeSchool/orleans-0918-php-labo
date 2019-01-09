@@ -5,7 +5,7 @@
 {% block body %}
     <main>
         <div class="backlink"><a href="{{ path('reservation_show', {'id': reservation.id}) }}"><i class="fas fa-chevron-circle-left"></i></a></div>
-        <div class="new_resa"><h2>Modifier la Réservation </h2></div>
+        <div class="new_resa"><h2>Modifier la réservation </h2></div>
 
         {{ include('reservation/_formEdit.html.twig', {'button_label': 'Update'}) }}
 
