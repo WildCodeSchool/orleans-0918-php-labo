@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Staff;
+use App\Form\disableStaffType;
 use App\Form\StaffType;
 use App\Repository\StaffRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,24 +20,45 @@ use Symfony\Component\Routing\Annotation\Route;
 class StaffController extends AbstractController
 {
     /**
-     * @Route("/", name="staff_index", methods="GET")
+     * @Route("/index/{id}", defaults={"id"=null}, name="staff_index", methods="GET|POST")
+     * @param Staff|null $staffDisable
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function index(Request $request, PaginatorInterface $paginator): Response
+    public function index(Staff $staffDisable = null , Request $request, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Staff::class);
-        $staffs = $em->findAll(['id'=>'DESC']);
+        $staffs= $em->findBy([], ['isActive'=>'DESC']);
 
+        $formStaff = [];
+
+        foreach ($staffs as $staff) {
+            $form = $this->createForm(disableStaffType::class, $staff);
+            $form->handleRequest($request);
+            $formStaff[$staff->getId()]=$form->createView();
+        }
+
+        if (!is_null($staffDisable) && $form->isSubmitted() && $form->isValid()){
+            $em= $this->getDoctrine()->getManager();
+            if ($staffDisable->getIsActive() === true){
+                $staffDisable->setIsActive(false);
+            }else{
+                $staffDisable->setIsActive(true);
+            }
+            $em->persist($staffDisable);
+            $em->flush();
+
+            return $this->redirectToRoute('staff_index');
+        }
         $results = $paginator->paginate(
             $staffs,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 5)
         );
-        return $this->render('staff/index.html.twig', [
-            'staffs' => $results,
-            'isActive' => true,
+        return $this->render('staff/index.html.twig',[
+            'staffs' =>$results,
+            'formStaff' => $formStaff,
         ]);
     }
 
