@@ -5,49 +5,49 @@
     {{ form_start(form) }}
     <div class="row formEdit">
         <div class="offset-9 col-2 offset-1 select_staff">
-            <label for="{{ form.staff.vars.id }}"> Personnel :</label>
+            <label for="{{ form.staff.vars.id }}"> Personnel : </label>
             {{ form_widget(form.staff) }}
             {{ form_errors(form.staff) }}
         </div>
     </div>
-    <div class="row no-gutters allform">
+    <div class="row no-gutters allform form_edit">
         <div class="col-9">
             <div class="row justify-content-start formEdit">
                 <div class="col-3">
                     <label for="{{ form.customer.firstName.vars.id }}"> Prénom :</label>
-                    {{ form_widget(form.customer.firstName) }}
-                    {{ form_errors(form.customer.firstName) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.firstName, {'disabled': 'disabled'}) }}
+                        {{ form_errors(form.customer.firstName) }}<i class="fas fa-lock"></i></div>
 
                 </div>
                 <div class="col-3">
                     <label for="{{ form.customer.lastName.vars.id }}">  Nom de famille : </label>
-                    {{ form_widget(form.customer.lastName) }}
-                    {{ form_errors(form.customer.lastName) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.lastName, {'attr': {'readonly':'read_only'}}) }}
+                    {{ form_errors(form.customer.lastName) }}<i class="fas fa-lock"></i></div>
 
                 </div>
                 <div class="col-3">
                     <label for="{{ form.company.companyName.vars.id }}">  Nom de l'entreprise :</label>
-                    {{ form_widget(form.company.companyName) }}
-                    {{ form_errors(form.company.companyName) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.company.companyName, {'attr': {'readonly':'read_only'}}) }}
+                    {{ form_errors(form.company.companyName) }}<i class="fas fa-lock"></i></div>
 
                 </div>
             </div>
             <div class="row justify-content-start formEdit">
                 <div class="col-3 formEdit">
                     <label for="{{ form.customer.mailAddress.vars.id }}"> Adresse mail :</label>
-                    {{ form_widget(form.customer.mailAddress) }}
-                    {{ form_errors(form.customer.mailAddress) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.mailAddress, {'disabled': 'disabled'}) }}
+                    {{ form_errors(form.customer.mailAddress) }}<i class="fas fa-lock"></i></div>
 
                 </div>
                 <div class="col-3">
                     <label for="{{ form.customer.phoneNumber.vars.id }}"> Téléphone :</label>
-                    {{ form_widget(form.customer.phoneNumber) }}
-                    {{ form_errors(form.customer.phoneNumber) }}
+                    <div class="input-group-text label_border">{{ form_widget(form.customer.phoneNumber, {'disabled': 'disabled'}) }}
+                    {{ form_errors(form.customer.phoneNumber) }}<i class="fas fa-lock"></i></div>
                 </div>
             </div>
         </div>
-        <div class="col-3 vertical-align-center">
-            <label for="{{ form.comment.vars.id }}"> Commentaire :</label>
+        <div class="col-3 vertical-align-center comment_edit">
+            <label for="{{ form.comment.vars.id }}"> Commentaires : </label>
             {{ form_widget(form.comment) }}
             {{ form_errors(form.comment) }}
         </div>
@@ -55,25 +55,29 @@
 
     <!-- Ici doit commencer le bloc équipement et salles du formulaire -->
     <div class="container-fluid menuswitch ">
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row"><i class="fas fa-lock"></i>
             <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left">
                 <li class="nav-item">
-                    <a href="#room" class="nav-link active" data-toggle="tab" role="tab" aria-controls="room"><i class="fas fa-door-open fa-2x"></i></a>
+                    <a href="#room" class="nav-link active" data-toggle="tab" role="tab" aria-controls="room"><i class="fas fa-key fa-2x"></i></a>
                 </li>
+                {% if form.reservationEquipements is defined %}
                 <li class="nav-item">
-                    <a href="#equipment" class="nav-link second" data-toggle="tab" role="tab" aria-controls="equipment"><i class="fas fa-toolbox fa-2x"></i></a>
+                    <a href="#equipment" class="nav-link second" data-toggle="tab" role="tab" aria-controls="equipment"><i class="fas fa-wrench fa-2x"></i></a>
                 </li>
+                {% endif %}
             </ul>
 
             <div class="tab-content formEdit">
                 <div class="tab-pane fade show active" id="room">
                     <div class="row room_reservation">
                         {% for room in form.rooms %}
-                            {{ form_widget(form.rooms) }}
+                            {{ form_widget(form.rooms, {'disabled': 'disabled'}) }}
                             {{ form_errors(form.rooms) }}
                         {% endfor %}
                     </div>
                 </div>
+
+                {% if form.reservationEquipements is defined %}
                 <!-- Ici doit commencer le bloc équipement du formulaire -->
                 <div class="tab-pane fade" id="equipment">
                     <div class="row ">
@@ -84,7 +88,7 @@
                                 </label>
                                 <div class="row ">
                                     <div class="col">
-                                        {{ form_widget(reservationEquipement) }}
+                                        {{ form_widget(reservationEquipement, {'disabled': 'disabled'}) }}
                                         {{ form_errors(reservationEquipement) }}
                                     </div>
                                 </div>
@@ -92,6 +96,7 @@
                         {% endfor %}
                     </div>
                 </div>
+                {% endif %}
                 <!-- -->
             </div>
         </div>
@@ -99,7 +104,7 @@
 
     <!-- -->
     <div class="row justify-content-center validbutton">
-        <button class="btn text-center style-button bg-gradient1 mx-auto"><span>Modifier la Réservation</span></button>
+        <button class="btn text-center style-button bg-gradient1 mx-auto"><span>Modifier la réservation</span></button>
     </div>
     {{ form_end(form) }}
 </div>

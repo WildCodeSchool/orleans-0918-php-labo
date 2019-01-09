@@ -5,11 +5,14 @@ namespace App\Controller;
 use App\Entity\Equipement;
 use App\Entity\Reservation;
 use App\Entity\ReservationEquipement;
+use App\Form\ArchiveType;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,11 +27,38 @@ class ReservationController extends AbstractController
      * @param ReservationRepository $reservationRepository
      * @return Response
      */
-    public function currentReservationIndex(Request $request, PaginatorInterface $paginator)
-    {
+    public function currentReservationIndex(
+        Request $request,
+        Reservation $reservationArchive = null,
+        PaginatorInterface $paginator
+    ) {
+      
         $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
         $reservations = $em->findBy(['isArchived' => '0'], ['id'=>'DESC']);
 
+        $formArchive = [];
+
+        foreach ($reservations as $reservation) {
+            $form = $this->createForm(ArchiveType::class, $reservation);
+            $form->handleRequest($request);
+            $formArchive[$reservation->getId()]=$form->createView();
+        }
+
+        if (!is_null($reservationArchive) && $form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $reservationArchive->setIsArchived(1);
+
+
+            $em->persist($reservationArchive);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Réservation archivée !'
+            );
+
+            return $this->redirectToRoute('current_reservation_index');
+        }
         $results = $paginator->paginate(
             $reservations,
             $request->query->getInt('page', 1),
@@ -37,6 +67,7 @@ class ReservationController extends AbstractController
 
         return $this->render('reservation/currentReservations.html.twig', [
             'reservations'=> $results,
+            'formArchive' => $formArchive,
             ]);
     }
     /**
@@ -75,7 +106,11 @@ class ReservationController extends AbstractController
             $reservation->addReservationEquipement($reservationEquipements);
         }
       
-        $form = $this->createForm(ReservationType::class, $reservation);
+        $form = $this->createForm(
+            ReservationType::class,
+            $reservation,
+            ['base64_noimage' => $this->getParameter('base64_noimage')]
+        );
         $form->handleRequest($request);
 
 
@@ -125,7 +160,15 @@ class ReservationController extends AbstractController
      */
     public function edit(Request $request, Reservation $reservation): Response
     {
-        $form = $this->createForm(ReservationType::class, $reservation);
+
+        $form = $this->createForm(
+            ReservationType::class,
+            $reservation,
+            ['base64_noimage' => $this->getParameter('base64_noimage')]
+        );
+        if (0 == $reservation->getReservationEquipements()->count()) {
+            $form->remove('reservationEquipements');
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
