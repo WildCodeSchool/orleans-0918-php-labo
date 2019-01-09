@@ -57,6 +57,7 @@ class ReservationController extends AbstractController
         if (!is_null($reservationArchive) && $form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $reservationArchive->setIsArchived(1);
+            $reservationArchive->setEndDate(new\DateTime());
 
 
             $em->persist($reservationArchive);
