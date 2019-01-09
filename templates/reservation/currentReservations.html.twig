@@ -28,6 +28,7 @@
                 <th scope="col">Salle</th>
                 <th scope="col">Equipement</th>
                 <th scope="col">Commentaires</th>
+                <th scope="col"><i class="fas fa-archive"></i></th>
             </tr>
             </thead>
             <tbody>
@@ -55,6 +56,9 @@
                         </td>
                         <td class="comments_table"> <a href="{{ path('reservation_show',
                             {'id': reservation.id}) }}">{{ reservation.comment }}</a></td>
+                         <td>
+                            {{ include('reservation/_archiveForm.html.twig') }}
+                        </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -65,4 +69,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('archive') }}
 {% endblock %}

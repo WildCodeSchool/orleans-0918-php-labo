@@ -66,14 +66,6 @@ class StaffController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="staff_show", methods="GET")
-     */
-    public function show(Staff $staff): Response
-    {
-        return $this->render('staff/show.html.twig', ['staff' => $staff]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="staff_edit", methods="GET|POST")
      */
     public function edit(Request $request, Staff $staff): Response
@@ -96,23 +88,5 @@ class StaffController extends AbstractController
             'staff' => $staff,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="staff_delete", methods="DELETE")
-     */
-    public function delete(Request $request, Staff $staff): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$staff->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($staff);
-            $em->flush();
-        }
-        $this->addFlash(
-            'success',
-            'Suppression bien effectuée !'
-        );
-
-        return $this->redirectToRoute('staff_index');
     }
 }

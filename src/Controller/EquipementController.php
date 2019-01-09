@@ -66,14 +66,6 @@ class EquipementController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="equipement_show", methods="GET")
-     */
-    public function show(Equipement $equipement): Response
-    {
-        return $this->render('equipement/show.html.twig', ['equipement' => $equipement]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="equipement_edit", methods="GET|POST")
      */
     public function edit(Request $request, Equipement $equipement): Response
@@ -96,19 +88,5 @@ class EquipementController extends AbstractController
             'equipement' => $equipement,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="equipement_delete", methods="DELETE")
-     */
-    public function delete(Request $request, Equipement $equipement): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$equipement->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($equipement);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('equipement_index');
     }
 }
