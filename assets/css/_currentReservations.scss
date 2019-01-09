@@ -56,11 +56,14 @@ table {
       }
     }
   }
-}
-.btnArchive:hover {
-  color: $secondary-color;
-}
-.btnArchive {
-  color: $primary-color;
+  .btnArchive {
+    color: $primary-color;
+    &:hover {
+      color: $secondary-color
+    }
+  }
+  .boutonarchive{
+    text-align : center;
+  }
 }
 
