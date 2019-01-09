@@ -1,12 +1,11 @@
-{% block body %}
-{{ form_start(form) }}
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary active">
-        <input type="radio" name="options" id="option1" autocomplete="off" checked> {{ button_label|default('Activer') }}
-    </label>
-    <label class="btn btn-secondary">
-        <input type="radio" name="options" id="option2" autocomplete="off"> Déactiver
-    </label>
-</div>
-{{ form_end(form) }}
-{% endblock %}
+{{ form_start(formStaff[staff.id], {'action': path('staff_index',{'id': staff.id} )} ) }}
+
+{% if staff.isActive == true %}
+{{ form_widget(formStaff[staff.id].isActive, {'label' : 'Déactiver',
+    'attr' : {'class' : 'badge btn-secondary btn-group-toggle'}})}}
+{% else  %}
+{{ form_widget(formStaff[staff.id].isActive, {'label' : 'Activer',
+    'attr' : {'class' : 'badge btn-outline-success '}})}}
+{% endif %}
+
+{{ form_end(formStaff[staff.id]) }}
