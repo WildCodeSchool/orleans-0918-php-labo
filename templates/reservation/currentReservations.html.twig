@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reservation index{% endblock %}
+{% block title %}Index des réservations{% endblock %}
 
 {% block body %}
 
@@ -25,10 +25,10 @@
                 <th scope="col">Entreprise</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
-                <th scope="col">Salle</th>
-                <th scope="col">Equipement</th>
+                <th scope="col">Salle(s)</th>
+                <th scope="col">Equipement(s)</th>
                 <th scope="col">Commentaires</th>
-                <th scope="col"><i class="fas fa-archive"></i></th>
+                <th scope="col" class="boutonarchive"><i class="fas fa-archive"></i></th>
             </tr>
             </thead>
             <tbody>
@@ -56,7 +56,7 @@
                         </td>
                         <td class="comments_table"> <a href="{{ path('reservation_show',
                             {'id': reservation.id}) }}">{{ reservation.comment }}</a></td>
-                         <td>
+                         <td class="boutonarchive">
                             {{ include('reservation/_archiveForm.html.twig') }}
                         </td>
                 </tr>

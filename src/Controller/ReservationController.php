@@ -23,7 +23,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReservationController extends AbstractController
 {
     /**
-     * @Route("/current", name="current_reservation_index", methods="GET")
+     * @Route("/current/{id}", defaults={"id"=null}, name="current_reservation_index", methods="GET|POST")
      * @param ReservationRepository $reservationRepository
      * @return Response
      */
