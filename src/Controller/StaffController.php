@@ -26,7 +26,7 @@ class StaffController extends AbstractController
      * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function index(Staff $staffDisable=null , Request $request, PaginatorInterface $paginator): Response
+    public function index(Request $request, Staff $staffDisable = null, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Staff::class);
         $staffs= $em->findBy([], ['isActive'=>'DESC']);
@@ -43,7 +43,7 @@ class StaffController extends AbstractController
             $em= $this->getDoctrine()->getManager();
             if ($staffDisable->getIsActive() === true) {
                 $staffDisable->setIsActive(false);
-            }else {
+            } else {
                 $staffDisable->setIsActive(true);
             }
             $em->persist($staffDisable);
