@@ -6,13 +6,12 @@ use App\Entity\Equipement;
 use App\Entity\Reservation;
 use App\Entity\ReservationEquipement;
 use App\Form\ArchiveType;
+use App\Form\CleaningArchiveType;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -71,15 +70,19 @@ class ReservationController extends AbstractController
             'formArchive' => $formArchive,
             ]);
     }
+
     /**
      * @Route("/archive", name="archive_reservation_index", methods="GET")
-     * @param ReservationRepository $reservationRepository
+     * @param Request $request
+     * @param PaginatorInterface $paginator
      * @return Response
      */
     public function archiveReservationIndex(Request $request, PaginatorInterface $paginator)
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Reservation::class);
         $reservations = $em->findBy(['isArchived' => 'true'], ['startDate'=>'DESC']);
+        $formCleaner=$this->createForm(CleaningArchiveType::class);
+        $formCleaner->handleRequest($request);
 
         $result = $paginator->paginate(
             $reservations,
@@ -88,8 +91,10 @@ class ReservationController extends AbstractController
         );
         return $this->render('reservation/archiveReservations.html.twig', [
             'reservations'=> $result,
+            'formCleaner' => $formCleaner->createView()
         ]);
     }
+
     /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
      */
@@ -146,7 +151,7 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="reservation_show", methods="GET")
+     * @Route("/{id}", name="reservation_show", methods="GET", requirements={"id" = "\d+"})
      */
     public function show(Reservation $reservation): Response
     {
@@ -190,13 +195,46 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/archive/{id}", name="archive_show", methods="GET")
+     * @Route("/clear", name="reservation_clear", methods="POST")
+     * @param ReservationRepository $reservationRepository
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
      */
+    public function clear(ReservationRepository $reservationRepository)
+    {
+        $archives=$reservationRepository->getArchivesToDelete();
+        $em = $this->getDoctrine()->getManager();
+
+        if (empty($archives)) {
+            $this->addFlash(
+                'danger',
+                'Aucune(s) archive(s) à nettoyer !'
+            );
+            return $this->redirectToRoute('archive_reservation_index');
+        }
+
+        foreach ($archives as $archive) {
+            $em->remove($archive);
+        }
+
+        $em->flush();
+
+        $this->addFlash(
+            'success',
+            'Archivage nettoyé !'
+        );
+
+        return $this->redirectToRoute('archive_reservation_index');
+    }
+  
+  /**
+    * @Route("/archive/{id}", name="archive_show", methods="GET")
+    */
     public function archiveShow(Reservation $reservation): Response
     {
 
         return $this->render('reservation/archiveshow.html.twig', [
-            'reservation' => $reservation,
+            'reservation' => $reservation ,
         ]);
     }
 }
