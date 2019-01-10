@@ -29,12 +29,12 @@ class ReservationRepository extends ServiceEntityRepository
      */
     public function getArchivesToDelete()
     {
-        $now = new \DateTime();
-        $now->sub(new \DateInterval('P1Y'));
+        $cleaningDate = new \DateTime();
+        $cleaningDate->sub(new \DateInterval('P1Y'));
 
         $qb=$this->createQueryBuilder('r')
             ->where('r.endDate <= :date')
-            ->setParameter('date', $now->format('Y-m-d'))
+            ->setParameter('date', $cleaningDate->format('Y-m-d'))
             ->getQuery();
 
         $results = $qb->getResult();
