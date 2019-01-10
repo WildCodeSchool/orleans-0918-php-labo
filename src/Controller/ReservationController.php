@@ -234,6 +234,7 @@ class ReservationController extends AbstractController
     {
 
         return $this->render('reservation/archiveshow.html.twig', [
-            'reservation' => $reservation,
+            'reservation' => $reservation ,
         ]);
+    }
 }
