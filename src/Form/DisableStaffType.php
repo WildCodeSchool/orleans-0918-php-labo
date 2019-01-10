@@ -8,15 +8,13 @@
 
 namespace App\Form;
 
-
 use App\Entity\Staff;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class disableStaffType extends AbstractType
-
+class DisableStaffType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -38,5 +36,4 @@ class disableStaffType extends AbstractType
             'data_class' => Staff::class,
         ]);
     }
-
 }

@@ -26,7 +26,7 @@ class StaffController extends AbstractController
      * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function index(Staff $staffDisable = null , Request $request, PaginatorInterface $paginator): Response
+    public function index(Staff $staffDisable=null , Request $request, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Staff::class);
         $staffs= $em->findBy([], ['isActive'=>'DESC']);
@@ -39,11 +39,11 @@ class StaffController extends AbstractController
             $formStaff[$staff->getId()]=$form->createView();
         }
 
-        if (!is_null($staffDisable) && $form->isSubmitted() && $form->isValid()){
+        if (!is_null($staffDisable) && $form->isSubmitted() && $form->isValid()) {
             $em= $this->getDoctrine()->getManager();
-            if ($staffDisable->getIsActive() === true){
+            if ($staffDisable->getIsActive() === true) {
                 $staffDisable->setIsActive(false);
-            }else{
+            }else {
                 $staffDisable->setIsActive(true);
             }
             $em->persist($staffDisable);
@@ -56,7 +56,7 @@ class StaffController extends AbstractController
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 5)
         );
-        return $this->render('staff/index.html.twig',[
+        return $this->render('staff/index.html.twig', [
             'staffs' =>$results,
             'formStaff' => $formStaff,
         ]);
@@ -64,6 +64,8 @@ class StaffController extends AbstractController
 
     /**
      * @Route("/new", name="staff_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -93,6 +95,8 @@ class StaffController extends AbstractController
 
     /**
      * @Route("/{id}", name="staff_show", methods="GET")
+     * @param Staff $staff
+     * @return Response
      */
     public function show(Staff $staff): Response
     {
@@ -101,6 +105,9 @@ class StaffController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="staff_edit", methods="GET|POST")
+     * @param Request $request
+     * @param Staff $staff
+     * @return Response
      */
     public function edit(Request $request, Staff $staff): Response
     {
@@ -122,23 +129,5 @@ class StaffController extends AbstractController
             'staff' => $staff,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="staff_delete", methods="DELETE")
-     */
-    public function delete(Request $request, Staff $staff): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $staff->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($staff);
-            $em->flush();
-        }
-        $this->addFlash(
-            'success',
-            'Suppression bien effectuée !'
-        );
-
-        return $this->redirectToRoute('staff_index');
     }
 }

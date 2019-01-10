@@ -34,7 +34,7 @@ class ReservationType extends AbstractType
             ->add('staff', EntityType::class, array(
                 'class' => Staff::class,
                 'choice_label' => 'firstname',
-                'query_builder' => function (EntityRepository $er){
+                'query_builder' => function (EntityRepository $er) {
                     return $er -> createQueryBuilder('s')
                         ->where('s.isActive = true');
                 }
