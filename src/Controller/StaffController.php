@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Staff;
-use App\Form\DisableStaffType;
+use App\Form\EnableDisableStaffType;
 use App\Form\StaffType;
 use App\Repository\StaffRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -21,12 +21,12 @@ class StaffController extends AbstractController
 {
     /**
      * @Route("/index/{id}", defaults={"id"=null}, name="staff_index", methods="GET|POST")
-     * @param Staff|null $staffDisable
+     * @param Staff|null $staffEnableDisable
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @return Response
      */
-    public function index(Request $request, Staff $staffDisable = null, PaginatorInterface $paginator): Response
+    public function index(Request $request, Staff $staffEnableDisable = null, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Staff::class);
         $staffs= $em->findBy([], ['isActive'=>'DESC']);
@@ -34,19 +34,19 @@ class StaffController extends AbstractController
         $formStaff = [];
 
         foreach ($staffs as $staff) {
-            $form = $this->createForm(DisableStaffType::class, $staff);
+            $form = $this->createForm(EnableDisableStaffType::class, $staff);
             $form->handleRequest($request);
             $formStaff[$staff->getId()]=$form->createView();
         }
 
-        if (!is_null($staffDisable) && $form->isSubmitted() && $form->isValid()) {
+        if (!is_null($staffEnableDisable) && $form->isSubmitted() && $form->isValid()) {
             $em= $this->getDoctrine()->getManager();
-            if ($staffDisable->getIsActive() === true) {
-                $staffDisable->setIsActive(false);
+            if ($staffEnableDisable->getIsActive() === true) {
+                $staffEnableDisable->setIsActive(false);
             } else {
-                $staffDisable->setIsActive(true);
+                $staffEnableDisable->setIsActive(true);
             }
-            $em->persist($staffDisable);
+            $em->persist($staffEnableDisable);
             $em->flush();
 
             return $this->redirectToRoute('staff_index');

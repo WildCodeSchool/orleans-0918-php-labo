@@ -23,7 +23,7 @@
                             <td>{{ staff.lastname }}</td>
                             <td>{{ staff.firstname }}</td>
                             <td><a href="{{ path('staff_edit', {'id': staff.id}) }}" class="badge badge-light"><i class="fas fa-pen"></i></a></td>
-                            <td>{{ include('staff/_disableStaffForm.html.twig') }}</td>
+                            <td>{{ include('staff/_enableDisableStaffForm.html.twig') }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
