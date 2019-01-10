@@ -32,5 +32,4 @@ class CleaningArchiveType extends AbstractType
             'data_class' => Reservation::class,
         ]);
     }
-
 }
