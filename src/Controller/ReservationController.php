@@ -226,4 +226,14 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('archive_reservation_index');
     }
+  
+  /**
+    * @Route("/archive/{id}", name="archive_show", methods="GET")
+    */
+    public function archiveShow(Reservation $reservation): Response
+    {
+
+        return $this->render('reservation/archiveshow.html.twig', [
+            'reservation' => $reservation,
+        ]);
 }
