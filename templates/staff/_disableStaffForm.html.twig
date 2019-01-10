@@ -1,11 +1,11 @@
 {{ form_start(formStaff[staff.id], {'action': path('staff_index',{'id': staff.id} )} ) }}
 
 {% if staff.isActive == true %}
-{{ form_widget(formStaff[staff.id].isActive, {'label' : 'Déactiver',
-    'attr' : {'class' : 'badge btn-secondary btn-group-toggle'}})}}
+{{ form_widget(formStaff[staff.id].isActive, {'label' : 'Actif',
+    'attr' : {'class' : 'badge btn-success btn-group-toggle'}})}}
 {% else  %}
-{{ form_widget(formStaff[staff.id].isActive, {'label' : 'Activer',
-    'attr' : {'class' : 'badge btn-outline-success '}})}}
+{{ form_widget(formStaff[staff.id].isActive, {'label' : 'Non Actif',
+    'attr' : {'class' : 'badge btn-secondary '}})}}
 {% endif %}
 
 {{ form_end(formStaff[staff.id]) }}
