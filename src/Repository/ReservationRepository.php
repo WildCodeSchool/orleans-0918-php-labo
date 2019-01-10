@@ -27,7 +27,7 @@ class ReservationRepository extends ServiceEntityRepository
      * @return mixed
      * @throws \Exception
      */
-    public function getOldArchives()
+    public function getArchivesToDelete()
     {
         $now = new \DateTime();
         $now->sub(new \DateInterval('P1Y'));

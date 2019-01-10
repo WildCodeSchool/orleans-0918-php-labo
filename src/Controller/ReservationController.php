@@ -202,13 +202,13 @@ class ReservationController extends AbstractController
      */
     public function clear(ReservationRepository $reservationRepository)
     {
-        $archives=$reservationRepository->getOldArchives();
+        $archives=$reservationRepository->getArchivesToDelete();
         $em = $this->getDoctrine()->getManager();
 
         if (empty($archives)) {
             $this->addFlash(
                 'danger',
-                'Aucun archivage à supprimer !'
+                'Aucune(s) archive(s) à nettoyer !'
             );
             return $this->redirectToRoute('archive_reservation_index');
         }
