@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ReservationRepository;
 
 /**
  * Class ReservationController
@@ -238,10 +239,12 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('archive_reservation_index');
     }
-  
-  /**
-    * @Route("/archive/{id}", name="archive_show", methods="GET")
-    */
+
+    /**
+     * @Route("/archive/{id}", name="archive_show", methods="GET")
+     * @param Reservation $reservation
+     * @return Response
+     */
     public function archiveShow(Reservation $reservation): Response
     {
 
