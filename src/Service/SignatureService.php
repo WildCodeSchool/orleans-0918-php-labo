@@ -8,6 +8,9 @@
 
 namespace App\Service;
 
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 class SignatureService
 {
     /**
@@ -23,9 +26,10 @@ class SignatureService
     public function add(string $signature) : string
     {
         if (!empty($signature)) {
-            $path = $this->projectDir . '/assets/images/signatures/' . uniqid('sign_') . ".png";
+            $filename = uniqid('sign_') . ".png";
+            $path = $this->projectDir . '/public/build/images/signatures/' .$filename ;
             file_put_contents($path, file_get_contents($signature));
-            return $path;
+            return $filename;
         }
     }
 

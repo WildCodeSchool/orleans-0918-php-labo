@@ -16,6 +16,11 @@
 }
 
 .navbar {
+  .navbar-brand{
+    img{
+      padding-top : 0;
+    }
+  }
   .navbar-collapse {
     .navbar-nav {
       .nav-item {
@@ -27,6 +32,12 @@
           &:hover {
             color: $secondary-color;
             text-shadow: 1px 1px 1px $monochrome-color;
+          }
+        }
+        .nav-link{
+          border : none;
+          &:active{
+            border:none;
           }
         }
       padding-right: 3vh;

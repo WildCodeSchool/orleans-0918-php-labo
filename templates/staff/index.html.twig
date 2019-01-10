@@ -1,11 +1,11 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Staff index{% endblock %}
+{% block title %}Index du personnel{% endblock %}
 
 {% block body %}
     <main>
-        <div class="container mt-5">
-            <h2 class="text-center mt-5 mb-5">Liste du Personnel</h2>
+        <div class="container">
+            <h2 class="text-center">Liste du personnel</h2>
             <div class="row">
                 <div class="col-md-12">
                     <table id="datatable" class="table table-hover table-bordered">
@@ -29,7 +29,7 @@
                     </tbody>
                     </table>
                     <div class="row justify-content-center validbutton">
-                        <a href="{{ path('staff_new') }}" class="btn text-center style-button bg-gradient1 mx-auto"><span>Ajouter du Personnel</span></a>
+                        <a href="{{ path('staff_new') }}" class="btn text-center style-button bg-gradient1 mx-auto"><span>Ajouter du personnel</span></a>
                     </div>
                 </div>
             </div>

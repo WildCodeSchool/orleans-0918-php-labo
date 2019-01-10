@@ -1,11 +1,11 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Editer une Salle{% endblock %}
+{% block title %}Modification d'une salle{% endblock %}
 
 {% block body %}
     <div class="backlink"><a href="{{ path('room_index') }}"><i class="fas fa-chevron-circle-left"></i></a></div>
 
-    <h2>Editer une salle</h2>
+    <h2>Modification d'une salle</h2>
 
     {{ include('room/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 

@@ -9,8 +9,6 @@ main{
     font-size : 2.5em;
     font-weight : bold;
     text-align : center;
-    padding-bottom : 2%;
-    padding-top : 1%;
     color: $secondary-color;
   }
 label{
@@ -25,7 +23,7 @@ input{
   padding-left : 10%;
 }
 .formline{
-  padding-top : 2%;
+  padding-top :0.5%;
 }
 #reservation_comment{
   width : 80%;
@@ -70,4 +68,55 @@ input{
 }
 .formEdit{
   margin-bottom: 1.5em;
+}
+.change_comments {
+  color : $primary-color;
+  font-size: 1em;
+}
+.container-fluid {
+  .select_staff {
+    #reservation_staff {
+      background-color: white;
+      font-weight: bold;
+    }
+  }
+}
+.container-fluid {
+  .form_edit{
+    .comment_edit {
+      #reservation_comment {
+        background-color: white;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.label_border {
+  #reservation_customer_firstName {
+    border: none;
+  }
+  #reservation_customer_lastName {
+    border: none;
+  }
+  #reservation_company_companyName {
+    border: none;
+  }
+  #reservation_customer_mailAddress {
+    border: none;
+  }
+  #reservation_customer_phoneNumber {
+    border: none;
+  }
+}
+.requirefield{
+ color : $primary-color;
+  font-style: italic;
+}
+.container_form {
+  .d-block {
+    max-width : 320px;
+    .form-error-message {
+      font-size: 1.6em;
+    }
+  }
 }

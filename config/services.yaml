@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'fr'
+    limitPaginator : 5
+    base64_noimage: '%env(APP_NO_IMAGE_DATA)%'
 
 services:
     # default configuration for services in *this* file

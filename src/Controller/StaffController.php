@@ -54,7 +54,7 @@ class StaffController extends AbstractController
         $results = $paginator->paginate(
             $staffs,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 5)
+            $this->getParameter('limitPaginator')
         );
         return $this->render('staff/index.html.twig', [
             'staffs' =>$results,
@@ -91,16 +91,6 @@ class StaffController extends AbstractController
             'staff' => $staff,
             'form' => $form->createView(),
         ]);
-    }
-
-    /**
-     * @Route("/{id}", name="staff_show", methods="GET")
-     * @param Staff $staff
-     * @return Response
-     */
-    public function show(Staff $staff): Response
-    {
-        return $this->render('staff/show.html.twig', ['staff' => $staff]);
     }
 
     /**
