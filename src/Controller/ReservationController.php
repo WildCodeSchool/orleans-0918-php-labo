@@ -8,7 +8,6 @@ use App\Entity\ReservationEquipement;
 use App\Form\ArchiveType;
 use App\Form\CleaningArchiveType;
 use App\Form\ReservationType;
-use App\Repository\ReservationRepository;
 use App\Service\SignatureService;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,14 +16,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * Class ReservationController
+ * @package App\Controller
  * @Route("/reservation")
  */
 class ReservationController extends AbstractController
 {
+
     /**
      * @Route("/current/{id}", defaults={"id"=null}, name="current_reservation_index", methods="GET|POST")
-     * @param ReservationRepository $reservationRepository
-     * @return Response
+     * @param Request $request
+     * @param Reservation|null $reservationArchive
+     * @param PaginatorInterface $paginator
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function currentReservationIndex(
         Request $request,
@@ -97,6 +101,9 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/new", name="reservation_new", methods="GET|POST")
+     * @param Request $request
+     * @param SignatureService $signatureService
+     * @return Response
      */
     public function new(Request $request, SignatureService $signatureService): Response
     {
@@ -152,6 +159,8 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/{id}", name="reservation_show", methods="GET", requirements={"id" = "\d+"})
+     * @param Reservation $reservation
+     * @return Response
      */
     public function show(Reservation $reservation): Response
     {
@@ -163,6 +172,9 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="reservation_edit", methods="GET|POST")
+     * @param Request $request
+     * @param Reservation $reservation
+     * @return Response
      */
     public function edit(Request $request, Reservation $reservation): Response
     {

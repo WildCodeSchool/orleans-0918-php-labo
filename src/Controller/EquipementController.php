@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Equipement;
 use App\Form\EquipementType;
-use App\Repository\EquipementRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +11,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * Class EquipementController
+ * @package App\Controller
  * @Route("/equipement")
  */
 class EquipementController extends AbstractController
@@ -37,8 +38,11 @@ class EquipementController extends AbstractController
             'equipements' => $results,
         ]);
     }
+
     /**
      * @Route("/new", name="equipement_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -67,6 +71,9 @@ class EquipementController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="equipement_edit", methods="GET|POST")
+     * @param Request $request
+     * @param Equipement $equipement
+     * @return Response
      */
     public function edit(Request $request, Equipement $equipement): Response
     {

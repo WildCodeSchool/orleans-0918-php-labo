@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Staff;
 use App\Form\EnableDisableStaffType;
 use App\Form\StaffType;
-use App\Repository\StaffRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * Class StaffController
+ * @package App\Controller
  * @Route("/staff")
  */
 class StaffController extends AbstractController

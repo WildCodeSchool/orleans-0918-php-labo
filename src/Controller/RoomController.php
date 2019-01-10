@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
+ * Class RoomController
+ * @package App\Controller
  * @Route("/room")
  */
 class RoomController extends AbstractController
@@ -22,7 +24,6 @@ class RoomController extends AbstractController
      * @param PaginatorInterface $paginator
      * @return Response
      */
-
     public function index(Request $request, PaginatorInterface $paginator): Response
     {
         $em = $this->getDoctrine()->getmanager()->getRepository(Room::class);
@@ -37,8 +38,11 @@ class RoomController extends AbstractController
             'rooms' => $results,
         ]);
     }
+
     /**
      * @Route("/new", name="room_new", methods="GET|POST")
+     * @param Request $request
+     * @return Response
      */
     public function new(Request $request): Response
     {
@@ -64,8 +68,12 @@ class RoomController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/{id}/edit", name="room_edit", methods="GET|POST")
+     * @param Request $request
+     * @param Room $room
+     * @return Response
      */
     public function edit(Request $request, Room $room): Response
     {

@@ -8,9 +8,6 @@
 
 namespace App\Service;
 
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
-
 class SignatureService
 {
     /**
@@ -23,6 +20,10 @@ class SignatureService
         $this->projectDir = $projectDir;
     }
 
+    /**
+     * @param string $signature
+     * @return string
+     */
     public function add(string $signature) : string
     {
         if (!empty($signature)) {
@@ -33,6 +34,9 @@ class SignatureService
         }
     }
 
+    /**
+     * @param $path
+     */
     public function delete($path)
     {
         if (!empty($path)) {
