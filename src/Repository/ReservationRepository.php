@@ -23,20 +23,23 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
+
     /**
      * @return mixed
      * @throws \Exception
      */
-    public function cleaningArchive()
+    public function getOldArchives()
     {
         $now = new \DateTime();
-        $datelimite=$now->add(new \DateInterval('P1Y'));
-        $datelimite->invert=1;
+        $now->sub(new \DateInterval('P1Y'));
 
         $qb=$this->createQueryBuilder('r')
-            ->where('r.endDate < $datelimite')
+            ->where('r.endDate <= :date')
+            ->setParameter('date', $now->format('Y-m-d'))
             ->getQuery();
 
-        return $qb->execute();
+        $results = $qb->getResult();
+
+        return $results;
     }
 }
