@@ -73,7 +73,8 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/archive", name="archive_reservation_index", methods="GET")
-     * @param ReservationRepository $reservationRepository
+     * @param Request $request
+     * @param PaginatorInterface $paginator
      * @return Response
      */
     public function archiveReservationIndex(Request $request, PaginatorInterface $paginator)
@@ -195,9 +196,11 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/clear", name="reservation_clear", methods="POST")
+     * @param ReservationRepository $reservationRepository
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @throws \Exception
      */
-    public function clear(ReservationRepository $reservationRepository, Request $request)
+    public function clear(ReservationRepository $reservationRepository)
     {
         $archives=$reservationRepository->getOldArchives();
         $em = $this->getDoctrine()->getManager();

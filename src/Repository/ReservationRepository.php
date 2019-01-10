@@ -23,7 +23,6 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
-
     /**
      * @return mixed
      * @throws \Exception
