@@ -8,8 +8,17 @@ h1 {
 
 .reservation {
   @include style-button($monochrome-color, $primary-color, $primary-color);
-  margin-top: 25%;
   font-size: calc(0.8vw + 15pt);
+  .style-button{
+    font-size: 0.5em;
+    letter-spacing: 0.08em;
+    padding-bottom: 15%;
+    position: relative;
+    span {
+      text-shadow: 2px 2px 2px $secondary-color;
+      padding: 20px;
+    }
+  }
 }
 
 .backgroundHome {
@@ -27,13 +36,6 @@ h1 {
   }
   .backgroundHome {
     background-image: url("../images/labo_portrait.jpg");
-  }
-  .style-button {
-    position: relative !important;
-  }
-  .reservation .style-button span {
-    font-size: 2em;
-    padding: 30px 30px;
   }
 }
 

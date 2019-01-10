@@ -5,6 +5,8 @@ namespace App\Form;
 use App\Entity\Reservation;
 use App\Entity\Room;
 use App\Entity\Staff;
+use Doctrine\ORM\EntityRepository;
+use App\Service\SignatureService;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -40,7 +42,11 @@ class ReservationType extends AbstractType
             ))
             ->add('staff', EntityType::class, array(
                 'class' => Staff::class,
-                'choice_label' => 'firstname'
+                'choice_label' => 'firstname',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er -> createQueryBuilder('s')
+                        ->where('s.isActive = true');
+                }
             ))
             ->add('reservationEquipements', CollectionType::class, array(
                 'entry_type'=> ReservationEquipementType::class,

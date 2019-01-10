@@ -40,6 +40,11 @@ class Staff
      */
     private $reservation;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive;
+
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
@@ -101,6 +106,18 @@ class Staff
                 $reservation->setStaff(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }
