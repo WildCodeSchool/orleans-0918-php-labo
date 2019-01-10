@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Staff;
-use App\Form\disableStaffType;
+use App\Form\DisableStaffType;
 use App\Form\StaffType;
 use App\Repository\StaffRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -34,7 +34,7 @@ class StaffController extends AbstractController
         $formStaff = [];
 
         foreach ($staffs as $staff) {
-            $form = $this->createForm(disableStaffType::class, $staff);
+            $form = $this->createForm(DisableStaffType::class, $staff);
             $form->handleRequest($request);
             $formStaff[$staff->getId()]=$form->createView();
         }
