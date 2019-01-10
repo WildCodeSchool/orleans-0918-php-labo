@@ -8,12 +8,13 @@
             <h2 class="text-center">Liste du personnel</h2>
             <div class="row">
                 <div class="col-md-12">
-                    <table id="datatable" class="table table-striped table-bordered">
+                    <table id="datatable" class="table table-hover table-bordered">
                     <thead class="thead-center text-center">
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Modifier</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody class="text-center">
@@ -22,6 +23,7 @@
                             <td>{{ staff.lastname }}</td>
                             <td>{{ staff.firstname }}</td>
                             <td><a href="{{ path('staff_edit', {'id': staff.id}) }}" class="badge badge-light"><i class="fas fa-pen"></i></a></td>
+                            <td>{{ include('staff/_enableDisableStaffForm.html.twig') }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
