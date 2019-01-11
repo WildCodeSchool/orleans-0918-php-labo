@@ -8,36 +8,31 @@ h1 {
 
 .reservation {
   @include style-button($monochrome-color, $primary-color, $primary-color);
-  margin-top: 25%;
   font-size: calc(0.8vw + 15pt);
+  .style-button{
+    font-size: 0.5em;
+    letter-spacing: 0.08em;
+    padding-bottom: 15%;
+    position: relative;
+    span {
+      text-shadow: 2px 2px 2px $secondary-color;
+      padding: 20px;
+    }
+  }
 }
-
-.backgroundHome {
-  background: url("../images/LABO_2016_exter@Jean_PUYO.jpg");
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
+@media (min-width: 500px) {
+  .backgroundHome {
+    background: url("../images/LABO_2016_exter.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-position: top !important;
+    background-size: cover !important;
+  }
 }
-
-// Landscape Tablet mode
-@media (min-width: 768px) and (max-width: 1000px) {
+//// Landscape Tablet mode
+@media (min-width: 700px){
   h1{
     padding-top: 15%;
     text-shadow: 3px 4px 3px darken($primary-color, 15%);
   }
-  .backgroundHome {
-    background-image: url("../images/labo_portrait.jpg");
-  }
-  .style-button {
-    position: relative !important;
-  }
-  .reservation .style-button span {
-    font-size: 2em;
-    padding: 30px 30px;
-  }
+
 }
-
-
-
-
-

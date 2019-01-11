@@ -1,18 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: wilder22
+ * Date: 08/01/19
+ * Time: 17:32
+ */
 
 namespace App\Form;
 
-use App\Entity\Equipement;
+use App\Entity\Staff;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class EquipementType
- * @package App\Form
- */
-class EquipementType extends AbstractType
+class EnableDisableStaffType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,7 +23,7 @@ class EquipementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('isActive', SubmitType::class, array('attr' =>['class' => 'btnActiveStaff']))
         ;
     }
 
@@ -31,7 +33,7 @@ class EquipementType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Equipement::class,
+            'data_class' => Staff::class,
         ]);
     }
 }

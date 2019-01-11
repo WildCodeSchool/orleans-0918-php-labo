@@ -1,0 +1,15 @@
+{{ form_start(formStaff[staff.id], {'action': path('staff_index',{'id': staff.id} )} ) }}
+
+{% if staff.isActive == true %}
+{{ form_widget(formStaff[staff.id].isActive, {'label' : 'Actif',
+    'attr' : {'class' : 'badge btn-success btn-group-toggle'},
+    'id' : formStaff[staff.id].isActive.vars.id~staff.id})}}
+{% else  %}
+{{ form_widget(formStaff[staff.id].isActive, {
+    'label' : 'Non Actif',
+    'attr' : {'class' : 'badge btn-secondary '},
+    'id' : formStaff[staff.id].isActive.vars.id~staff.id
+})}}
+{% endif %}
+
+{{ form_end(formStaff[staff.id]) }}
