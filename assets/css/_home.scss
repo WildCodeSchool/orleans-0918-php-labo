@@ -20,26 +20,19 @@ h1 {
     }
   }
 }
-
-.backgroundHome {
-  background: url("../images/LABO_2016_exter@Jean_PUYO.jpg");
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: cover;
+@media (min-width: 500px) {
+  .backgroundHome {
+    background: url("../images/LABO_2016_exter.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-position: top !important;
+    background-size: cover !important;
+  }
 }
-
-// Landscape Tablet mode
-@media (min-width: 768px) and (max-width: 1000px) {
+//// Landscape Tablet mode
+@media (min-width: 700px){
   h1{
     padding-top: 15%;
     text-shadow: 3px 4px 3px darken($primary-color, 15%);
   }
-  .backgroundHome {
-    background-image: url("../images/labo_portrait.jpg");
-  }
+
 }
-
-
-
-
-
