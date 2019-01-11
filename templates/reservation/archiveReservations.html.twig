@@ -40,8 +40,8 @@
                     </td>
                     <td>
                         {% for reservationEquipement in reservation.reservationEquipements %}
-                            <a href="{{ path('archive_show',
-                                {'id': reservation.id}) }}"><li>{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</li></a>
+                            <li><a href="{{ path('archive_show',
+                                {'id': reservation.id}) }}">{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</a></li>
                         {% endfor %}
                     </td>
                     <td class="comments_table"> <a href="{{ path('archive_show',
