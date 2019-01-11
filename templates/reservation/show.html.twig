@@ -30,7 +30,7 @@
                 </div>
                 <div class="signature-recap">
                    <div class="pl-4"> <h3><span> Signature : </span></h3></div>
-                    <div><img src="{{ asset('build/images/signatures/'~reservation.signature) }}" alt="signature" class="img-responsive"></div>
+                    <div><img src="{{ asset('/build/images/signatures/'~reservation.signature) }}" alt="signature" class="img-responsive"></div>
                 </div>
             </div>
             <div class="col-4 pt-5 justify-content-center">
@@ -54,10 +54,10 @@
                 <div class="card">
                     <h3 class="card-header text-center"><span>Salle(s) Réservée(s)</span></h3>
                     <div class="card-body">
-                        <label>{% for room in reservation.rooms %}
-                                <li>{{ room.name }}</li>
+                        <div>{% for room in reservation.rooms %}
+                                <ul><li>{{ room.name }}</li></ul>
                             {% endfor %}
-                        </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,10 +65,10 @@
                 <div class="card">
                     <h3 class="card-header text-center"><span>Equipement(s) Réservé(s)</span></h3>
                     <div class="card-body">
-                        <label>{% for reservationEquipement in reservation.reservationEquipements %}
-                                <li>{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</li>
+                        <div>{% for reservationEquipement in reservation.reservationEquipements %}
+                                <ul><li>{{ reservationEquipement.quantity }}x {{ reservationEquipement.equipement.name }}</li></ul>
                             {% endfor %}
-                        </label>
+                        </div>
                     </div>
                 </div>
             </div>

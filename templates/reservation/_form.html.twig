@@ -61,6 +61,7 @@
     <!-- Ici doit commencer le bloc équipement et salles du formulaire -->
     <div class="container-fluid menuswitch">
     <div class="d-flex flex-row">
+        <div role="tablist">
         <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left">
             <li class="nav-item">
                 <a href="#room" class="nav-link active" data-toggle="tab" role="tab" aria-controls="room"><i class="fas fa-key fa-2x"></i></a>
@@ -72,7 +73,7 @@
                 <a href="#signature" class="nav-link third" data-toggle="tab" role="tab" aria-controls="signature"><i class="fas fa-file-signature fa-2x"></i></a>
             </li>
         </ul>
-
+        </div>
         <div class="tab-content">
             <div class="tab-pane fade show active" id="room">
                 <div class="row room_reservation">
@@ -87,7 +88,7 @@
                 <div class="row ">
                 {% for reservationEquipement in form.reservationEquipements %}
                     <div class="col-3 align-self-center">
-                        <label for="{{ form.reservationEquipements.vars.id }}">
+                        <label for="{{ reservationEquipement.quantity.vars.id }}">
                             {{ reservationEquipement.vars.value.equipement.name }}
                         </label>
                             <div class="row ">
