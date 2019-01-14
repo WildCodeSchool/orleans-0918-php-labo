@@ -50,6 +50,10 @@ input{
   border : 1px solid black;
   border-radius: 0.5em;
 }
+#bcPaint-canvas-container{
+  width: 700px;
+  height: 320px;
+}
 @media (min-width: 1281px) {
   #canvas {
     height: 320px;
@@ -60,6 +64,8 @@ input{
   #canvas {
     height: 200px;
     width: 700px;
+    display: inline-block;
+    vertical-align: baseline;
   }
 }
 .text_signature {
@@ -119,4 +125,18 @@ input{
       font-size: 1.6em;
     }
   }
+}
+
+#bcPaintCanvas{
+  width: 100%;
+  min-height: 200px;
+////  background-color:red;
+////  white-space: nowrap;
+////  vertical-align: middle;
+////  touch-action: manipulation;
+////  cursor: pointer;
+////  -webkit-user-select: none;
+////  -moz-user-select: none;
+////  -ms-user-select: none;
+////  user-select: none;
 }

@@ -1,19 +1,20 @@
 import "./function_signature";
 
-(function ( $ ) {
+(function ($) {
     /**
      * Private variables
      **/
     var isDragged = false,
-        startPoint = { x:0, y:0 },
+        startPoint = {x: 0, y: 0},
         templates = {
-            container : $('<div id="bcPaint-container"></div>'),
-            header : $('<div id="bcPaint-header"></div>'),
-            palette : $('<div id="bcPaint-palette"></div>'),
-            color : $('<div class="bcPaint-palette-color"></div>'),
-            canvasContainer : $('<div id="bcPaint-canvas-container"></div>'),
-            canvasPane : $('<canvas id="bcPaintCanvas"></canvas>'),
-            bottom : $('<div id="bcPaint-bottom"></div>')},
+            container: $('<div id="bcPaint-container"></div>'),
+            header: $('<div id="bcPaint-header"></div>'),
+            palette: $('<div id="bcPaint-palette"></div>'),
+            color: $('<div class="bcPaint-palette-color"></div>'),
+            canvasContainer: $('<div id="bcPaint-canvas-container"></div>'),
+            canvasPane: $('<canvas id="bcPaintCanvas"></canvas>'),
+            bottom: $('<div id="bcPaint-bottom"></div>'),
+        },
         paintCanvas,
         paintContext;
 
@@ -44,10 +45,9 @@ import "./function_signature";
 
             // set canvas pane width and height
             var bcCanvas = rootElement.find('canvas');
-
             var bcCanvasContainer = rootElement.find('#bcPaint-canvas-container');
-            bcCanvas.attr('width', '700px');
-            bcCanvas.attr('height', '200px');
+            bcCanvas.attr('width', bcCanvasContainer.width());
+            bcCanvas.attr('height', bcCanvasContainer.height());
 
             // get canvas pane context
             paintCanvas = document.getElementById('bcPaintCanvas');
@@ -74,20 +74,20 @@ import "./function_signature";
 
             // Prevent scrolling on touch event
             document.body.addEventListener("touchstart", function (e) {
-                if (e.target == 'bcPaintCanvas') {
+                if (e.target.id == 'bcPaintCanvas') {
                     e.preventDefault();
                 }
-            }, {passive:false});
+            }, {passive: false});
             document.body.addEventListener("touchend", function (e) {
-                if (e.target == 'bcPaintCanvas') {
+                if (e.target.id == 'bcPaintCanvas') {
                     e.preventDefault();
                 }
-            }, {passive:false});
+            }, {passive: false});
             document.body.addEventListener("touchmove", function (e) {
-                if (e.target == 'bcPaintCanvas') {
+                if (e.target.id == 'bcPaintCanvas') {
                     e.preventDefault();
                 }
-            }, {passive:false});
+            }, {passive: false});
         });
     }
 
@@ -99,10 +99,10 @@ import "./function_signature";
         /**
          * Dispatch mouse event
          */
-        dispatchMouseEvent : function (e, mouseAction) {
+        dispatchMouseEvent: function (e, mouseAction) {
             var touch = e.touches[0];
             if (touch == undefined) {
-                touch = { clientX : 0, clientY : 0 };
+                touch = {clientX: 0, clientY: 0};
             }
             var mouseEvent = new MouseEvent(mouseAction, {
                 clientX: touch.clientX,
@@ -114,14 +114,14 @@ import "./function_signature";
         /**
          * Remove pane
          */
-        clearCanvas : function () {
+        clearCanvas: function () {
             paintCanvas.width = paintCanvas.width;
         },
 
         /**
          * On mouse down
          **/
-        onMouseDown : function (e) {
+        onMouseDown: function (e) {
             isDragged = true;
             // get mouse x and y coordinates
             startPoint.x = e.offsetX;
@@ -134,14 +134,14 @@ import "./function_signature";
         /**
          * On mouse up
          **/
-        onMouseUp : function () {
+        onMouseUp: function () {
             isDragged = false;
         },
 
         /**
          * On mouse move
          **/
-        onMouseMove : function (e) {
+        onMouseMove: function (e) {
             if (isDragged) {
                 paintContext.lineTo(e.offsetX, e.offsetY);
                 paintContext.stroke();
@@ -151,7 +151,7 @@ import "./function_signature";
         /**
          * Set selected color
          **/
-        setColor : function (color) {
+        setColor: function (color) {
             paintContext.strokeStyle = $.fn.bcPaint.toHex(color);
         },
 
@@ -159,17 +159,16 @@ import "./function_signature";
         /**
          *
          */
-        export : function () {
+        export: function () {
             var imgData = paintCanvas.toDataURL('image/png');
             $('.signature').val(imgData);
-            console.log(imgData);
         },
 
 
         /**
          * Convert color to HEX value
          **/
-        toHex : function (color) {
+        toHex: function (color) {
             // check if color is standard hex value
             if (color.match(/[0-9A-F]{6}|[0-9A-F]{3}$/i)) {
                 return (color.charAt(0) === "#") ? color : ("#" + color);
@@ -203,16 +202,16 @@ import "./function_signature";
      **/
     $.fn.bcPaint.defaults = {
         // default color
-        defaultColor : '000000',
+        defaultColor: '000000',
 
         // default color set
-        colors : [
+        colors: [
             '000000', '444444', '999999', 'DDDDDD', '6B0100', 'AD0200',
             '6B5E00', 'FFE000', '007A22', '00E53F', '000884', '000FFF'
         ],
 
         // extend default set
-        addColors : [],
+        addColors: [],
     };
 
 })(jQuery);
