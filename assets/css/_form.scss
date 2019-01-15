@@ -50,17 +50,13 @@ input{
   border : 1px solid black;
   border-radius: 0.5em;
 }
-@media (min-width: 1281px) {
-  #canvas {
-    height: 320px;
-    width: 700px;
-  }
+#bcPaint-canvas-container {
+  width: 700px;
+  height: 200px;
 }
-@media (min-width: 700px) and (max-width: 1280px){
-  #canvas {
-    height: 200px;
-    width: 700px;
-  }
+#bcPaintCanvas{
+  width: 100%;
+  min-height: 200px;
 }
 .text_signature {
   padding-top : 5em;
