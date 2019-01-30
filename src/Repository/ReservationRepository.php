@@ -14,6 +14,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class ReservationRepository extends ServiceEntityRepository
 {
+    const INTERVAL = 'P3M';
+
     /**
      * ReservationRepository constructor.
      * @param RegistryInterface $registry
@@ -30,7 +32,7 @@ class ReservationRepository extends ServiceEntityRepository
     public function getArchivesToDelete()
     {
         $cleaningDate = new \DateTime();
-        $cleaningDate->sub(new \DateInterval('P1Y'));
+        $cleaningDate->sub(new \DateInterval(self::INTERVAL));
 
         $qb=$this->createQueryBuilder('r')
             ->where('r.endDate <= :date')
