@@ -30,7 +30,7 @@ class ReservationRepository extends ServiceEntityRepository
     public function getArchivesToDelete()
     {
         $cleaningDate = new \DateTime();
-        $cleaningDate->sub(new \DateInterval('P1Y'));
+        $cleaningDate->sub(new \DateInterval('P3M'));
 
         $qb=$this->createQueryBuilder('r')
             ->where('r.endDate <= :date')
