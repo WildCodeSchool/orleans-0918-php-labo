@@ -45,7 +45,7 @@ class Reservation
     private $staff;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="reservations", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Room", inversedBy="reservations", cascade={"persist"})
      */
     private $rooms;
 
